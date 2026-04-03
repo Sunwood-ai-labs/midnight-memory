@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Midnight Memory Viewer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=forward_10,music_note,pause,play_arrow,refresh,replay,replay_10,schedule,subtitles&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="viewer-shell">
+    <header class="top-bar panel">
+      <div>
+        <p class="eyebrow">Midnight Memory</p>
+        <h1>Audio + SRT Viewer</h1>
+      </div>
+      <div class="meta-group">
+        <div class="meta-chip">
+          <span class="meta-label">Manifest</span>
+          <strong id="manifestStatus">Loading</strong>
+        </div>
+        <div class="meta-chip">
+          <span class="meta-label">Tracks</span>
+          <strong id="trackCount">0</strong>
+        </div>
+        <div class="meta-chip">
+          <span class="meta-label">Cue</span>
+          <strong id="cueCounter">0 / 0</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="player-strip panel">
+      <div class="player-header">
+        <div>
+          <p class="section-kicker">Now Playing</p>
+          <h2 id="deckTitle">Preparing viewer</h2>
+          <p id="deckSubtitle">manifest を読み込み中です。</p>
+        </div>
+        <button class="ghost-button" type="button" id="reloadButton">
+          <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+          Reload
+        </button>
+      </div>
+
+      <div class="transport-row">
+        <div class="transport-buttons" aria-label="再生コントロール">
+          <button class="icon-button primary" type="button" id="playPauseButton" aria-label="再生または一時停止">
+            <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
+          </button>
+          <button class="icon-button" type="button" id="restartButton" aria-label="先頭へ戻る">
+            <span class="material-symbols-outlined" aria-hidden="true">replay</span>
+          </button>
+          <button class="icon-button" type="button" id="backButton" aria-label="10秒戻る">
+            <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
+          </button>
+          <button class="icon-button" type="button" id="forwardButton" aria-label="10秒進む">
+            <span class="material-symbols-outlined" aria-hidden="true">forward_10</span>
+          </button>
+        </div>
+
+        <label class="visually-hidden" for="timeSlider">再生位置</label>
+        <input type="range" id="timeSlider" min="0" max="0" step="0.01" value="0" aria-label="再生位置">
+        <div class="time-readout" id="timeReadout">00:00 / 00:00</div>
+      </div>
+
+      <div class="toolbar-row">
+        <label class="speed-label" for="speedSelect">Speed</label>
+        <select id="speedSelect" aria-label="再生速度">
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1.0x</option>
+          <option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option>
+        </select>
+        <div class="status-row" role="status" aria-live="polite">
+          <span class="status-chip" id="audioStateChip">Audio idle</span>
+          <span class="status-chip" id="subtitleStateChip">Subtitle idle</span>
+          <span class="status-chip" id="statusChip">Ready</span>
+        </div>
+      </div>
+
+      <audio id="audioElement" preload="metadata"></audio>
+    </section>
+
+    <main class="content-grid">
+      <aside class="panel stack">
+        <section>
+          <div class="panel-title-row">
+            <h2>Tracks</h2>
+            <span class="material-symbols-outlined subtle-icon" aria-hidden="true">music_note</span>
+          </div>
+          <div class="track-list" id="trackList" role="listbox" aria-label="トラック一覧"></div>
+        </section>
+
+        <section class="now-card">
+          <div class="panel-title-row">
+            <h2>Current</h2>
+            <span class="meta-inline" id="currentTiming">00:00.000</span>
+          </div>
+          <p class="current-line" id="currentLine" aria-live="polite">字幕を読み込んでいます。</p>
+          <p class="next-line" id="nextLine">次の行がここに表示されます。</p>
+        </section>
+      </aside>
+
+      <section class="panel stack">
+        <div class="panel-title-row">
+          <h2>Timeline</h2>
+          <span class="material-symbols-outlined subtle-icon" aria-hidden="true">subtitles</span>
+        </div>
+        <div class="cue-list" id="cueList" role="list" aria-label="字幕タイムライン">
+          <div class="empty-state">字幕を読み込むとここに表示されます。</div>
+        </div>
+      </section>
+
+      <section class="panel stack">
+        <div class="panel-title-row">
+          <h2>Raw SRT</h2>
+          <span class="material-symbols-outlined subtle-icon" aria-hidden="true">schedule</span>
+        </div>
+        <pre id="rawSrt">字幕テキストを待機中です。</pre>
+        <p class="support-text" id="statusMessage">manifest を取得しています。</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>
