@@ -250,6 +250,8 @@ select {
 .timeline-lanes {
   display: grid;
   gap: 16px;
+  grid-template-columns: minmax(260px, 0.85fr) minmax(320px, 1.15fr);
+  align-items: start;
 }
 
 .lane-heading {
@@ -476,6 +478,10 @@ select:focus-visible,
 
 @media (max-width: 1120px) {
   .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-lanes {
     grid-template-columns: 1fr;
   }
 
