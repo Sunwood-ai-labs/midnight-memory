@@ -11,6 +11,18 @@ def test_parse_json_array_accepts_fenced_json() -> None:
     assert result == [{"line_number": 1, "start_seconds": 1.2, "end_seconds": 2.4}]
 
 
+def test_parse_json_array_accepts_intro_text_before_fenced_json() -> None:
+    payload = """Here is the timing data:
+
+```json
+[{"line_number": 1, "start_seconds": 1.2, "end_seconds": 2.4}]
+```"""
+
+    result = gemini_srt.parse_json_array(payload)
+
+    assert result == [{"line_number": 1, "start_seconds": 1.2, "end_seconds": 2.4}]
+
+
 def test_clamp_cues_supports_line_numbers_and_free_text() -> None:
     result = gemini_srt.clamp_cues(
         [
@@ -25,6 +37,19 @@ def test_clamp_cues_supports_line_numbers_and_free_text() -> None:
     assert result[0]["line_number"] == 1
     assert result[1]["text"] == "spoken intro"
     assert result[1]["start_seconds"] == 1.0
+
+
+def test_clamp_cues_raises_value_error_when_timestamps_are_missing() -> None:
+    try:
+        gemini_srt.clamp_cues(
+            [{"text": "spoken intro", "end_seconds": 1.4}],
+            duration=3.0,
+            lyrics=[],
+        )
+    except ValueError as exc:
+        assert "Missing start_seconds" in str(exc)
+    else:
+        raise AssertionError("Expected ValueError for missing start_seconds")
 
 
 def test_build_prompt_switches_when_extra_text_is_allowed() -> None:

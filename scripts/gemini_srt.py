@@ -80,7 +80,10 @@ def parse_json_array(raw_text: str) -> list[dict[str, object]]:
     array_end = text.rfind("]")
     if array_start != -1 and array_end != -1 and array_start < array_end:
         text = text[array_start : array_end + 1]
-    data = json.loads(text)
+    try:
+        data = json.loads(text)
+    except json.JSONDecodeError as exc:
+        raise ValueError("Gemini response did not contain valid JSON array data.") from exc
     if not isinstance(data, list):
         raise ValueError("Gemini response was not a JSON array.")
     return data
