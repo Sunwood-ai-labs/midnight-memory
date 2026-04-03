@@ -1,69 +1,55 @@
 {
   "title": "Midnight Memory Nanobanana Reference Pack",
-  "version": 1,
+  "version": 2,
   "owner": "nanobanana-pro-operator",
   "baseDir": "assets/ltx-segments/reference-images",
   "status": "pending_generation",
   "assets": [
     {
-      "id": "protagonist_full",
-      "filename": "midnight-memory-ref-protagonist-full-v01.png",
+      "id": "protagonist_base_existing",
+      "filename": "momiji-studio_0014.png",
+      "role": "character",
+      "required": true,
+      "status": "ready_existing"
+    },
+    {
+      "id": "protagonist_mouth_close",
+      "filename": "midnight-memory-ref-protagonist-mouth-close-v01.png",
       "role": "character",
       "required": true,
       "status": "pending"
     },
     {
-      "id": "protagonist_close",
-      "filename": "midnight-memory-ref-protagonist-close-v01.png",
+      "id": "protagonist_upperbody",
+      "filename": "midnight-memory-ref-protagonist-upperbody-v01.png",
       "role": "character",
       "required": true,
       "status": "pending"
     },
     {
-      "id": "counterpart_shadow",
-      "filename": "midnight-memory-ref-counterpart-shadow-v01.png",
-      "role": "character",
-      "required": true,
-      "status": "pending"
-    },
-    {
-      "id": "env_apartment_window",
-      "filename": "midnight-memory-ref-env-apartment-window-v01.png",
+      "id": "env_vocal_booth_night",
+      "filename": "midnight-memory-ref-env-vocal-booth-night-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
-      "id": "env_rain_lane",
-      "filename": "midnight-memory-ref-env-rain-lane-v01.png",
+      "id": "env_rooftop_stage",
+      "filename": "midnight-memory-ref-env-rooftop-stage-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
-      "id": "env_station_glass",
-      "filename": "midnight-memory-ref-env-station-glass-v01.png",
+      "id": "env_river_bridge_stage",
+      "filename": "midnight-memory-ref-env-river-bridge-stage-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
-      "id": "env_record_shop",
-      "filename": "midnight-memory-ref-env-record-shop-v01.png",
-      "role": "environment",
-      "required": true,
-      "status": "pending"
-    },
-    {
-      "id": "env_room_lamp",
-      "filename": "midnight-memory-ref-env-room-lamp-v01.png",
-      "role": "environment",
-      "required": true,
-      "status": "pending"
-    },
-    {
-      "id": "env_bridge_river",
-      "filename": "midnight-memory-ref-env-bridge-river-v01.png",
+      "id": "env_glass_city",
+      "filename": "midnight-memory-ref-env-glass-city-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
@@ -83,8 +69,8 @@
       "status": "pending"
     },
     {
-      "id": "style_glass_neon",
-      "filename": "midnight-memory-ref-style-glass-neon-v01.png",
+      "id": "style_studio_glow",
+      "filename": "midnight-memory-ref-style-studio-glow-v01.png",
       "role": "style",
       "required": true,
       "status": "pending"
