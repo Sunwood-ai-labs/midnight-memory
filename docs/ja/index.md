@@ -4,6 +4,9 @@ hero:
   name: "midnight-memory"
   text: "ドキュメント"
   tagline: "split subtitle、LTX セグメント、viewer の確認フローをまとめた docs ハブです。"
+  image:
+    src: /favicon.svg
+    alt: midnight-memory icon
   actions:
     - theme: brand
       text: "前奏 / 後奏フロー"

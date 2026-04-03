@@ -4,6 +4,9 @@ hero:
   name: midnight-memory
   text: Subtitle Workflow Docs
   tagline: Split lyric subtitles, generate gapless LTX segments, and review them in synchronized viewer lanes.
+  image:
+    src: /favicon.svg
+    alt: midnight-memory icon
   actions:
     - theme: brand
       text: Intro / Outro Workflow
