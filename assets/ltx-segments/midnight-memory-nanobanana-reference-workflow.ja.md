@@ -34,7 +34,7 @@
 - `environment refs`
   - スタジオ、屋上、川沿いブリッジ、ガラス空間を固定する層
 - `style refs`
-  - 色温度、ネオンの滲み、湿度感、映画粒子を固定する層
+  - `style-master` 1枚で、色温度、ネオンの滲み、湿度感、映画粒子を固定する層
 
 通常運用では `画像1 = 主役固定`、`画像2 = 環境`、`画像3 = スタイル` の 3 枚で十分です。  
 顔アップや上半身の差分参照は、必要になったときだけ追加で作るオプション扱いにします。
@@ -100,20 +100,6 @@
 - `prompt_ja`: `1980年代東京 city-pop MV ルック、深紺、コバルトブルー、温かいアンバー、少量のローズ、繊細な映画粒子、湿度を帯びた夜の空気、人物なし、文字なし、ウォーターマークなし`
 - `validation`: どの場所に重ねても同じ作品の色味に見えること
 
-### 6. Style Wet Reflection
-
-- `filename`: `midnight-memory-ref-style-wet-reflection-v01.png`
-- `purpose`: 濡れた床と光の反射の質感固定
-- `prompt_ja`: `雨上がりの舗道やステージ床に細長く反射するネオン、上品な湿度感、人物なし、文字なし、ウォーターマークなし`
-- `validation`: 屋外カットに流用できること
-
-### 7. Style Studio Glow
-
-- `filename`: `midnight-memory-ref-style-studio-glow-v01.png`
-- `purpose`: スタジオ内の暖色グロウと夜景ブルーの共存を固定
-- `prompt_ja`: `録音スタジオの暖かい室内光と窓外の青い夜景が共存するルック、人物なし、上質なMV照明、文字なし、ウォーターマークなし`
-- `validation`: スタジオ系カット全般に馴染むこと
-
 ## Start Frame Rules
 
 - このワークフローで作るカットは、歌唱画像ではなく動画生成前の静止フレーム
@@ -134,25 +120,25 @@
 
 ### Intro - Chorus 1
 
-- `intro-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-02`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `intro-02`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 - `intro-03`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
-- `intro-04`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-05`: `momiji-studio_0014.png`, `env-rooftop-stage`, `style-wet-reflection`
+- `intro-04`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `intro-05`: `momiji-studio_0014.png`, `env-rooftop-stage`, `style-master`
 - `intro-06`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
-- `intro-07`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-08`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-07`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `intro-08`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 - `intro-09`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 
 ### Bridge - Final Chorus
 
-- `bridge-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `bridge-02`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
+- `bridge-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `bridge-02`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
 - `bridge-03`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
 - `bridge-04`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
 - `bridge-05`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
-- `bridge-06`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `bridge-07`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
+- `bridge-06`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `bridge-07`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
 - `bridge-08`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
 - `bridge-09`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 
@@ -162,7 +148,7 @@
 reference_images:
 - 画像1: momiji-studio_0014.png
 - 画像2: midnight-memory-ref-env-vocal-booth-night-v01.png
-- 画像3: midnight-memory-ref-style-studio-glow-v01.png
+- 画像3: midnight-memory-ref-style-master-v01.png
 
 shot_goal:
 - 狐娘キャラは画像1と同一人物に固定

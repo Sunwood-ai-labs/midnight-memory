@@ -5,7 +5,7 @@
 
 ## Quick Start
 
-1. まず [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) を読み込んで、環境参照とスタイル参照 7 枚を先に作ります。
+1. まず [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) を読み込んで、環境参照 4 枚と `style-master` 1 枚を先に作ります。
 2. 次に各ショットで、指定順の参照画像を読み込み、ショット用 prompt を貼ります。
 3. 同じ `model` / `preset` / `quality mode` / `seed 方針` を保ち、生成結果は [reference-parameter-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/reference-parameter-log.template.csv) と [segment-render-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/segment-render-log.template.csv) へ記録します。
 
@@ -91,29 +91,6 @@ Midnight Memory の狐娘 MV 全体に共通する、マスタールック参照
 避ける: サイバーパンク過多、平板な照明、明るすぎるアイドル色。
 ```
 
-### 6. style-wet-reflection
-
-Prompt:
-```text
-屋外カット用に、濡れた床とネオン反射の質感を固定するスタイル参照画像を作る。  
-雨上がりの舗道やステージ床に、細長いネオン反射が上品に伸びる。人物は入れない。  
-湿度感はあるが汚れすぎず、ロマンティックで洗練された質感にする。  
-コバルト、深紺、アンバーを主に使う。  
-文字なし、ウォーターマークなし。  
-避ける: 水たまりの混沌、泥感、虹色に散る反射。
-```
-
-### 7. style-studio-glow
-
-Prompt:
-```text
-スタジオカット用に、暖色の室内光と青い夜景が共存するスタイル参照画像を作る。  
-録音スタジオの暖かな光、窓外の深い青い夜、ガラスの柔らかいグロウ。人物は入れない。  
-顔アップのスタートフレームに向く、上質で静かな MV 照明にする。  
-文字なし、ウォーターマークなし。  
-避ける: 強すぎるスポットライト、事務所の蛍光灯のような光。
-```
-
 ## ショット用プロンプト
 
 ### intro-01
@@ -121,7 +98,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -136,7 +113,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -166,7 +143,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -181,7 +158,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-rooftop-stage-v01.png）`
-3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -211,7 +188,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -226,7 +203,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -255,7 +232,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -269,7 +246,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
-3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -329,7 +306,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
-3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
@@ -344,7 +321,7 @@ Prompt:
 参照順:
 1. `画像1（momiji-studio_0014.png）`
 2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
-3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text

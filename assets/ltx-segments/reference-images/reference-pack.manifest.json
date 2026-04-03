@@ -47,19 +47,6 @@
       "required": true,
       "status": "pending"
     },
-    {
-      "id": "style_wet_reflection",
-      "filename": "style/midnight-memory-ref-style-wet-reflection-v01.png",
-      "role": "style",
-      "required": true,
-      "status": "pending"
-    },
-    {
-      "id": "style_studio_glow",
-      "filename": "style/midnight-memory-ref-style-studio-glow-v01.png",
-      "role": "style",
-      "required": true,
-      "status": "pending"
     }
   ]
 }
