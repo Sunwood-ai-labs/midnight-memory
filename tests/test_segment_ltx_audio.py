@@ -1,15 +1,16 @@
 from pathlib import Path
+import wave
 
 from scripts import segment_ltx_audio
 
 
-def make_cue(index: int, start: float, end: float, text: str) -> segment_ltx_audio.Cue:
-    return segment_ltx_audio.Cue(
-        index=index,
-        start_seconds=start,
-        end_seconds=end,
-        text=text,
-    )
+def write_silence_wav(path: Path, duration_seconds: float, sample_rate: int = 8000) -> None:
+    frame_count = int(round(duration_seconds * sample_rate))
+    with wave.open(str(path), "wb") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(sample_rate)
+        wav_file.writeframes(b"\x00\x00" * frame_count)
 
 
 def test_parse_srt_supports_multiline_cues(tmp_path: Path) -> None:
@@ -37,7 +38,7 @@ def test_parse_srt_supports_multiline_cues(tmp_path: Path) -> None:
     assert cues[1].start_seconds == 4.0
 
 
-def test_parse_manifest_groups_split_track_parts(tmp_path: Path) -> None:
+def test_parse_manifest_groups_split_track_parts_and_audio(tmp_path: Path) -> None:
     assets_dir = tmp_path / "assets"
     assets_dir.mkdir()
     manifest_path = assets_dir / "manifest.json"
@@ -48,6 +49,7 @@ def test_parse_manifest_groups_split_track_parts(tmp_path: Path) -> None:
     {
       "id": "bridge-final-chorus",
       "section": "Bridge - Final Chorus",
+      "audio": "private-assets/song.wav",
       "subtitle": "assets/song.srt",
       "subtitles": [
         { "id": "main", "path": "assets/song.main.srt" },
@@ -67,97 +69,75 @@ def test_parse_manifest_groups_split_track_parts(tmp_path: Path) -> None:
         (tmp_path / "assets" / "song.main.srt").resolve(),
         (tmp_path / "assets" / "song.outro.srt").resolve(),
     )
-    assert tracks[0].output_base_path == (tmp_path / "assets" / "song.srt").resolve()
+    assert tracks[0].audio_path == (tmp_path / "private-assets" / "song.wav").resolve()
 
 
-def test_load_track_cues_combines_files_in_order(tmp_path: Path) -> None:
-    main_srt = tmp_path / "song.main.srt"
-    outro_srt = tmp_path / "song.outro.srt"
-    main_srt.write_text(
-        "1\n00:00:00,000 --> 00:00:03,000\nalpha\n\n2\n00:00:03,500 --> 00:00:06,500\nbeta\n",
-        encoding="utf-8",
-    )
-    outro_srt.write_text(
-        "1\n00:00:08,000 --> 00:00:10,500\ngamma\n",
-        encoding="utf-8",
-    )
-    track = segment_ltx_audio.Track(
-        track_id="song",
-        label="song",
-        source_paths=(main_srt, outro_srt),
-        output_base_path=tmp_path / "song.srt",
+def test_split_interval_bounds_balances_long_melody_gap() -> None:
+    bounds = segment_ltx_audio.split_interval_bounds(
+        0.0,
+        17.6,
+        min_seconds=7.0,
+        max_seconds=15.0,
+        target_seconds=9.667,
     )
 
-    cues = segment_ltx_audio.load_track_cues(track)
-
-    assert [cue.index for cue in cues] == [1, 2, 3]
-    assert [cue.text for cue in cues] == ["alpha", "beta", "gamma"]
+    assert bounds == [(0.0, 8.8), (8.8, 17.6)]
 
 
-def test_normalize_gapless_segments_removes_gaps() -> None:
-    raw_segments = [
+def test_build_gapless_track_segments_covers_from_zero_and_to_track_end() -> None:
+    lyric_segments = [
         segment_ltx_audio.Segment(
             index=1,
-            start_seconds=0.0,
-            end_seconds=7.0,
+            start_seconds=8.0,
+            end_seconds=17.0,
             cue_start_index=1,
             cue_end_index=2,
             lines=["alpha", "beta"],
-        ),
-        segment_ltx_audio.Segment(
-            index=2,
-            start_seconds=10.0,
-            end_seconds=17.0,
-            cue_start_index=3,
-            cue_end_index=4,
-            lines=["gamma", "delta"],
-        ),
+        )
     ]
 
-    normalized = segment_ltx_audio.normalize_gapless_segments(raw_segments)
+    segments = segment_ltx_audio.build_gapless_track_segments(
+        lyric_segments,
+        track_end=20.0,
+        min_seconds=7.0,
+        max_seconds=15.0,
+        target_seconds=9.667,
+        melody_text="[melody]",
+    )
 
-    assert normalized[0].end_seconds == 8.5
-    assert normalized[1].start_seconds == 8.5
+    assert [(segment.start_seconds, segment.end_seconds) for segment in segments] == [
+        (0.0, 8.0),
+        (8.0, 20.0),
+    ]
+    assert segments[0].lines == ["[melody]"]
+    assert segments[1].lines == ["[melody]", "alpha", "beta", "[melody]"]
 
 
-def test_run_for_track_builds_gapless_srt_from_multiple_parts(tmp_path: Path) -> None:
-    main_srt = tmp_path / "song.main.srt"
-    outro_srt = tmp_path / "song.outro.srt"
-    main_srt.write_text(
+def test_run_for_track_uses_audio_duration_and_melody_segments(tmp_path: Path) -> None:
+    source = tmp_path / "song.srt"
+    audio = tmp_path / "song.wav"
+    source.write_text(
         "\n".join(
             [
                 "1",
-                "00:00:00,000 --> 00:00:03,000",
+                "00:00:08,000 --> 00:00:11,000",
                 "alpha",
                 "",
                 "2",
-                "00:00:03,200 --> 00:00:07,200",
+                "00:00:11,200 --> 00:00:17,000",
                 "beta",
                 "",
             ]
         ),
         encoding="utf-8",
     )
-    outro_srt.write_text(
-        "\n".join(
-            [
-                "1",
-                "00:00:10,000 --> 00:00:13,000",
-                "gamma",
-                "",
-                "2",
-                "00:00:13,200 --> 00:00:16,200",
-                "delta",
-                "",
-            ]
-        ),
-        encoding="utf-8",
-    )
+    write_silence_wav(audio, 20.0)
     track = segment_ltx_audio.Track(
         track_id="song",
         label="song",
-        source_paths=(main_srt, outro_srt),
-        output_base_path=tmp_path / "song.srt",
+        source_paths=(source,),
+        output_base_path=source,
+        audio_path=audio,
     )
 
     result = segment_ltx_audio.run_for_track(
@@ -168,18 +148,71 @@ def test_run_for_track_builds_gapless_srt_from_multiple_parts(tmp_path: Path) ->
     )
 
     assert len(result.segments) == 2
-    assert result.segments[0].end_seconds == 8.6
-    assert result.segments[1].start_seconds == 8.6
-    assert result.srt_text == (
-        "1\n"
-        "00:00:00,000 --> 00:00:08,600\n"
-        "alpha\n"
-        "beta\n\n"
-        "2\n"
-        "00:00:08,600 --> 00:00:16,200\n"
-        "gamma\n"
-        "delta\n"
+    assert result.segments[0].start_seconds == 0.0
+    assert result.segments[0].end_seconds == 8.0
+    assert result.segments[0].lines == ["[melody]"]
+    assert result.segments[-1].end_seconds == 20.0
+    assert "00:00:00,000 --> 00:00:08,000" in result.srt_text
+    assert "[melody]\nalpha\nbeta\n[melody]" in result.srt_text
+
+
+def test_run_for_track_merges_split_files_and_stays_gapless(tmp_path: Path) -> None:
+    main_srt = tmp_path / "song.main.srt"
+    outro_srt = tmp_path / "song.outro.srt"
+    audio = tmp_path / "song.wav"
+    main_srt.write_text(
+        "\n".join(
+            [
+                "1",
+                "00:00:17,500 --> 00:00:21,000",
+                "alpha",
+                "",
+                "2",
+                "00:00:21,200 --> 00:00:27,000",
+                "beta",
+                "",
+            ]
+        ),
+        encoding="utf-8",
     )
+    outro_srt.write_text(
+        "\n".join(
+            [
+                "1",
+                "00:00:30,000 --> 00:00:33,000",
+                "gamma",
+                "",
+                "2",
+                "00:00:33,200 --> 00:00:39,000",
+                "delta",
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    write_silence_wav(audio, 46.5)
+    track = segment_ltx_audio.Track(
+        track_id="song",
+        label="song",
+        source_paths=(main_srt, outro_srt),
+        output_base_path=tmp_path / "song.srt",
+        audio_path=audio,
+    )
+
+    result = segment_ltx_audio.run_for_track(
+        track,
+        min_seconds=7.0,
+        max_seconds=15.0,
+        target_seconds=None,
+    )
+
+    assert result.segments[0].lines == ["[melody]"]
+    assert result.segments[0].start_seconds == 0.0
+    assert all(
+        result.segments[index].end_seconds == result.segments[index + 1].start_seconds
+        for index in range(len(result.segments) - 1)
+    )
+    assert result.segments[-1].end_seconds == 46.5
 
 
 def test_run_for_track_raises_when_out_of_range_segment_is_not_allowed(tmp_path: Path) -> None:
@@ -193,6 +226,7 @@ def test_run_for_track_raises_when_out_of_range_segment_is_not_allowed(tmp_path:
         label="song",
         source_paths=(source,),
         output_base_path=source,
+        audio_path=None,
     )
 
     try:
@@ -219,6 +253,7 @@ def test_run_for_track_allows_warning_only_output_when_requested(tmp_path: Path)
         label="song",
         source_paths=(source,),
         output_base_path=source,
+        audio_path=None,
     )
 
     result = segment_ltx_audio.run_for_track(
@@ -242,6 +277,7 @@ def test_resolve_tracks_prefers_manifest_for_assets_directory(tmp_path: Path) ->
   "tracks": [
     {
       "id": "intro-chorus-1",
+      "audio": "private-assets/song.wav",
       "subtitle": "assets/song.srt",
       "subtitles": [
         { "id": "intro", "path": "assets/song.intro.srt" },

@@ -4,6 +4,7 @@ import argparse
 import json
 import math
 import re
+import wave
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -40,6 +41,7 @@ class Track:
     label: str
     source_paths: tuple[Path, ...]
     output_base_path: Path
+    audio_path: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -52,7 +54,7 @@ class TrackOutput:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Segment lyric SRT cues into per-song 7-15 second SRT chunks."
+        description="Segment per-song SRT cues into gapless 7-15 second SRT chunks."
     )
     parser.add_argument(
         "input_path",
@@ -60,16 +62,8 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         help="Manifest JSON, directory, or SRT file. Defaults to assets/manifest.json when present.",
     )
-    parser.add_argument(
-        "--output",
-        type=Path,
-        help="Output SRT path for a single resolved track.",
-    )
-    parser.add_argument(
-        "--output-dir",
-        type=Path,
-        help="Directory for generated *.ltx_segments.srt files.",
-    )
+    parser.add_argument("--output", type=Path, help="Output SRT path for a single resolved track.")
+    parser.add_argument("--output-dir", type=Path, help="Directory for generated *.ltx_segments.srt files.")
     parser.add_argument("--min-seconds", type=float, default=7.0)
     parser.add_argument("--max-seconds", type=float, default=15.0)
     parser.add_argument(
@@ -77,6 +71,11 @@ def parse_args() -> argparse.Namespace:
         type=float,
         default=None,
         help="Preferred segment length inside the min/max window. Defaults to a lower-third value.",
+    )
+    parser.add_argument(
+        "--melody-text",
+        default="[melody]",
+        help="Text to use for melody-only filler segments.",
     )
     parser.add_argument(
         "--allow-out-of-range",
@@ -170,6 +169,11 @@ def parse_srt(path: Path) -> list[Cue]:
     return cues
 
 
+def audio_duration_seconds(path: Path) -> float:
+    with wave.open(str(path), "rb") as wav_file:
+        return wav_file.getnframes() / float(wav_file.getframerate())
+
+
 def resolve_repo_path(path_text: str, root: Path) -> Path:
     raw_path = Path(path_text)
     if raw_path.is_absolute():
@@ -224,12 +228,18 @@ def parse_manifest(manifest_path: Path, root: Path) -> list[Track]:
         else:
             output_base_path = derive_output_base_path(source_paths, track_id, root)
 
+        audio_path: Path | None = None
+        raw_audio = raw_track.get("audio")
+        if isinstance(raw_audio, str) and raw_audio.strip():
+            audio_path = resolve_repo_path(raw_audio, root)
+
         tracks.append(
             Track(
                 track_id=track_id,
                 label=label,
                 source_paths=source_paths,
                 output_base_path=output_base_path,
+                audio_path=audio_path,
             )
         )
 
@@ -243,6 +253,7 @@ def track_from_srt_path(source_path: Path) -> Track:
         label=resolved.stem,
         source_paths=(resolved,),
         output_base_path=resolved,
+        audio_path=None,
     )
 
 
@@ -303,10 +314,17 @@ def load_track_cues(track: Track) -> list[Cue]:
             )
             last_end = cue.end_seconds
 
-    if not merged:
-        raise ValueError(f"Track {track.track_id} did not resolve to any cues.")
-
     return merged
+
+
+def track_end_seconds(track: Track, cues: list[Cue]) -> float:
+    if track.audio_path is not None:
+        if not track.audio_path.exists():
+            raise FileNotFoundError(f"Missing audio file for track {track.track_id}: {track.audio_path}")
+        return round(audio_duration_seconds(track.audio_path), 3)
+    if cues:
+        return cues[-1].end_seconds
+    return 0.0
 
 
 def segment_penalty(
@@ -329,7 +347,7 @@ def segment_cues(
 ) -> list[Segment]:
     target_seconds = validate_duration_settings(min_seconds, max_seconds, target_seconds)
     if not cues:
-        raise ValueError("No cues were found.")
+        return []
 
     cue_count = len(cues)
     best_costs = [math.inf] * (cue_count + 1)
@@ -368,32 +386,206 @@ def segment_cues(
     return segments
 
 
-def normalize_gapless_segments(segments: list[Segment]) -> list[Segment]:
-    if not segments:
+def reindex_segments(segments: list[Segment]) -> list[Segment]:
+    return [
+        Segment(
+            index=index,
+            start_seconds=segment.start_seconds,
+            end_seconds=segment.end_seconds,
+            cue_start_index=segment.cue_start_index,
+            cue_end_index=segment.cue_end_index,
+            lines=segment.lines,
+        )
+        for index, segment in enumerate(segments, start=1)
+    ]
+
+
+def make_melody_segment(start_seconds: float, end_seconds: float, melody_text: str) -> Segment:
+    return Segment(
+        index=0,
+        start_seconds=round(start_seconds, 3),
+        end_seconds=round(end_seconds, 3),
+        cue_start_index=0,
+        cue_end_index=0,
+        lines=[melody_text],
+    )
+
+
+def split_interval_bounds(
+    start_seconds: float,
+    end_seconds: float,
+    *,
+    min_seconds: float,
+    max_seconds: float,
+    target_seconds: float,
+) -> list[tuple[float, float]]:
+    duration = round(end_seconds - start_seconds, 3)
+    if duration <= 0:
         return []
 
-    normalized: list[Segment] = []
-    for index, segment in enumerate(segments):
-        start_seconds = segment.start_seconds if index == 0 else normalized[-1].end_seconds
-        if index == len(segments) - 1:
-            end_seconds = segment.end_seconds
-        else:
-            next_segment = segments[index + 1]
-            end_seconds = round((segment.end_seconds + next_segment.start_seconds) / 2, 3)
-        if end_seconds <= start_seconds:
-            end_seconds = round(start_seconds + 0.001, 3)
-        normalized.append(
-            Segment(
-                index=segment.index,
-                start_seconds=round(start_seconds, 3),
-                end_seconds=end_seconds,
-                cue_start_index=segment.cue_start_index,
-                cue_end_index=segment.cue_end_index,
-                lines=segment.lines,
+    min_segment_count = max(1, math.ceil(duration / max_seconds))
+    max_segment_count = max(1, math.floor(duration / min_seconds))
+    if min_segment_count <= max_segment_count:
+        candidate_counts = range(min_segment_count, max_segment_count + 1)
+    else:
+        candidate_counts = range(min_segment_count, min_segment_count + 1)
+
+    best_count = min(
+        candidate_counts,
+        key=lambda count: (abs(duration / count - target_seconds), count),
+    )
+
+    bounds: list[tuple[float, float]] = []
+    for index in range(best_count):
+        seg_start = round(start_seconds + duration * index / best_count, 3)
+        seg_end = end_seconds if index == best_count - 1 else round(
+            start_seconds + duration * (index + 1) / best_count, 3
+        )
+        if seg_end <= seg_start:
+            seg_end = round(seg_start + 0.001, 3)
+        bounds.append((seg_start, seg_end))
+    return bounds
+
+
+def split_melody_gap(
+    start_seconds: float,
+    end_seconds: float,
+    *,
+    min_seconds: float,
+    max_seconds: float,
+    target_seconds: float,
+    melody_text: str,
+) -> list[Segment]:
+    return [
+        make_melody_segment(seg_start, seg_end, melody_text)
+        for seg_start, seg_end in split_interval_bounds(
+            start_seconds,
+            end_seconds,
+            min_seconds=min_seconds,
+            max_seconds=max_seconds,
+            target_seconds=target_seconds,
+        )
+    ]
+
+
+def prepend_line(segment: Segment, line: str) -> Segment:
+    if segment.lines and segment.lines[0] == line:
+        return segment
+    return Segment(
+        index=segment.index,
+        start_seconds=segment.start_seconds,
+        end_seconds=segment.end_seconds,
+        cue_start_index=segment.cue_start_index,
+        cue_end_index=segment.cue_end_index,
+        lines=[line] + segment.lines,
+    )
+
+
+def append_line(segment: Segment, line: str) -> Segment:
+    if segment.lines and segment.lines[-1] == line:
+        return segment
+    return Segment(
+        index=segment.index,
+        start_seconds=segment.start_seconds,
+        end_seconds=segment.end_seconds,
+        cue_start_index=segment.cue_start_index,
+        cue_end_index=segment.cue_end_index,
+        lines=segment.lines + [line],
+    )
+
+
+def retime_segment(segment: Segment, *, start_seconds: float | None = None, end_seconds: float | None = None) -> Segment:
+    return Segment(
+        index=segment.index,
+        start_seconds=segment.start_seconds if start_seconds is None else round(start_seconds, 3),
+        end_seconds=segment.end_seconds if end_seconds is None else round(end_seconds, 3),
+        cue_start_index=segment.cue_start_index,
+        cue_end_index=segment.cue_end_index,
+        lines=segment.lines,
+    )
+
+
+def build_gapless_track_segments(
+    lyric_segments: list[Segment],
+    *,
+    track_end: float,
+    min_seconds: float,
+    max_seconds: float,
+    target_seconds: float,
+    melody_text: str,
+) -> list[Segment]:
+    if not lyric_segments:
+        return reindex_segments(
+            split_melody_gap(
+                0.0,
+                track_end,
+                min_seconds=min_seconds,
+                max_seconds=max_seconds,
+                target_seconds=target_seconds,
+                melody_text=melody_text,
             )
         )
 
-    return normalized
+    final_segments: list[Segment] = []
+    cursor = 0.0
+    current_lyric_segments = lyric_segments[:]
+
+    for index, lyric_segment in enumerate(current_lyric_segments):
+        gap_duration = round(lyric_segment.start_seconds - cursor, 3)
+        if gap_duration > 0:
+            if gap_duration >= min_seconds:
+                final_segments.extend(
+                    split_melody_gap(
+                        cursor,
+                        lyric_segment.start_seconds,
+                        min_seconds=min_seconds,
+                        max_seconds=max_seconds,
+                        target_seconds=target_seconds,
+                        melody_text=melody_text,
+                    )
+                )
+            else:
+                lyric_segment = retime_segment(lyric_segment, start_seconds=cursor)
+                lyric_segment = prepend_line(lyric_segment, melody_text)
+
+        final_segments.append(lyric_segment)
+        cursor = lyric_segment.end_seconds
+
+        if index < len(current_lyric_segments) - 1:
+            next_segment = current_lyric_segments[index + 1]
+            if next_segment.start_seconds < cursor:
+                raise ValueError("Lyric segments overlap while building the full timeline.")
+
+    tail_gap = round(track_end - cursor, 3)
+    if tail_gap > 0:
+        if tail_gap >= min_seconds:
+            final_segments.extend(
+                split_melody_gap(
+                    cursor,
+                    track_end,
+                    min_seconds=min_seconds,
+                    max_seconds=max_seconds,
+                    target_seconds=target_seconds,
+                    melody_text=melody_text,
+                )
+            )
+        else:
+            if final_segments:
+                extended = retime_segment(final_segments[-1], end_seconds=track_end)
+                final_segments[-1] = append_line(extended, melody_text)
+            else:
+                final_segments.extend(
+                    split_melody_gap(
+                        0.0,
+                        track_end,
+                        min_seconds=min_seconds,
+                        max_seconds=max_seconds,
+                        target_seconds=target_seconds,
+                        melody_text=melody_text,
+                    )
+                )
+
+    return reindex_segments(final_segments)
 
 
 def segment_status(duration: float, min_seconds: float, max_seconds: float) -> str:
@@ -432,9 +624,7 @@ def segments_to_srt(segments: list[Segment]) -> str:
     return "\n\n".join(blocks) + "\n"
 
 
-def validate_track_output(
-    track: Track, warnings: list[str], *, allow_out_of_range: bool
-) -> None:
+def validate_track_output(track: Track, warnings: list[str], *, allow_out_of_range: bool) -> None:
     if allow_out_of_range or not warnings:
         return
 
@@ -458,17 +648,26 @@ def run_for_track(
     max_seconds: float,
     target_seconds: float | None,
     *,
+    melody_text: str = "[melody]",
     allow_out_of_range: bool = False,
 ) -> TrackOutput:
     target_seconds = validate_duration_settings(min_seconds, max_seconds, target_seconds)
     cues = load_track_cues(track)
-    raw_segments = segment_cues(
+    lyric_segments = segment_cues(
         cues,
         min_seconds=min_seconds,
         max_seconds=max_seconds,
         target_seconds=target_seconds,
     )
-    segments = normalize_gapless_segments(raw_segments)
+    track_end = track_end_seconds(track, cues)
+    segments = build_gapless_track_segments(
+        lyric_segments,
+        track_end=track_end,
+        min_seconds=min_seconds,
+        max_seconds=max_seconds,
+        target_seconds=target_seconds,
+        melody_text=melody_text,
+    )
     warnings = build_track_warnings(track, segments, min_seconds, max_seconds)
     validate_track_output(track, warnings, allow_out_of_range=allow_out_of_range)
     return TrackOutput(
@@ -497,6 +696,7 @@ def main() -> None:
             min_seconds=args.min_seconds,
             max_seconds=args.max_seconds,
             target_seconds=target_seconds,
+            melody_text=args.melody_text,
             allow_out_of_range=args.allow_out_of_range,
         )
         destination = args.output.resolve() if args.output is not None else default_output_path(track, args.output_dir)
