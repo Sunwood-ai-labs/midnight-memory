@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Midnight Memory favicon">
+  <rect width="64" height="64" rx="18" fill="#111111"/>
+  <rect x="9" y="9" width="46" height="46" rx="14" fill="#fafaf9" opacity="0.08"/>
+  <path d="M24 22.5v19.5a7 7 0 1 0 4 6.3V29.2l11-2.2v12.8a7 7 0 1 0 4 6.3V19.8L24 22.5Z" fill="#fafaf9"/>
+  <path d="M17 18.5h18" stroke="#fafaf9" stroke-width="2.8" stroke-linecap="round" opacity="0.45"/>
+  <path d="M17 46h12" stroke="#fafaf9" stroke-width="2.8" stroke-linecap="round" opacity="0.45"/>
+</svg>

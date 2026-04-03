@@ -2,9 +2,18 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0; url=./viewer/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Midnight Memory Viewer</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <script>
+    const target = new URL("./viewer/", window.location.href);
+    target.search = window.location.search;
+    target.hash = window.location.hash;
+    window.location.replace(target);
+  </script>
+  <noscript>
+    <meta http-equiv="refresh" content="0; url=./viewer/">
+  </noscript>
   <style>
     body {
       margin: 0;

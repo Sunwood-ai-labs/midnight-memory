@@ -26,3 +26,5 @@ htmlcov/
 *.log
 *.tmp
 *.temp
+
+test-results/
