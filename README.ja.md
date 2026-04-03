@@ -71,6 +71,21 @@ uv run python scripts/gemini_srt.py `
   --allow-extra-text
 ```
 
+### 前奏・後奏の抽出フロー
+
+最初の main lyric cue より前、または最後の main lyric cue より後に vocal がある場合は、字幕本文だけで区別するのではなく、split subtitle として扱います。
+
+- 必要に応じて `.intro.srt` / `.main.srt` / `.outro.srt` を作る
+- 後方互換のため combined `.srt` も残す
+- `assets/manifest.json` の `subtitles` 配列に split file を登録する
+- `subtitle` には combined file を残す
+- viewer 側は `intro` / `main` / `outro` の metadata を使って表示差分を出す
+
+詳しい手順:
+
+- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
+- [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
+
 ## 🎛️ ビューア
 
 ルートの `index.html` は `viewer/` へ自動リダイレクトします。
@@ -138,7 +153,9 @@ npm run test:viewer
 - `scripts/gemini_srt.py`: Gemini を使う字幕生成 CLI
 - `scripts/validate_manifest.py`: manifest 構造の検証
 - `scripts/create_stub_audio.py`: ビューア検証用の無音 WAV 生成
+- `skills/midnight-memory-subtitle-sections/`: 前奏・後奏の split subtitle 運用をまとめた repo 内 skill
 - `viewer/`: 静的レビュー UI
+- `docs/intro-outro-subtitle-workflow.md`: 前奏・後奏の抽出フロー詳細
 - `assets/*.srt`: 生成済み字幕やサンプル字幕
 - `assets/manifest.json`: ビューア用トラック一覧
 - `private-assets/`: Git 管理外のローカル音声と歌詞候補

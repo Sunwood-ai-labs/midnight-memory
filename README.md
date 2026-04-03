@@ -71,6 +71,21 @@ uv run python scripts/gemini_srt.py `
   --allow-extra-text
 ```
 
+### Intro / Outro Extraction Flow
+
+When a track has uncovered vocals before the first main lyric cue or after the last main lyric cue, the repo now treats them as split subtitle parts instead of embedding that distinction only in cue text.
+
+- Create `.intro.srt`, `.main.srt`, and/or `.outro.srt` files as needed.
+- Keep the combined `.srt` file for backward compatibility.
+- Register split parts in `assets/manifest.json` under `subtitles`.
+- Preserve `subtitle` as the combined fallback path.
+- Use `id` values such as `intro`, `main`, and `outro` so the viewer can render timeline differences from metadata.
+
+Detailed guide:
+
+- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
+- [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
+
 ## 🎛️ Viewer
 
 The repo root `index.html` redirects to the local viewer in `viewer/`.
@@ -138,7 +153,9 @@ npm run test:viewer
 - `scripts/gemini_srt.py`: Gemini-backed subtitle generation CLI.
 - `scripts/validate_manifest.py`: manifest structure validation for local QA and CI.
 - `scripts/create_stub_audio.py`: creates silent test fixtures for viewer smoke tests.
+- `skills/midnight-memory-subtitle-sections/`: repo-local skill for intro/outro subtitle extraction and split-file maintenance.
 - `viewer/`: static review UI.
+- `docs/intro-outro-subtitle-workflow.md`: detailed intro/outro extraction workflow for this repo.
 - `assets/*.srt`: generated subtitles and sample subtitle outputs.
 - `assets/manifest.json`: track registry for the viewer.
 - `private-assets/`: local-only audio and lyric sources that stay out of Git.

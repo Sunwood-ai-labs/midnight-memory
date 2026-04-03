@@ -1,0 +1,4 @@
+interface:
+  display_name: "Midnight Memory Subtitle Sections"
+  short_description: "Split intro/outro subtitles for midnight-memory tracks."
+  default_prompt: "Use $midnight-memory-subtitle-sections to split intro/outro subtitle segments for a midnight-memory track."
