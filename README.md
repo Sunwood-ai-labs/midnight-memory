@@ -108,6 +108,8 @@ uv run python -m http.server 8000
 
 Open `http://localhost:8000/` or `http://localhost:8000/viewer/`.
 The viewer expects audio files to exist locally under `private-assets/`.
+When `timelineSubtitles` is present, the viewer renders lyric cues and LTX segment cues in separate lanes.
+On desktop the two lanes are shown side by side; on narrower screens they stack vertically.
 
 ### Manifest Format
 
@@ -155,6 +157,8 @@ Use `timelineSubtitles` when one track should also show coarse review timelines 
   ]
 }
 ```
+
+The viewer keeps lyric cues in the main subtitle lane and shows `timelineSubtitles` in a dedicated companion lane, so LTX review does not clutter the lyric timeline.
 
 ## ✅ Validation
 

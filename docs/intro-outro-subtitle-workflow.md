@@ -1,38 +1,58 @@
-# 前奏・後奏の抽出フロー
+# Intro / Outro Subtitle Workflow
 
-`midnight-memory` では、前奏や後奏に歌やアドリブが入っている場合、字幕本文にだけラベルを書くのではなく、`intro` / `main` / `outro` の分割字幕として扱います。
+This repository uses split subtitle files when a track has uncovered vocals before the first main lyric cue or after the last main lyric cue.
+Instead of forcing everything into one file, keep the lyric body and the uncovered sections as separate SRT assets.
 
-このフローの目的は次の 3 つです。
+## Split Files
 
-- viewer で前奏・後奏を metadata ベースで少し違う見た目にできるようにする
-- 既存の `.srt` 利用先のために combined 版も残す
-- その場の一時ワンライナーではなく、repo 内スクリプトで再現できるようにする
+- Use `Track Name.intro.srt` for uncovered leading vocals.
+- Use `Track Name.main.srt` for the main lyric body.
+- Use `Track Name.outro.srt` for uncovered trailing vocals.
+- Keep the split files in chronological order so the manifest can merge them into one lyric timeline.
 
-## 基本方針
+## Manifest Shape
 
-1. 既存の combined `.srt` と音源長を比較する
-2. 先頭側なら `intro`、末尾側なら `outro` の未カバー区間を決める
-3. `scripts/extract_subtitle_gap.py` でその gap だけを切り出して Gemini に問い合わせる
-4. `.intro.srt` または `.outro.srt` と `.main.srt` を整える
-5. combined `.srt` を更新する
-6. `assets/manifest.json` の `subtitles` 配列を更新する
-7. validation と viewer テストを回す
+Register the lyric parts under `subtitles`:
 
-## 再現用スクリプト
+```json
+{
+  "id": "intro-chorus-1",
+  "audio": "private-assets/Track Name.wav",
+  "subtitles": [
+    { "id": "intro", "label": "Intro", "path": "assets/Track Name.intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
+  ]
+}
+```
 
-前奏・後奏の抽出に使う実体は [extract_subtitle_gap.py](D:/midnight-memory/scripts/extract_subtitle_gap.py) です。
+If you also want to review LTX segment timing, register the generated segment SRT under `timelineSubtitles`:
 
-このスクリプトは次を自動で行います。
+```json
+{
+  "id": "intro-chorus-1",
+  "audio": "private-assets/Track Name.wav",
+  "subtitles": [
+    { "id": "intro", "label": "Intro", "path": "assets/Track Name.intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
+  ],
+  "timelineSubtitles": [
+    { "id": "ltx", "label": "LTX", "path": "assets/ltx-segments/Track Name.ltx_segments.srt" }
+  ]
+}
+```
 
-- reference SRT から未カバーの `intro` / `outro` 区間を検出
-- 対象区間だけ WAV を切り出し
-- Gemini モデルに問い合わせ
-- model ごとの relative / absolute cue を JSON レポート化
-- 必要なら primary model の結果から SRT 候補を生成
+## Viewer Behavior
 
-## 使い方
+- The `Lyrics` lane shows the main subtitle timeline built from `subtitles`.
+- The `LTX Segments` lane shows the coarser segment timeline built from `timelineSubtitles`.
+- Both lanes stay synchronized to the same audio playback position.
+- On desktop the two lanes are shown side by side.
+- On narrower screens the lanes stack vertically.
+- The current/next line panel is driven by the lyric lane, not by the LTX lane.
 
-### 前奏
+## Extraction Helper
+
+Use the intro/outro extraction helper to generate split subtitle files:
 
 ```powershell
 uv run python scripts/extract_subtitle_gap.py `
@@ -44,112 +64,22 @@ uv run python scripts/extract_subtitle_gap.py `
   --srt-output "assets/<track>.intro.srt"
 ```
 
-### 後奏
+For outro extraction, change `--part intro` to `--part outro`.
+
+## LTX Segment Helper
+
+Generate per-track, gapless LTX segment SRT files with melody coverage:
 
 ```powershell
-uv run python scripts/extract_subtitle_gap.py `
-  --audio "private-assets/<track>.wav" `
-  --lyrics "private-assets/09 (1).txt" `
-  --reference-srt "assets/<track>.main.srt" `
-  --part outro `
-  --report-output "assets/<track>.outro.report.json" `
-  --srt-output "assets/<track>.outro.srt"
+uv run python scripts/segment_ltx_audio.py assets --output-dir assets/ltx-segments
 ```
 
-### 複数モデル比較
+The generated `*.ltx_segments.srt` files are intended for the viewer's LTX lane and for downstream LTX lip-sync preparation.
+
+## Validation
 
 ```powershell
-uv run python scripts/extract_subtitle_gap.py `
-  --audio "private-assets/<track>.wav" `
-  --lyrics "private-assets/09 (1).txt" `
-  --reference-srt "assets/<track>.main.srt" `
-  --part outro `
-  --model "gemini-3-pro-preview" `
-  --model "gemini-3.1-pro-preview" `
-  --report-output "assets/<track>.outro.report.json" `
-  --srt-output "assets/<track>.outro.srt"
-```
-
-## 出力
-
-### `*.report.json`
-
-- `gap_start_seconds`
-- `gap_end_seconds`
-- `clip_duration_seconds`
-- model ごとの `relative_cues`
-- model ごとの `absolute_cues`
-
-### `*.srt`
-
-- `--primary-model` で選んだモデルの absolute cue を SRT 化したもの
-- split file の叩き台として使う
-
-## テキスト決定ルール
-
-- モデルが安定して同じ語を返す:
-  - そのまま字幕にする
-- 単語は割れるが音種は安定する:
-  - `Ah` / `Ooh` のような ad-lib token に寄せる
-- それでも不安定:
-  - 中立ラベルを使うか、無理に入れない
-- 純 instrumental:
-  - 字幕にしない
-
-## ファイル構成
-
-### 前奏があるとき
-
-- `Track Name.intro.srt`
-- `Track Name.main.srt`
-- `Track Name.srt`  … combined 版
-
-### 後奏があるとき
-
-- `Track Name.main.srt`
-- `Track Name.outro.srt`
-- `Track Name.srt`  … combined 版
-
-combined 版は split file を時系列順に連結した内容に保ちます。
-
-## manifest の持ち方
-
-```json
-{
-  "subtitle": "assets/Track Name.srt",
-  "subtitles": [
-    { "id": "intro", "label": "前奏", "path": "assets/Track Name.intro.srt" },
-    { "id": "main", "label": "本編", "path": "assets/Track Name.main.srt" }
-  ]
-}
-```
-
-または
-
-```json
-{
-  "subtitle": "assets/Track Name.srt",
-  "subtitles": [
-    { "id": "main", "label": "本編", "path": "assets/Track Name.main.srt" },
-    { "id": "outro", "label": "後奏", "path": "assets/Track Name.outro.srt" }
-  ]
-}
-```
-
-viewer の見分け方は字幕本文ではなく `subtitleId` / `subtitleLabel` ベースです。
-
-## 実例
-
-- `assets/Midnight Memory 夢のつづき  Intro - Chorus 1.intro.srt`
-- `assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt`
-- `assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.main.srt`
-- `assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.outro.srt`
-
-## 最後の確認
-
-```powershell
-uv run python -m py_compile scripts/gemini_srt.py scripts/extract_subtitle_gap.py
 uv run python scripts/validate_manifest.py
-uv run pytest tests/test_gemini_srt.py tests/test_extract_subtitle_gap.py
+uv run pytest
 npm run test:viewer
 ```
