@@ -1,24 +1,60 @@
 :root {
+  --vp-c-bg: #f7f8fc;
+  --vp-c-bg-soft: #ffffff;
+  --vp-c-bg-alt: #eef2f8;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft-up: #f8fbff;
+  --vp-c-text-1: #15182b;
+  --vp-c-text-2: #4f5878;
+  --vp-c-text-3: #7a829d;
+  --vp-c-border: rgba(21, 24, 43, 0.12);
+  --vp-c-divider: rgba(21, 24, 43, 0.12);
+  --vp-c-gutter: rgba(21, 24, 43, 0.08);
+  --vp-c-brand-1: #00bda6;
+  --vp-c-brand-2: #00d6bb;
+  --vp-c-brand-3: #0a8d7d;
+  --vp-c-brand-soft: rgba(0, 229, 200, 0.16);
+  --vp-button-alt-bg: #ffffff;
+  --vp-button-alt-text: #1d2440;
+  --vp-button-alt-border: rgba(21, 24, 43, 0.12);
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(90deg, #172040 0%, #00bda6 44%, #d4ae46 100%);
+  --vp-home-hero-image-background-image:
+    radial-gradient(circle at 30% 30%, rgba(0, 229, 200, 0.18), transparent 45%),
+    radial-gradient(circle at 70% 30%, rgba(232, 201, 110, 0.14), transparent 42%);
+  --vp-home-hero-image-filter: blur(44px);
+}
+
+.dark {
   --vp-c-bg: #06060e;
   --vp-c-bg-soft: #0a0a18;
   --vp-c-bg-alt: #12122a;
+  --vp-c-bg-elv: #11111d;
+  --vp-c-bg-soft-up: #17172a;
   --vp-c-text-1: #eeeeff;
   --vp-c-text-2: #c4c4e8;
   --vp-c-text-3: #7a7aae;
   --vp-c-border: rgba(255, 255, 255, 0.14);
+  --vp-c-divider: rgba(255, 255, 255, 0.12);
+  --vp-c-gutter: rgba(255, 255, 255, 0.10);
   --vp-c-brand-1: #00e5c8;
   --vp-c-brand-2: #46f0d9;
   --vp-c-brand-3: #0d8f7d;
   --vp-c-brand-soft: rgba(0, 229, 200, 0.16);
-  --vp-home-hero-name-color: transparent;
+  --vp-button-alt-bg: #f3f5fb;
+  --vp-button-alt-text: #2a3150;
+  --vp-button-alt-border: rgba(255, 255, 255, 0.18);
   --vp-home-hero-name-background: linear-gradient(90deg, #eeeeff 0%, #d6dcf5 46%, #e8c96e 100%);
-  --vp-home-hero-image-background-image:
-    radial-gradient(circle at 30% 30%, rgba(0, 229, 200, 0.22), transparent 45%),
-    radial-gradient(circle at 70% 30%, rgba(232, 201, 110, 0.18), transparent 42%);
-  --vp-home-hero-image-filter: blur(44px);
 }
 
 body {
+  background:
+    radial-gradient(circle at 30% 18%, rgba(0, 189, 166, 0.10), transparent 30%),
+    radial-gradient(circle at 78% 20%, rgba(212, 174, 70, 0.09), transparent 28%),
+    linear-gradient(180deg, #f7f8fc 0%, #eef2f8 52%, #f6f8fc 100%);
+}
+
+.dark body {
   background:
     radial-gradient(circle at 30% 18%, rgba(0, 229, 200, 0.10), transparent 30%),
     radial-gradient(circle at 78% 20%, rgba(232, 201, 110, 0.08), transparent 28%),
@@ -28,7 +64,9 @@ body {
 .VPNavBar,
 .VPSidebar,
 .VPDoc .content,
-.VPDocAside {
+.VPDocAside,
+.VPLocalNav,
+.VPFlyout {
   backdrop-filter: blur(10px);
 }
 
