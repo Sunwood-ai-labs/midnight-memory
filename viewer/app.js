@@ -68,14 +68,20 @@ function formatCueStamp(seconds) {
 }
 
 function getCuePartVariant(cue) {
-  if (!cue || (cue.subtitleId !== "intro" && cue.subtitleId !== "outro")) {
+  if (!cue) {
+    return "";
+  }
+  if (cue.subtitleKind === "timeline" || cue.subtitleId === "ltx" || cue.subtitleId === "ltx-segments") {
+    return "ltx";
+  }
+  if (cue.subtitleId !== "intro" && cue.subtitleId !== "outro") {
     return "";
   }
   return cue.subtitleId;
 }
 
 function getCuePartLabel(cue) {
-  if (!getCuePartVariant(cue)) {
+  if (!cue || !getCuePartVariant(cue)) {
     return "";
   }
   return cue.subtitleLabel || "";
@@ -139,8 +145,8 @@ function parseSrt(text) {
 }
 
 function normalizeSubtitleSources(track) {
-  if (Array.isArray(track.subtitles) && track.subtitles.length) {
-    return track.subtitles
+  const primarySources = Array.isArray(track.subtitles) && track.subtitles.length
+    ? track.subtitles
       .map((source, index) => {
         if (!source || typeof source.path !== "string" || !source.path.trim()) {
           return null;
@@ -149,22 +155,51 @@ function normalizeSubtitleSources(track) {
           id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `subtitle-${index + 1}`,
           label: typeof source.label === "string" && source.label.trim() ? source.label.trim() : `Subtitle ${index + 1}`,
           path: source.path,
+          subtitleKind: "primary",
+          subtitlePriority: 200,
         };
       })
-      .filter(Boolean);
-  }
-
-  if (typeof track.subtitle === "string" && track.subtitle.trim()) {
-    return [
+      .filter(Boolean)
+    : typeof track.subtitle === "string" && track.subtitle.trim()
+      ? [
       {
         id: "default",
         label: "Subtitle",
         path: track.subtitle,
+        subtitleKind: "primary",
+        subtitlePriority: 200,
       },
-    ];
-  }
+    ]
+      : [];
 
-  return [];
+  const timelineSources = Array.isArray(track.timelineSubtitles) && track.timelineSubtitles.length
+    ? track.timelineSubtitles
+      .map((source, index) => {
+        if (!source || typeof source.path !== "string" || !source.path.trim()) {
+          return null;
+        }
+        return {
+          id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `timeline-${index + 1}`,
+          label: typeof source.label === "string" && source.label.trim() ? source.label.trim() : `Timeline ${index + 1}`,
+          path: source.path,
+          subtitleKind: "timeline",
+          subtitlePriority: 100,
+        };
+      })
+      .filter(Boolean)
+    : typeof track.segmentSubtitle === "string" && track.segmentSubtitle.trim()
+      ? [
+        {
+          id: "ltx-segments",
+          label: "LTX",
+          path: track.segmentSubtitle,
+          subtitleKind: "timeline",
+          subtitlePriority: 100,
+        },
+      ]
+      : [];
+
+  return [...primarySources, ...timelineSources];
 }
 
 function mergeSubtitlePayloads(payloads) {
@@ -174,12 +209,52 @@ function mergeSubtitlePayloads(payloads) {
       sourceIndex: cue.index || (index + 1),
       subtitleId: source.id,
       subtitleLabel: source.label,
+      subtitleKind: source.subtitleKind || "primary",
+      subtitlePriority: source.subtitlePriority ?? 200,
     })))
-    .sort((left, right) => left.start - right.start || left.end - right.end || left.subtitleLabel.localeCompare(right.subtitleLabel))
+    .sort((left, right) =>
+      left.start - right.start
+      || (right.subtitlePriority - left.subtitlePriority)
+      || ((left.end - left.start) - (right.end - right.start))
+      || left.subtitleLabel.localeCompare(right.subtitleLabel)
+    )
     .map((cue, index) => ({
       ...cue,
       index: index + 1,
     }));
+}
+
+function findCurrentCueIndex(time) {
+  let bestIndex = -1;
+  let bestPriority = Number.NEGATIVE_INFINITY;
+  let bestDuration = Number.POSITIVE_INFINITY;
+  let bestStart = Number.NEGATIVE_INFINITY;
+
+  state.cues.forEach((cue, index) => {
+    if (time < cue.start || time > cue.end) {
+      return;
+    }
+    const priority = Number.isFinite(cue.subtitlePriority) ? cue.subtitlePriority : 0;
+    const duration = cue.end - cue.start;
+    const isBetter =
+      priority > bestPriority
+      || (
+        priority === bestPriority
+        && (
+          duration < bestDuration
+          || (duration === bestDuration && cue.start > bestStart)
+        )
+      );
+
+    if (isBetter) {
+      bestIndex = index;
+      bestPriority = priority;
+      bestDuration = duration;
+      bestStart = cue.start;
+    }
+  });
+
+  return bestIndex;
 }
 
 function formatRawSrtDebug(payloads) {
@@ -383,7 +458,7 @@ async function maybeRunAutomationProbe() {
 
 function syncCue(forceScroll = false) {
   const time = elements.audio.currentTime || 0;
-  const nextIndex = state.cues.findIndex((cue) => time >= cue.start && time <= cue.end);
+  const nextIndex = findCurrentCueIndex(time);
   if (nextIndex === state.currentCueIndex) {
     elements.currentTiming.textContent = formatCueStamp(time);
     return;

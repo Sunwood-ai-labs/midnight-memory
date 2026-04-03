@@ -19,6 +19,15 @@ def validate_subtitle_path(track_number: int, path_text: str, label: str) -> Non
     ensure(path.exists(), f"track #{track_number} {label} does not exist: {path_text}")
 
 
+def validate_source_list(track_number: int, sources: object, label: str) -> None:
+    ensure(isinstance(sources, list) and bool(sources), f"track #{track_number} {label} must be a non-empty list.")
+    for source_number, source in enumerate(sources, start=1):
+        ensure(isinstance(source, dict), f"track #{track_number} {label}[{source_number}] must be an object.")
+        path_text = source.get("path")
+        ensure(isinstance(path_text, str), f"track #{track_number} {label}[{source_number}] must have a string path.")
+        validate_subtitle_path(track_number, path_text, f"{label}[{source_number}]")
+
+
 def main() -> None:
     data = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     tracks = data.get("tracks", [])
@@ -40,11 +49,11 @@ def main() -> None:
             validate_subtitle_path(track_number, track["subtitle"], "subtitle")
 
         if has_subtitles:
-            for subtitle_number, subtitle in enumerate(subtitles, start=1):
-                ensure(isinstance(subtitle, dict), f"track #{track_number} subtitles[{subtitle_number}] must be an object.")
-                path_text = subtitle.get("path")
-                ensure(isinstance(path_text, str), f"track #{track_number} subtitles[{subtitle_number}] must have a string path.")
-                validate_subtitle_path(track_number, path_text, f"subtitles[{subtitle_number}]")
+            validate_source_list(track_number, subtitles, "subtitles")
+
+        timeline_subtitles = track.get("timelineSubtitles")
+        if timeline_subtitles is not None:
+            validate_source_list(track_number, timeline_subtitles, "timelineSubtitles")
 
     print(f"manifest OK: {len(tracks)} track(s)")
 

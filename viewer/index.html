@@ -52,7 +52,7 @@
           <button class="icon-button primary" type="button" id="playPauseButton" aria-label="再生" aria-pressed="false">
             <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
           </button>
-          <button class="icon-button" type="button" id="restartButton" aria-label="先頭へ戻る">
+          <button class="icon-button" type="button" id="restartButton" aria-label="最初に戻る">
             <span class="material-symbols-outlined" aria-hidden="true">replay</span>
           </button>
           <button class="icon-button" type="button" id="backButton" aria-label="10秒戻る">
@@ -101,7 +101,7 @@
             <h2>Current</h2>
             <span class="meta-inline" id="currentTiming">00:00.000</span>
           </div>
-          <p class="current-line" id="currentLine" aria-live="polite">字幕を読み込んでいます。</p>
+          <p class="current-line" id="currentLine" aria-live="polite">字幕を読み込んでいません。</p>
           <p class="next-line" id="nextLine">次の行がここに表示されます。</p>
         </section>
       </aside>
@@ -121,8 +121,8 @@
           <h2>Raw SRT</h2>
           <span class="material-symbols-outlined subtle-icon" aria-hidden="true">schedule</span>
         </div>
-        <pre id="rawSrt">字幕テキストを待機中です。</pre>
-        <p class="support-text" id="statusMessage">manifest を取得しています。</p>
+        <pre id="rawSrt">字幕テキストを表示します。</pre>
+        <p class="support-text" id="statusMessage">manifest を読み込んでいます。</p>
       </section>
     </main>
   </div>

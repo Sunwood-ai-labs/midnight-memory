@@ -20,6 +20,13 @@
           "path": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt"
         }
       ],
+      "timelineSubtitles": [
+        {
+          "id": "ltx",
+          "label": "LTX",
+          "path": "assets/ltx-segments/Midnight Memory 夢のつづき  Intro - Chorus 1.ltx_segments.srt"
+        }
+      ],
       "note": "Split subtitles for intro and main lyric sections."
     },
     {
@@ -37,6 +44,13 @@
           "id": "outro",
           "label": "Outro",
           "path": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.outro.srt"
+        }
+      ],
+      "timelineSubtitles": [
+        {
+          "id": "ltx",
+          "label": "LTX",
+          "path": "assets/ltx-segments/Midnight Memory 夢のつづき   Bridge - Final Chorus.ltx_segments.srt"
         }
       ],
       "note": "Split subtitles for main and outro sections."

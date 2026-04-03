@@ -275,6 +275,11 @@ select {
   background: #fffaf4;
 }
 
+.cue-button--ltx {
+  border-color: #b7d7c3;
+  background: #f5fbf6;
+}
+
 .track-button[aria-selected="true"],
 .cue-button.active {
   border-color: var(--ring);
@@ -325,6 +330,11 @@ select {
   color: #9b6332;
   background: #fff1e3;
   border-style: dashed;
+}
+
+.cue-part-badge--ltx {
+  color: #2f6b49;
+  background: #edf9f0;
 }
 
 .track-title,

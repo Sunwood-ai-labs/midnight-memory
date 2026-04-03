@@ -21,7 +21,7 @@
 
 - `scripts/gemini_srt.py` turns a WAV file plus lyric candidates into an `.srt` subtitle file with Gemini.
 - `viewer/` and `assets/manifest.json` provide a browser-based review surface for subtitle timing, cue order, and playback state.
-- `assets/manifest.json` can point to either one subtitle file or multiple subtitle files that are merged into one timeline in the viewer.
+- `assets/manifest.json` can point to either one subtitle file or multiple subtitle files that are merged into one timeline in the viewer, and can optionally add timeline-only overlays such as LTX segment SRTs.
 
 ## ✨ Features
 
@@ -134,6 +134,24 @@ Use `subtitles` when one track should combine multiple SRT files such as an intr
   "subtitles": [
     { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
     { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+  ]
+}
+```
+
+Use `timelineSubtitles` when one track should also overlay coarse review timelines such as LTX segments on top of the existing lyric cue list:
+
+```json
+{
+  "id": "split-track",
+  "title": "Midnight Memory ...",
+  "section": "Intro - Chorus 1",
+  "audio": "private-assets/....wav",
+  "subtitles": [
+    { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+  ],
+  "timelineSubtitles": [
+    { "id": "ltx", "label": "LTX", "path": "assets/ltx-segments/....ltx_segments.srt" }
   ]
 }
 ```
