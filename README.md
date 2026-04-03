@@ -84,6 +84,7 @@ On desktop the two lanes are shown side by side; on narrower screens they stack 
 
 ## 🗂 Documentation Map
 
+- Agent entrypoint: [SKILL.md](./SKILL.md)
 - [docs/index.md](./docs/index.md): English documentation hub and maintenance notes.
 - [docs/ja/index.md](./docs/ja/index.md): Japanese documentation hub.
 - [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md): English intro/outro split subtitle workflow.

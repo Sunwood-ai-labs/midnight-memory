@@ -1,0 +1,4 @@
+interface:
+  display_name: "Midnight Memory Repository"
+  short_description: "Read the repository root skill and use the repo workflow from there."
+  default_prompt: "Read ./SKILL.md and use it as the canonical workflow guide for this repository."

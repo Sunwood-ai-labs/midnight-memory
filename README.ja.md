@@ -84,6 +84,7 @@ uv run python -m http.server 8000
 
 ## 🗂️ ドキュメント導線
 
+- Agent entrypoint: [SKILL.md](./SKILL.md)
 - [docs/index.md](./docs/index.md): 英語 docs ハブ
 - [docs/ja/index.md](./docs/ja/index.md): 日本語 docs ハブ
 - [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md): 英語 split subtitle フロー
