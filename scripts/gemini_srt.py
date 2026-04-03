@@ -73,13 +73,27 @@ def wait_until_active(client: genai.Client, uploaded_file: types.File) -> types.
 
 def parse_json_array(raw_text: str) -> list[dict[str, object]]:
     text = raw_text.strip()
-    if text.startswith("```"):
+    if "```" in text:
         lines = [line for line in text.splitlines() if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
+    array_start = text.find("[")
+    array_end = text.rfind("]")
+    if array_start != -1 and array_end != -1 and array_start < array_end:
+        text = text[array_start : array_end + 1]
     data = json.loads(text)
     if not isinstance(data, list):
         raise ValueError("Gemini response was not a JSON array.")
     return data
+
+
+def require_cue_seconds(cue: dict[str, object], key: str) -> float:
+    value = cue.get(key)
+    if value is None:
+        raise ValueError(f"Missing {key} in cue: {cue}")
+    try:
+        return float(value)
+    except (TypeError, ValueError) as exc:
+        raise ValueError(f"Invalid {key} in cue: {cue}") from exc
 
 
 def clamp_cues(
@@ -100,8 +114,8 @@ def clamp_cues(
             text = raw_text.strip()
         else:
             raise ValueError("Each cue must include either line_number or text.")
-        start = float(cue["start_seconds"])
-        end = float(cue["end_seconds"])
+        start = require_cue_seconds(cue, "start_seconds")
+        end = require_cue_seconds(cue, "end_seconds")
         start = max(0.0, min(start, duration))
         end = max(start + 0.05, min(end, duration))
         if start < last_end:
