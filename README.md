@@ -86,6 +86,18 @@ Detailed guide:
 - [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
 - [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
 
+Repeatable extraction helper:
+
+```bash
+uv run python scripts/extract_subtitle_gap.py `
+  --audio "private-assets/<track>.wav" `
+  --lyrics "private-assets/09 (1).txt" `
+  --reference-srt "assets/<track>.main.srt" `
+  --part intro `
+  --report-output "assets/<track>.intro.report.json" `
+  --srt-output "assets/<track>.intro.srt"
+```
+
 ## 🎛️ Viewer
 
 The repo root `index.html` redirects to the local viewer in `viewer/`.
@@ -151,6 +163,7 @@ npm run test:viewer
 ## 📁 Project Layout
 
 - `scripts/gemini_srt.py`: Gemini-backed subtitle generation CLI.
+- `scripts/extract_subtitle_gap.py`: reproducible intro/outro gap extraction helper that trims the uncovered region and queries Gemini models.
 - `scripts/validate_manifest.py`: manifest structure validation for local QA and CI.
 - `scripts/create_stub_audio.py`: creates silent test fixtures for viewer smoke tests.
 - `skills/midnight-memory-subtitle-sections/`: repo-local skill for intro/outro subtitle extraction and split-file maintenance.

@@ -29,30 +29,24 @@ Keep the combined file as the ordered concatenation of the split files.
 3. Treat uncovered leading vocals as `intro`.
 4. Treat uncovered trailing vocals as `outro`.
 
-Useful one-off checks:
-
-```powershell
-uv run python -m py_compile scripts/gemini_srt.py
-uv run python scripts/validate_manifest.py
-uv run pytest tests/test_gemini_srt.py
-npm run test:viewer
-```
-
 ## Extraction Flow
 
 ### 1. Probe The Region
 
-Use the repo generator first when you want a broad pass:
+Use the dedicated gap extraction helper so the trim, prompt, and report format stay reproducible:
 
 ```powershell
-uv run python scripts/gemini_srt.py `
-  --allow-extra-text `
+uv run python scripts/extract_subtitle_gap.py `
   --audio "private-assets/<track>.wav" `
   --lyrics "private-assets/09 (1).txt" `
-  --output "assets/_probe.srt"
+  --reference-srt "assets/<track>.main.srt" `
+  --part intro `
+  --report-output "assets/<track>.intro.report.json" `
+  --srt-output "assets/<track>.intro.srt"
 ```
 
-Then trim the exact uncovered region and verify it with Gemini 3 models if the wording is uncertain.
+For outro extraction, change `--part intro` to `--part outro`.
+Repeat `--model` to compare multiple Gemini models on the same uncovered region.
 
 ### 2. Decide Text Conservatively
 
@@ -108,9 +102,9 @@ Viewer styling depends on `subtitleId` and `subtitleLabel`, not the rendered cue
 Run all of these after editing:
 
 ```powershell
-uv run python -m py_compile scripts/gemini_srt.py
+uv run python -m py_compile scripts/gemini_srt.py scripts/extract_subtitle_gap.py
 uv run python scripts/validate_manifest.py
-uv run pytest tests/test_gemini_srt.py
+uv run pytest tests/test_gemini_srt.py tests/test_extract_subtitle_gap.py
 npm run test:viewer
 ```
 

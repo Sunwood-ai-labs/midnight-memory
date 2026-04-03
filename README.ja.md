@@ -86,6 +86,18 @@ uv run python scripts/gemini_srt.py `
 - [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
 - [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
 
+再現用ヘルパー:
+
+```bash
+uv run python scripts/extract_subtitle_gap.py `
+  --audio "private-assets/<track>.wav" `
+  --lyrics "private-assets/09 (1).txt" `
+  --reference-srt "assets/<track>.main.srt" `
+  --part outro `
+  --report-output "assets/<track>.outro.report.json" `
+  --srt-output "assets/<track>.outro.srt"
+```
+
 ## 🎛️ ビューア
 
 ルートの `index.html` は `viewer/` へ自動リダイレクトします。
@@ -151,6 +163,7 @@ npm run test:viewer
 ## 📁 構成
 
 - `scripts/gemini_srt.py`: Gemini を使う字幕生成 CLI
+- `scripts/extract_subtitle_gap.py`: 前奏・後奏の未カバー区間を切り出して Gemini に問い合わせる再現用ヘルパー
 - `scripts/validate_manifest.py`: manifest 構造の検証
 - `scripts/create_stub_audio.py`: ビューア検証用の無音 WAV 生成
 - `skills/midnight-memory-subtitle-sections/`: 前奏・後奏の split subtitle 運用をまとめた repo 内 skill
