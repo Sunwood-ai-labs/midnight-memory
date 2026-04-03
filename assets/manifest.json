@@ -9,7 +9,19 @@
       "section": "Intro - Chorus 1",
       "audio": "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav",
       "subtitle": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt",
-      "note": "導入から 1 番コーラスまでの確認用ペア"
+      "subtitles": [
+        {
+          "id": "intro",
+          "label": "前奏",
+          "path": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.intro.srt"
+        },
+        {
+          "id": "main",
+          "label": "本編",
+          "path": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt"
+        }
+      ],
+      "note": "導入から 1 番コーラスまでの確認用ペア。字幕は前奏と本編に分割"
     },
     {
       "id": "bridge-final-chorus",

@@ -4,6 +4,7 @@ const state = {
   tracks: [],
   selectedIndex: -1,
   cues: [],
+  subtitleSources: [],
   currentCueIndex: -1,
   manifestRequestId: 0,
   trackRequestId: 0,
@@ -100,6 +101,62 @@ function parseSrt(text) {
       };
     })
     .filter(Boolean);
+}
+
+function normalizeSubtitleSources(track) {
+  if (Array.isArray(track.subtitles) && track.subtitles.length) {
+    return track.subtitles
+      .map((source, index) => {
+        if (!source || typeof source.path !== "string" || !source.path.trim()) {
+          return null;
+        }
+        return {
+          id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `subtitle-${index + 1}`,
+          label: typeof source.label === "string" && source.label.trim() ? source.label.trim() : `Subtitle ${index + 1}`,
+          path: source.path,
+        };
+      })
+      .filter(Boolean);
+  }
+
+  if (typeof track.subtitle === "string" && track.subtitle.trim()) {
+    return [
+      {
+        id: "default",
+        label: "Subtitle",
+        path: track.subtitle,
+      },
+    ];
+  }
+
+  return [];
+}
+
+function mergeSubtitlePayloads(payloads) {
+  return payloads
+    .flatMap(({ source, rawSrt }) => parseSrt(rawSrt).map((cue, index) => ({
+      ...cue,
+      sourceIndex: cue.index || (index + 1),
+      subtitleId: source.id,
+      subtitleLabel: source.label,
+    })))
+    .sort((left, right) => left.start - right.start || left.end - right.end || left.subtitleLabel.localeCompare(right.subtitleLabel))
+    .map((cue, index) => ({
+      ...cue,
+      index: index + 1,
+    }));
+}
+
+function formatRawSrtDebug(payloads) {
+  if (!payloads.length) {
+    return "";
+  }
+  if (payloads.length === 1) {
+    return payloads[0].rawSrt;
+  }
+  return payloads
+    .map(({ source, rawSrt }) => `===== ${source.label} =====\n${rawSrt.trim()}`)
+    .join("\n\n");
 }
 
 function setStatus(message, tone = "Ready") {
@@ -323,10 +380,12 @@ async function selectTrack(index) {
   state.selectedIndex = index;
   state.currentCueIndex = -1;
   state.cues = [];
+  state.subtitleSources = [];
   state.trackRequestId += 1;
   const requestId = state.trackRequestId;
   state.subtitleAbortController?.abort();
   state.subtitleAbortController = new AbortController();
+  const subtitleSources = normalizeSubtitleSources(track);
 
   renderTrackList();
   renderCueList();
@@ -343,14 +402,30 @@ async function selectTrack(index) {
   elements.audio.src = resolveAssetPath(track.audio);
   elements.audio.load();
 
+  if (!subtitleSources.length) {
+    elements.subtitleStateChip.textContent = "No subtitle";
+    elements.rawSrt.textContent = "字幕設定がありません。";
+    setStatus("字幕設定が見つかりません。", "Attention");
+    return;
+  }
+
+  state.subtitleSources = subtitleSources;
+
   try {
-    const rawSrt = await fetchUtf8Text(track.subtitle, state.subtitleAbortController.signal);
+    const subtitlePayloads = await Promise.all(
+      subtitleSources.map(async (source) => ({
+        source,
+        rawSrt: await fetchUtf8Text(source.path, state.subtitleAbortController.signal),
+      })),
+    );
     if (requestId !== state.trackRequestId || state.selectedIndex !== index) {
       return;
     }
-    state.cues = parseSrt(rawSrt);
-    elements.rawSrt.textContent = rawSrt || "字幕ファイルは空でした。";
-    elements.subtitleStateChip.textContent = state.cues.length ? `${state.cues.length} cues` : "0 cues";
+    state.cues = mergeSubtitlePayloads(subtitlePayloads);
+    elements.rawSrt.textContent = formatRawSrtDebug(subtitlePayloads) || "字幕ファイルは空でした。";
+    elements.subtitleStateChip.textContent = state.cues.length
+      ? `${state.cues.length} cues / ${subtitleSources.length} files`
+      : `0 cues / ${subtitleSources.length} files`;
     renderCueList();
     renderCurrentCue();
     setStatus(`${track.section} を読み込みました。`, "Ready");

@@ -18,6 +18,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lyrics", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--model", default="gemini-2.5-pro")
+    parser.add_argument(
+        "--allow-extra-text",
+        action="store_true",
+        help="Allow non-lyric spoken or sung phrases to appear as free-text subtitle cues.",
+    )
     return parser.parse_args()
 
 
@@ -83,10 +88,18 @@ def clamp_cues(
     normalized: list[dict[str, object]] = []
     last_end = 0.0
     for cue in cues:
-        line_number = int(cue["line_number"])
-        if line_number < 1 or line_number > len(lyrics):
-            raise ValueError(f"Invalid lyric line number: {line_number}")
-        text = lyrics[line_number - 1]
+        line_number: int | None = None
+        raw_line_number = cue.get("line_number")
+        raw_text = cue.get("text")
+        if raw_line_number is not None:
+            line_number = int(raw_line_number)
+            if line_number < 1 or line_number > len(lyrics):
+                raise ValueError(f"Invalid lyric line number: {line_number}")
+            text = lyrics[line_number - 1]
+        elif isinstance(raw_text, str) and raw_text.strip():
+            text = raw_text.strip()
+        else:
+            raise ValueError("Each cue must include either line_number or text.")
         start = float(cue["start_seconds"])
         end = float(cue["end_seconds"])
         start = max(0.0, min(start, duration))
@@ -99,9 +112,10 @@ def clamp_cues(
                 "start_seconds": round(start, 3),
                 "end_seconds": round(min(end, duration), 3),
                 "text": text,
-                "line_number": line_number,
             }
         )
+        if line_number is not None:
+            normalized[-1]["line_number"] = line_number
         last_end = normalized[-1]["end_seconds"]  # type: ignore[assignment]
     return normalized
 
@@ -129,14 +143,13 @@ def cues_to_srt(cues: list[dict[str, object]]) -> str:
     return "\n\n".join(blocks) + "\n"
 
 
-def build_prompt(lyrics: list[str], duration: float) -> str:
+def build_prompt(lyrics: list[str], duration: float, allow_extra_text: bool) -> str:
     lyric_block = "\n".join(f"{index}. {line}" for index, line in enumerate(lyrics, start=1))
-    return f"""
+    if not allow_extra_text:
+        return f"""
 You are creating line-level subtitles for a song excerpt.
 
-Use only lyric lines that actually appear in this audio file.
-Do not invent or paraphrase lyrics.
-Return only line numbers from this candidate list:
+Use only lyric line numbers from this candidate list:
 {lyric_block}
 
 Rules:
@@ -159,6 +172,38 @@ Example shape:
 ]
 """.strip()
 
+    return f"""
+You are creating line-level subtitles for a song excerpt.
+
+Use lyric line numbers when the audible text matches this candidate list:
+{lyric_block}
+
+Rules:
+- Return a JSON array only.
+- Each item must have: start_seconds, end_seconds, and exactly one of line_number or text.
+- Use seconds from the start of the audio file.
+- Keep times in ascending order.
+- Do not overlap cues.
+- Keep every timestamp within 0 and {duration:.3f}.
+- Use one subtitle cue per lyric line whenever practical.
+- If a candidate line is not sung in this audio file, omit it.
+- If clearly audible sung or spoken words appear that are not represented by the candidate list, use a text field with the exact heard words.
+- Use free-text cues sparingly. Prefer them only for clearly audible non-lyric material.
+- If an extra vocal phrase is clearly present but the wording is not reliable, use a short bracketed descriptor such as [intro vocal] instead of guessing words.
+- If only a fragment or pickup of a lyric line is audible before the full written line begins, prefer text for that fragment instead of forcing the whole line number.
+- If there is instrumental intro or outro with no words, leave it uncovered instead of inventing text.
+- Prefer line breaks that reflect the written lyric lines, not arbitrary phrases.
+- Do not paraphrase or normalize away audible words. Keep the original language.
+- When you use line_number, do not include the lyric text itself in the JSON.
+
+Example shape:
+[
+  {{"text": "spoken intro", "start_seconds": 3.10, "end_seconds": 4.20}},
+  {{"line_number": 1, "start_seconds": 12.34, "end_seconds": 16.20}},
+  {{"line_number": 2, "start_seconds": 16.21, "end_seconds": 19.80}}
+]
+""".strip()
+
 
 def main() -> None:
     args = parse_args()
@@ -172,7 +217,7 @@ def main() -> None:
     lyrics = load_lyrics(lyrics_path)
     duration = audio_duration_seconds(audio_path)
     client = genai.Client(api_key=api_key)
-    prompt = build_prompt(lyrics, duration)
+    prompt = build_prompt(lyrics, duration, args.allow_extra_text)
 
     with tempfile.TemporaryDirectory() as tmp_dir:
         temp_audio_path = Path(tmp_dir) / "audio_input.wav"

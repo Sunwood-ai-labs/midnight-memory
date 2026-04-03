@@ -49,7 +49,7 @@ uv run python scripts/gemini_srt.py `
 
 ## 静的ビューア
 
-`viewer/` はローカルの静的ファイルとして開ける字幕確認ビューアです。ルートの `index.html` は `viewer/` へのランチャーです。簡易サーバーを立てる場合は次のように実行できます。
+`viewer/` はローカルの静的ファイルとして開ける字幕確認ビューアです。ルートの `index.html` は `viewer/` へのランチャーです。`assets/manifest.json` の各トラックは従来どおり単一の `subtitle` も使えますが、前奏と本編のように分けたい場合は `subtitles` 配列で複数の SRT を並べても読めます。簡易サーバーを立てる場合は次のように実行できます。
 
 ```bash
 cd D:\midnight-memory
@@ -63,7 +63,7 @@ uv run python -m http.server 8000
 - `private-assets/*.wav`: ローカル専用の音声ファイル（Git 追跡対象外）
 - `assets/*.srt`: 生成済み字幕（またはサンプルの字幕）
 - `private-assets/09 (1).txt`: ローカル専用の歌詞候補（Git 追跡対象外）
-- `assets/manifest.json`: 静的ビューアが参照するトラック一覧
+- `assets/manifest.json`: 静的ビューアが参照するトラック一覧。`subtitle` 1本または `subtitles` 配列の複数本を指定可能
 
 ## 注意
 
