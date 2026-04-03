@@ -29,3 +29,4 @@ htmlcov/
 
 test-results/
 playwright-report/
+docs/.vitepress/dist/

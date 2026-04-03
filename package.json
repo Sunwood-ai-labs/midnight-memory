@@ -4,9 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "test:viewer": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1"
+    "@playwright/test": "^1.59.1",
+    "vitepress": "^1.6.4"
   }
 }
