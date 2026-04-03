@@ -74,7 +74,7 @@ def wait_until_active(client: genai.Client, uploaded_file: types.File) -> types.
 def parse_json_array(raw_text: str) -> list[dict[str, object]]:
     text = raw_text.strip()
     if text.startswith("```"):
-        lines = [line for line in text.splitlines() if not line.startswith("```")]
+        lines = [line for line in text.splitlines() if not line.strip().startswith("```")]
         text = "\n".join(lines).strip()
     data = json.loads(text)
     if not isinstance(data, list):

@@ -1,0 +1,17 @@
+[project]
+name = "midnight-memory"
+version = "0.1.0"
+description = "Generate lyric-aligned SRT subtitles from WAV files with Gemini and preview them with a local static viewer."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "google-genai"
+]
+
+[dependency-groups]
+dev = [
+  "pytest",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

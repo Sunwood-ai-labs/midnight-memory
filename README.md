@@ -1,42 +1,58 @@
-# midnight-memory
+<div align="center">
+  <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
+  <h1>midnight-memory</h1>
+  <p>Generate lyric-aligned SRT subtitles with Gemini and review them in a local audio + subtitle viewer.</p>
+</div>
 
-`midnight-memory` は、音声ファイルと歌詞候補を使って Gemini 2.5 Pro で字幕タイムラインを自動生成し、`.srt` を出力する小さなユーティリティです。
+<p align="center">
+  <a href="./README.ja.md">日本語 README</a>
+</p>
 
-- `scripts/gemini_srt.py`: WAV 音声と歌詞テキストから SRT を生成する CLI
-- `viewer/` + `assets/manifest.json`: 生成済みの音声/SRT をブラウザで確認する静的ビューア
+<p align="center">
+  <a href="https://github.com/Sunwood-ai-labs/midnight-memory/actions/workflows/ci.yml"><img src="https://github.com/Sunwood-ai-labs/midnight-memory/actions/workflows/ci.yml/badge.svg" alt="Repository CI"></a>
+  <img src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white" alt="Python 3.11+">
+  <img src="https://img.shields.io/badge/uv-managed-6C47FF?logo=astral&logoColor=white" alt="uv managed">
+  <img src="https://img.shields.io/badge/local--first-viewer-111111" alt="local-first viewer">
+</p>
 
-## 何ができるか
+## 🌙 Overview
 
-- WAV 音声（`*.wav`）と歌詞ファイル（`*.txt`）を入力として読み込む
-- Google Gemini に対して、音声中で実際に歌われた行だけを検出して開始・終了秒を推定させる
-- 入力の歌詞順番（行番号）に従ってタイムコード化し、`.srt` を生成する
-- 生成結果を `output` パスに保存する
+`midnight-memory` is a small local-first workflow for lyric timing work.
 
-主な実装は `scripts/gemini_srt.py` にあります。
+- `scripts/gemini_srt.py` turns a WAV file plus lyric candidates into an `.srt` subtitle file with Gemini.
+- `viewer/` and `assets/manifest.json` provide a browser-based review surface for subtitle timing, cue order, and playback state.
+- `assets/manifest.json` can point to either one subtitle file or multiple subtitle files that are merged into one timeline in the viewer.
 
-## 要件
+## ✨ Features
 
-- Python 3.11 以上
-- [`uv`](https://github.com/astral-sh/uv) が利用可能
-- `GEMINI_API_KEY` を含む `.env` ファイル
+- Accepts local `*.wav` audio and lyric candidate text files.
+- Keeps subtitle generation aligned to the lyric lines that are actually audible.
+- Supports `--allow-extra-text` for short spoken or sung fragments that are not in the lyric source.
+- Reviews generated output in a responsive static viewer with transport controls, current/next cue state, and raw SRT inspection.
+- Preserves private audio inputs under `private-assets/`, which stays ignored by Git.
 
-## 事前準備
+## 🚀 Quick Start
+
+### Requirements
+
+- Python 3.11+
+- [uv](https://github.com/astral-sh/uv)
+- `.env` containing `GEMINI_API_KEY`
+
+### Setup
 
 ```bash
 cd D:\midnight-memory
-uv venv
-uv pip install "google-genai"
+uv sync
 ```
 
-`.env` を作成し、以下を保存します。
+Copy `.env.example` to `.env`, then set your API key:
 
 ```env
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-公開用には `.env.example` を置いてあるので、必要ならそれをコピーして `.env` を作成してください。
-
-## 使い方（uv）
+### Generate SRT
 
 ```bash
 uv run python scripts/gemini_srt.py `
@@ -45,29 +61,96 @@ uv run python scripts/gemini_srt.py `
   --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt"
 ```
 
-`--audio`, `--lyrics`, `--output` は実ファイルに合わせて変更してください。
+Use `--allow-extra-text` when you want short audible fragments preserved even if they are not present in the lyric candidates:
 
-## 静的ビューア
+```bash
+uv run python scripts/gemini_srt.py `
+  --audio "path/to/audio.wav" `
+  --lyrics "path/to/lyrics.txt" `
+  --output "assets/track.srt" `
+  --allow-extra-text
+```
 
-`viewer/` はローカルの静的ファイルとして開ける字幕確認ビューアです。ルートの `index.html` は `viewer/` へのランチャーです。`assets/manifest.json` の各トラックは従来どおり単一の `subtitle` も使えますが、前奏と本編のように分けたい場合は `subtitles` 配列で複数の SRT を並べても読めます。簡易サーバーを立てる場合は次のように実行できます。
+## 🎛️ Viewer
+
+The repo root `index.html` redirects to the local viewer in `viewer/`.
 
 ```bash
 cd D:\midnight-memory
 uv run python -m http.server 8000
 ```
 
-その後、ブラウザで `http://localhost:8000/` または `http://localhost:8000/viewer/` を開くと、`assets/manifest.json` に登録された音声と SRT を確認できます。音声本体は `private-assets/` に置く前提です。
+Open `http://localhost:8000/` or `http://localhost:8000/viewer/`.
+The viewer expects audio files to exist locally under `private-assets/`.
 
-## `assets` の構成
+### Manifest Format
 
-- `private-assets/*.wav`: ローカル専用の音声ファイル（Git 追跡対象外）
-- `assets/*.srt`: 生成済み字幕（またはサンプルの字幕）
-- `private-assets/09 (1).txt`: ローカル専用の歌詞候補（Git 追跡対象外）
-- `assets/manifest.json`: 静的ビューアが参照するトラック一覧。`subtitle` 1本または `subtitles` 配列の複数本を指定可能
+Use `subtitle` for a single SRT file:
 
-## 注意
+```json
+{
+  "id": "intro-chorus-1",
+  "title": "Midnight Memory 夢のつづき",
+  "section": "Intro - Chorus 1",
+  "audio": "private-assets/....wav",
+  "subtitle": "assets/....srt"
+}
+```
 
-- `GEMINI_API_KEY` が入った `.env` は公開リポジトリに含めないでください
-- `.env` は `.gitignore` で除外されています
-- `private-assets/` も `.gitignore` で除外されており、公開リポジトリには含めません
-- 文字化けを避けるため、歌詞テキストは UTF-8 保存を推奨します
+Use `subtitles` when one track should combine multiple SRT files such as an intro fragment plus the main lyric body:
+
+```json
+{
+  "id": "split-track",
+  "title": "Midnight Memory 夢のつづき",
+  "section": "Intro - Chorus 1",
+  "audio": "private-assets/....wav",
+  "subtitles": [
+    { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+  ]
+}
+```
+
+## ✅ Validation
+
+Run the Python checks:
+
+```bash
+uv sync --group dev
+uv run pytest
+uv run python scripts/validate_manifest.py
+```
+
+Run the viewer probe tests:
+
+```bash
+npm install
+npx playwright install chromium
+uv run python scripts/create_stub_audio.py
+npm run test:viewer
+```
+
+`scripts/create_stub_audio.py` only creates missing WAV files under `private-assets/`, so it is safe to use for local or CI-only smoke checks when the real audio is unavailable.
+
+## 📁 Project Layout
+
+- `scripts/gemini_srt.py`: Gemini-backed subtitle generation CLI.
+- `scripts/validate_manifest.py`: manifest structure validation for local QA and CI.
+- `scripts/create_stub_audio.py`: creates silent test fixtures for viewer smoke tests.
+- `viewer/`: static review UI.
+- `assets/*.srt`: generated subtitles and sample subtitle outputs.
+- `assets/manifest.json`: track registry for the viewer.
+- `private-assets/`: local-only audio and lyric sources that stay out of Git.
+
+## ⚖️ Content Rights
+
+This repository intentionally stays local-first.
+Tracked subtitle samples may contain lyric excerpts that are subject to separate rights from the source code and automation scripts, so the repo does not declare a blanket open-source `LICENSE` file yet.
+Treat audio, lyric, and subtitle content as your own responsibility unless you have redistribution rights.
+
+## 📝 Notes
+
+- Never commit `.env` with API keys.
+- Keep lyric text and subtitle files in UTF-8 to avoid mojibake.
+- `private-assets/` is ignored by Git and expected to contain your local audio sources.

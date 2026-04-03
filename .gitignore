@@ -28,3 +28,4 @@ htmlcov/
 *.temp
 
 test-results/
+playwright-report/
