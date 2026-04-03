@@ -1,9 +1,11 @@
-asset_id,filename,role,model,preset,seed,steps,cfg,denoise,aspect_ratio,created_at,status,notes,sha256
-protagonist_base_existing,momiji-studio_0014.png,character,existing_asset,reference_only,,,,,16:9,,ready_existing,"primary fox-girl identity reference",,
-env_vocal_booth_night,midnight-memory-ref-env-vocal-booth-night-v01.png,environment,,,,,,,,pending,"night studio booth with visible mouth-safe mic layout",,
-env_rooftop_stage,midnight-memory-ref-env-rooftop-stage-v01.png,environment,,,,,,,,pending,"rooftop start-frame location",,
-env_river_bridge_stage,midnight-memory-ref-env-river-bridge-stage-v01.png,environment,,,,,,,,pending,"bridge stage for final chorus",,
-env_glass_city,midnight-memory-ref-env-glass-city-v01.png,environment,,,,,,,,pending,"urban glass reflection space",,
-style_master,midnight-memory-ref-style-master-v01.png,style,,,,,,,,pending,"global city-pop MV grade",,
-style_wet_reflection,midnight-memory-ref-style-wet-reflection-v01.png,style,,,,,,,,pending,"wet floor and neon reflections",,
-style_studio_glow,midnight-memory-ref-style-studio-glow-v01.png,style,,,,,,,,pending,"warm studio glow with blue night contrast",,
+﻿asset_id,filename,role,model,preset,seed,steps,cfg,denoise,aspect_ratio,created_at,status,notes,sha256
+protagonist_base_existing,character/momiji-studio_0014.png,character,existing_asset,reference_only,,,,,16:9,,ready_existing,"primary fox-girl identity reference",,
+env_vocal_booth_night,environment/midnight-memory-ref-env-vocal-booth-night-v01.png,environment,,,,,,,,pending,"night studio booth with visible mouth-safe mic layout",,
+env_rooftop_stage,environment/midnight-memory-ref-env-rooftop-stage-v01.png,environment,,,,,,,,pending,"rooftop start-frame location",,
+env_river_bridge_stage,environment/midnight-memory-ref-env-river-bridge-stage-v01.png,environment,,,,,,,,pending,"bridge stage for final chorus",,
+env_glass_city,environment/midnight-memory-ref-env-glass-city-v01.png,environment,,,,,,,,pending,"urban glass reflection space",,
+style_master,style/midnight-memory-ref-style-master-v01.png,style,,,,,,,,pending,"global city-pop MV grade",,
+style_wet_reflection,style/midnight-memory-ref-style-wet-reflection-v01.png,style,,,,,,,,pending,"wet floor and neon reflections",,
+style_studio_glow,style/midnight-memory-ref-style-studio-glow-v01.png,style,,,,,,,,pending,"warm studio glow with blue night contrast",,
+
+

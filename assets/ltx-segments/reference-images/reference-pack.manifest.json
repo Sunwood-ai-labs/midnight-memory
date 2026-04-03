@@ -1,4 +1,4 @@
-{
+﻿{
   "title": "Midnight Memory Nanobanana Reference Pack",
   "version": 3,
   "owner": "nanobanana-pro-operator",
@@ -7,59 +7,61 @@
   "assets": [
     {
       "id": "protagonist_base_existing",
-      "filename": "momiji-studio_0014.png",
+      "filename": "character/momiji-studio_0014.png",
       "role": "character",
       "required": true,
       "status": "ready_existing"
     },
     {
       "id": "env_vocal_booth_night",
-      "filename": "midnight-memory-ref-env-vocal-booth-night-v01.png",
+      "filename": "environment/midnight-memory-ref-env-vocal-booth-night-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
       "id": "env_rooftop_stage",
-      "filename": "midnight-memory-ref-env-rooftop-stage-v01.png",
+      "filename": "environment/midnight-memory-ref-env-rooftop-stage-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
       "id": "env_river_bridge_stage",
-      "filename": "midnight-memory-ref-env-river-bridge-stage-v01.png",
+      "filename": "environment/midnight-memory-ref-env-river-bridge-stage-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
       "id": "env_glass_city",
-      "filename": "midnight-memory-ref-env-glass-city-v01.png",
+      "filename": "environment/midnight-memory-ref-env-glass-city-v01.png",
       "role": "environment",
       "required": true,
       "status": "pending"
     },
     {
       "id": "style_master",
-      "filename": "midnight-memory-ref-style-master-v01.png",
+      "filename": "style/midnight-memory-ref-style-master-v01.png",
       "role": "style",
       "required": true,
       "status": "pending"
     },
     {
       "id": "style_wet_reflection",
-      "filename": "midnight-memory-ref-style-wet-reflection-v01.png",
+      "filename": "style/midnight-memory-ref-style-wet-reflection-v01.png",
       "role": "style",
       "required": true,
       "status": "pending"
     },
     {
       "id": "style_studio_glow",
-      "filename": "midnight-memory-ref-style-studio-glow-v01.png",
+      "filename": "style/midnight-memory-ref-style-studio-glow-v01.png",
       "role": "style",
       "required": true,
       "status": "pending"
     }
   ]
 }
+
+

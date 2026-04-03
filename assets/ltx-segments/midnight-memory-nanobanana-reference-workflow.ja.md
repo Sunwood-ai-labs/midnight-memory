@@ -1,26 +1,15 @@
-# Midnight Memory Nanobanana Reference Workflow
+﻿# Midnight Memory Nanobanana Reference Workflow
 
-`nanobanana pro` で今回の MV カットを作るときは、[momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) の狐娘を主役固定の絶対基準にして、先に環境参照とスタイル参照を揃えてから各セグメントへ入力します。
-
+`nanobanana pro` 縺ｧ莉雁屓縺ｮ MV 繧ｫ繝・ヨ繧剃ｽ懊ｋ縺ｨ縺阪・縲ーcharacter/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｮ迢仙ｨ倥ｒ荳ｻ蠖ｹ蝗ｺ螳壹・邨ｶ蟇ｾ蝓ｺ貅悶↓縺励※縲∝・縺ｫ迺ｰ蠅・盾辣ｧ縺ｨ繧ｹ繧ｿ繧､繝ｫ蜿ら・繧呈純縺医※縺九ｉ蜷・そ繧ｰ繝｡繝ｳ繝医∈蜈･蜉帙＠縺ｾ縺吶・
 ## Core Goal
 
-- 主役は常に [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) の狐娘
-- カットは `動画生成のスタートフレーム` 用として使う
-- 表情はフラット寄り、口は閉じ気味か少しだけ開く程度に留める
-- 口元は見える状態を保ち、後段のリップシンクに繋げやすくする
-- 環境と色味の一貫性は環境参照とスタイル参照で固定する
-
+- 荳ｻ蠖ｹ縺ｯ蟶ｸ縺ｫ [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｮ迢仙ｨ・- 繧ｫ繝・ヨ縺ｯ `蜍慕判逕滓・縺ｮ繧ｹ繧ｿ繝ｼ繝医ヵ繝ｬ繝ｼ繝` 逕ｨ縺ｨ縺励※菴ｿ縺・- 陦ｨ諠・・繝輔Λ繝・ヨ蟇・ｊ縲∝哨縺ｯ髢峨§豌怜袖縺句ｰ代＠縺縺鷹幕縺冗ｨ句ｺｦ縺ｫ逡吶ａ繧・- 蜿｣蜈・・隕九∴繧狗憾諷九ｒ菫昴■縲∝ｾ梧ｮｵ縺ｮ繝ｪ繝・・繧ｷ繝ｳ繧ｯ縺ｫ郢九￡繧・☆縺上☆繧・- 迺ｰ蠅・→濶ｲ蜻ｳ縺ｮ荳雋ｫ諤ｧ縺ｯ迺ｰ蠅・盾辣ｧ縺ｨ繧ｹ繧ｿ繧､繝ｫ蜿ら・縺ｧ蝗ｺ螳壹☆繧・
 ## Save Location
 
-- 参照画像は `assets/ltx-segments/reference-images/` に保存します。
-- 命名規則は `midnight-memory-ref-<subject>-<variant>-v01.png` を使います。
-- 再生成したら `v02`, `v03` と版を増やします。
-
+- 蜿ら・逕ｻ蜒上・ `assets/ltx-segments/reference-images/` 縺ｫ菫晏ｭ倥＠縺ｾ縺吶・- 蜻ｽ蜷崎ｦ丞援縺ｯ `midnight-memory-ref-<subject>-<variant>-v01.png` 繧剃ｽｿ縺・∪縺吶・- 蜀咲函謌舌＠縺溘ｉ `v02`, `v03` 縺ｨ迚医ｒ蠅励ｄ縺励∪縺吶・
 ## Execution Owner
 
-- 実行責任者は `nanobanana pro` の運用担当者です。
-- 参照画像を追加・更新した人が、manifest とログも同時に更新します。
-
+- 螳溯｡瑚ｲｬ莉ｻ閠・・ `nanobanana pro` 縺ｮ驕狗畑諡・ｽ楢・〒縺吶・- 蜿ら・逕ｻ蜒上ｒ霑ｽ蜉繝ｻ譖ｴ譁ｰ縺励◆莠ｺ縺後［anifest 縺ｨ繝ｭ繧ｰ繧ょ酔譎ゅ↓譖ｴ譁ｰ縺励∪縺吶・
 ## Runbook Files
 
 - [reference-pack.manifest.json](/D:/midnight-memory/assets/ltx-segments/reference-images/reference-pack.manifest.json)
@@ -30,24 +19,21 @@
 ## Reference Stack Design
 
 - `character ref`
-  - `画像1` に固定する主役ベース画像
-- `environment refs`
-  - スタジオ、屋上、川沿いブリッジ、ガラス空間を固定する層
+  - `逕ｻ蜒・` 縺ｫ蝗ｺ螳壹☆繧倶ｸｻ蠖ｹ繝吶・繧ｹ逕ｻ蜒・- `environment refs`
+  - 繧ｹ繧ｿ繧ｸ繧ｪ縲∝ｱ倶ｸ翫∝ｷ晄ｲｿ縺・ヶ繝ｪ繝・ず縲√ぎ繝ｩ繧ｹ遨ｺ髢薙ｒ蝗ｺ螳壹☆繧句ｱ､
 - `style refs`
-  - 色温度、ネオンの滲み、湿度感、映画粒子を固定する層
+  - 濶ｲ貂ｩ蠎ｦ縲√ロ繧ｪ繝ｳ縺ｮ貊ｲ縺ｿ縲∵ｹｿ蠎ｦ諢溘∵丐逕ｻ邊貞ｭ舌ｒ蝗ｺ螳壹☆繧句ｱ､
 
-通常運用では `画像1 = 主役固定`、`画像2 = 環境`、`画像3 = スタイル` の 3 枚で十分です。  
-顔アップや上半身の差分参照は、必要になったときだけ追加で作るオプション扱いにします。
-
+騾壼ｸｸ驕狗畑縺ｧ縺ｯ `逕ｻ蜒・ = 荳ｻ蠖ｹ蝗ｺ螳啻縲～逕ｻ蜒・ = 迺ｰ蠅チ縲～逕ｻ蜒・ = 繧ｹ繧ｿ繧､繝ｫ` 縺ｮ 3 譫壹〒蜊∝・縺ｧ縺吶・ 
+鬘斐い繝・・繧・ｸ雁濠霄ｫ縺ｮ蟾ｮ蛻・盾辣ｧ縺ｯ縲∝ｿ・ｦ√↓縺ｪ縺｣縺溘→縺阪□縺題ｿｽ蜉縺ｧ菴懊ｋ繧ｪ繝励す繝ｧ繝ｳ謇ｱ縺・↓縺励∪縺吶・
 ## Parameter Log
 
-参照画像ごとに、次を必ず記録してください。
-
+蜿ら・逕ｻ蜒上＃縺ｨ縺ｫ縲∵ｬ｡繧貞ｿ・★險倬鹸縺励※縺上□縺輔＞縲・
 - `model`
-- `preset` または `quality mode`
+- `preset` 縺ｾ縺溘・ `quality mode`
 - `seed`
 - `steps`
-- `cfg` または `guidance`
+- `cfg` 縺ｾ縺溘・ `guidance`
 - `denoise`
 - `aspect ratio`
 - `notes`
@@ -57,129 +43,111 @@
 
 ### 0. Protagonist Base
 
-- `filename`: `momiji-studio_0014.png`
+- `filename`: `character/momiji-studio_0014.png`
 - `role`: `character`
-- `purpose`: 狐娘シンガーの絶対基準
-- `must_keep`: 狐耳、長い琥珀色の髪、金色の瞳、ふわっとした尾、和柄寄りの衣装、黒金のヘッドホン
-- `validation`: 今後の全ショットが、この画像の同一人物に見えること
+- `purpose`: 迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縺ｮ邨ｶ蟇ｾ蝓ｺ貅・- `must_keep`: 迢占ｳ縲・聞縺・是迴濶ｲ縺ｮ鬮ｪ縲・≡濶ｲ縺ｮ迸ｳ縲√・繧上▲縺ｨ縺励◆蟆ｾ縲∝柱譟・ｯ・ｊ縺ｮ陦｣陬・・ｻ帝≡縺ｮ繝倥ャ繝峨・繝ｳ
+- `validation`: 莉雁ｾ後・蜈ｨ繧ｷ繝ｧ繝・ヨ縺後√％縺ｮ逕ｻ蜒上・蜷御ｸ莠ｺ迚ｩ縺ｫ隕九∴繧九％縺ｨ
 
 ## Fixed Reference Images To Prepare
 
 ### 1. Environment Vocal Booth
 
-- `filename`: `midnight-memory-ref-env-vocal-booth-night-v01.png`
-- `purpose`: 夜景の見えるボーカルブース固定
-- `prompt_ja`: `東京の夜景が大きく見える録音スタジオ、コンデンサーマイク、少し横に避けたポップガード、吸音材、ミキサーのボケ、人物なし、city-pop MV向け、文字なし、ウォーターマークなし`
-- `validation`: 主役を前景に置いても口元を塞がない構図になっていること
+- `filename`: `environment/midnight-memory-ref-env-vocal-booth-night-v01.png`
+- `purpose`: 螟懈勹縺ｮ隕九∴繧九・繝ｼ繧ｫ繝ｫ繝悶・繧ｹ蝗ｺ螳・- `prompt_ja`: `譚ｱ莠ｬ縺ｮ螟懈勹縺悟､ｧ縺阪￥隕九∴繧矩鹸髻ｳ繧ｹ繧ｿ繧ｸ繧ｪ縲√さ繝ｳ繝・Φ繧ｵ繝ｼ繝槭う繧ｯ縲∝ｰ代＠讓ｪ縺ｫ驕ｿ縺代◆繝昴ャ繝励ぎ繝ｼ繝峨∝精髻ｳ譚舌√Α繧ｭ繧ｵ繝ｼ縺ｮ繝懊こ縲∽ｺｺ迚ｩ縺ｪ縺励…ity-pop MV蜷代￠縲∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 荳ｻ蠖ｹ繧貞燕譎ｯ縺ｫ鄂ｮ縺・※繧ょ哨蜈・ｒ蝪槭′縺ｪ縺・ｧ句峙縺ｫ縺ｪ縺｣縺ｦ縺・ｋ縺薙→
 
 ### 2. Environment Rooftop Stage
 
-- `filename`: `midnight-memory-ref-env-rooftop-stage-v01.png`
-- `purpose`: 夜風のある屋上ステージ固定
-- `prompt_ja`: `東京の夜景が広がる屋上ステージ、濡れた床、控えめなパフォーマンス空間、人物なし、MV向け、文字なし、ウォーターマークなし`
-- `validation`: 主役を大きく前景に置ける余白があること
+- `filename`: `environment/midnight-memory-ref-env-rooftop-stage-v01.png`
+- `purpose`: 螟憺｢ｨ縺ｮ縺ゅｋ螻倶ｸ翫せ繝・・繧ｸ蝗ｺ螳・- `prompt_ja`: `譚ｱ莠ｬ縺ｮ螟懈勹縺悟ｺ・′繧句ｱ倶ｸ翫せ繝・・繧ｸ縲∵ｿ｡繧後◆蠎翫∵而縺医ａ縺ｪ繝代ヵ繧ｩ繝ｼ繝槭Φ繧ｹ遨ｺ髢薙∽ｺｺ迚ｩ縺ｪ縺励｀V蜷代￠縲∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 荳ｻ蠖ｹ繧貞､ｧ縺阪￥蜑肴勹縺ｫ鄂ｮ縺代ｋ菴咏區縺後≠繧九％縺ｨ
 
 ### 3. Environment River Bridge Stage
 
-- `filename`: `midnight-memory-ref-env-river-bridge-stage-v01.png`
-- `purpose`: 川沿いブリッジステージ固定
-- `prompt_ja`: `東京の川沿いのブリッジステージ、濡れた床、欄干、遠くの光跡、水面反射、人物なし、切ない city-pop MV 向け、文字なし、ウォーターマークなし`
-- `validation`: 顔アップでも上半身でも自然に乗ること
+- `filename`: `environment/midnight-memory-ref-env-river-bridge-stage-v01.png`
+- `purpose`: 蟾晄ｲｿ縺・ヶ繝ｪ繝・ず繧ｹ繝・・繧ｸ蝗ｺ螳・- `prompt_ja`: `譚ｱ莠ｬ縺ｮ蟾晄ｲｿ縺・・繝悶Μ繝・ず繧ｹ繝・・繧ｸ縲∵ｿ｡繧後◆蠎翫∵ｬ・ｹｲ縲・□縺上・蜈芽ｷ｡縲∵ｰｴ髱｢蜿榊ｰ・∽ｺｺ迚ｩ縺ｪ縺励∝・縺ｪ縺・city-pop MV 蜷代￠縲∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 鬘斐い繝・・縺ｧ繧ゆｸ雁濠霄ｫ縺ｧ繧り・辟ｶ縺ｫ荵励ｋ縺薙→
 
 ### 4. Environment Glass City Space
 
-- `filename`: `midnight-memory-ref-env-glass-city-v01.png`
-- `purpose`: ガラス越し都会空間の固定
-- `prompt_ja`: `夜の都会のガラス空間、ネオンの滲み、白色灯、都会の反射、人物なし、上品なハレーション、MV向け、文字なし、ウォーターマークなし`
-- `validation`: 主役の顔と口元が埋もれない程度に反射が整理されていること
+- `filename`: `environment/midnight-memory-ref-env-glass-city-v01.png`
+- `purpose`: 繧ｬ繝ｩ繧ｹ雜翫＠驛ｽ莨夂ｩｺ髢薙・蝗ｺ螳・- `prompt_ja`: `螟懊・驛ｽ莨壹・繧ｬ繝ｩ繧ｹ遨ｺ髢薙√ロ繧ｪ繝ｳ縺ｮ貊ｲ縺ｿ縲∫區濶ｲ轣ｯ縲・・莨壹・蜿榊ｰ・∽ｺｺ迚ｩ縺ｪ縺励∽ｸ雁刀縺ｪ繝上Ξ繝ｼ繧ｷ繝ｧ繝ｳ縲｀V蜷代￠縲∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 荳ｻ蠖ｹ縺ｮ鬘斐→蜿｣蜈・′蝓九ｂ繧後↑縺・ｨ句ｺｦ縺ｫ蜿榊ｰ・′謨ｴ逅・＆繧後※縺・ｋ縺薙→
 
 ### 5. Style Master Look
 
-- `filename`: `midnight-memory-ref-style-master-v01.png`
-- `purpose`: 全ショット共通の色温度、粒子、city-pop 感の固定
-- `prompt_ja`: `1980年代東京 city-pop MV ルック、深紺、コバルトブルー、温かいアンバー、少量のローズ、繊細な映画粒子、湿度を帯びた夜の空気、人物なし、文字なし、ウォーターマークなし`
-- `validation`: どの場所に重ねても同じ作品の色味に見えること
+- `filename`: `style/midnight-memory-ref-style-master-v01.png`
+- `purpose`: 蜈ｨ繧ｷ繝ｧ繝・ヨ蜈ｱ騾壹・濶ｲ貂ｩ蠎ｦ縲∫ｲ貞ｭ舌…ity-pop 諢溘・蝗ｺ螳・- `prompt_ja`: `1980蟷ｴ莉｣譚ｱ莠ｬ city-pop MV 繝ｫ繝・け縲∵ｷｱ邏ｺ縲√さ繝舌Ν繝医ヶ繝ｫ繝ｼ縲∵ｸｩ縺九＞繧｢繝ｳ繝舌・縲∝ｰ鷹㍼縺ｮ繝ｭ繝ｼ繧ｺ縲∫ｹ顔ｴｰ縺ｪ譏逕ｻ邊貞ｭ舌∵ｹｿ蠎ｦ繧貞ｸｯ縺ｳ縺溷､懊・遨ｺ豌励∽ｺｺ迚ｩ縺ｪ縺励∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 縺ｩ縺ｮ蝣ｴ謇縺ｫ驥阪・縺ｦ繧ょ酔縺倅ｽ懷刀縺ｮ濶ｲ蜻ｳ縺ｫ隕九∴繧九％縺ｨ
 
 ### 6. Style Wet Reflection
 
-- `filename`: `midnight-memory-ref-style-wet-reflection-v01.png`
-- `purpose`: 濡れた床と光の反射の質感固定
-- `prompt_ja`: `雨上がりの舗道やステージ床に細長く反射するネオン、上品な湿度感、人物なし、文字なし、ウォーターマークなし`
-- `validation`: 屋外カットに流用できること
+- `filename`: `style/midnight-memory-ref-style-wet-reflection-v01.png`
+- `purpose`: 豼｡繧後◆蠎翫→蜈峨・蜿榊ｰ・・雉ｪ諢溷崋螳・- `prompt_ja`: `髮ｨ荳翫′繧翫・闊鈴％繧・せ繝・・繧ｸ蠎翫↓邏ｰ髟ｷ縺丞渚蟆・☆繧九ロ繧ｪ繝ｳ縲∽ｸ雁刀縺ｪ貉ｿ蠎ｦ諢溘∽ｺｺ迚ｩ縺ｪ縺励∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 螻句､悶き繝・ヨ縺ｫ豬∫畑縺ｧ縺阪ｋ縺薙→
 
 ### 7. Style Studio Glow
 
-- `filename`: `midnight-memory-ref-style-studio-glow-v01.png`
-- `purpose`: スタジオ内の暖色グロウと夜景ブルーの共存を固定
-- `prompt_ja`: `録音スタジオの暖かい室内光と窓外の青い夜景が共存するルック、人物なし、上質なMV照明、文字なし、ウォーターマークなし`
-- `validation`: スタジオ系カット全般に馴染むこと
+- `filename`: `style/midnight-memory-ref-style-studio-glow-v01.png`
+- `purpose`: 繧ｹ繧ｿ繧ｸ繧ｪ蜀・・證冶牡繧ｰ繝ｭ繧ｦ縺ｨ螟懈勹繝悶Ν繝ｼ縺ｮ蜈ｱ蟄倥ｒ蝗ｺ螳・- `prompt_ja`: `骭ｲ髻ｳ繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ證悶°縺・ｮ､蜀・・縺ｨ遯灘､悶・髱偵＞螟懈勹縺悟・蟄倥☆繧九Ν繝・け縲∽ｺｺ迚ｩ縺ｪ縺励∽ｸ願ｳｪ縺ｪMV辣ｧ譏弱∵枚蟄励↑縺励√え繧ｩ繝ｼ繧ｿ繝ｼ繝槭・繧ｯ縺ｪ縺輿
+- `validation`: 繧ｹ繧ｿ繧ｸ繧ｪ邉ｻ繧ｫ繝・ヨ蜈ｨ闊ｬ縺ｫ鬥ｴ譟薙・縺薙→
 
 ## Start Frame Rules
 
-- このワークフローで作るカットは、歌唱画像ではなく動画生成前の静止フレーム
-- 表情はフラット寄り
-- 口は閉じ気味か少しだけ開く程度
-- 唇と顎のラインは見える
-- マイク、髪、手で口元を隠さない
-- 正面または 3/4 角度を優先
-
+- 縺薙・繝ｯ繝ｼ繧ｯ繝輔Ο繝ｼ縺ｧ菴懊ｋ繧ｫ繝・ヨ縺ｯ縲∵ｭ悟罰逕ｻ蜒上〒縺ｯ縺ｪ縺丞虚逕ｻ逕滓・蜑阪・髱呎ｭ｢繝輔Ξ繝ｼ繝
+- 陦ｨ諠・・繝輔Λ繝・ヨ蟇・ｊ
+- 蜿｣縺ｯ髢峨§豌怜袖縺句ｰ代＠縺縺鷹幕縺冗ｨ句ｺｦ
+- 蜚・→鬘弱・繝ｩ繧､繝ｳ縺ｯ隕九∴繧・- 繝槭う繧ｯ縲・ｫｪ縲∵焔縺ｧ蜿｣蜈・ｒ髫縺輔↑縺・- 豁｣髱｢縺ｾ縺溘・ 3/4 隗貞ｺｦ繧貞━蜈・
 ## Shot Prompt Usage Rules
 
-- 全ショット共通で [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) を最優先で添付します。
-- 通常は `画像1 = 主役`, `画像2 = 環境`, `画像3 = スタイル` で生成します。
-- カット内の顔アップ・口元可視・表情の静かさは、ショット本文のプロンプトで調整します。
-- 環境はショットごとに切り替え、スタイルは大枠の見た目を固定するために使います。
-
+- 蜈ｨ繧ｷ繝ｧ繝・ヨ蜈ｱ騾壹〒 [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 繧呈怙蜆ｪ蜈医〒豺ｻ莉倥＠縺ｾ縺吶・- 騾壼ｸｸ縺ｯ `逕ｻ蜒・ = 荳ｻ蠖ｹ`, `逕ｻ蜒・ = 迺ｰ蠅チ, `逕ｻ蜒・ = 繧ｹ繧ｿ繧､繝ｫ` 縺ｧ逕滓・縺励∪縺吶・- 繧ｫ繝・ヨ蜀・・鬘斐い繝・・繝ｻ蜿｣蜈・庄隕悶・陦ｨ諠・・髱吶°縺輔・縲√す繝ｧ繝・ヨ譛ｬ譁・・繝励Ο繝ｳ繝励ヨ縺ｧ隱ｿ謨ｴ縺励∪縺吶・- 迺ｰ蠅・・繧ｷ繝ｧ繝・ヨ縺斐→縺ｫ蛻・ｊ譖ｿ縺医√せ繧ｿ繧､繝ｫ縺ｯ螟ｧ譫縺ｮ隕九◆逶ｮ繧貞崋螳壹☆繧九◆繧√↓菴ｿ縺・∪縺吶・
 ## Segment Attachment Matrix
 
 ### Intro - Chorus 1
 
-- `intro-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-02`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-03`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
-- `intro-04`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-05`: `momiji-studio_0014.png`, `env-rooftop-stage`, `style-wet-reflection`
-- `intro-06`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
-- `intro-07`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-08`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `intro-09`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `intro-01`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-02`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-03`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `intro-04`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-05`: `character/momiji-studio_0014.png`, `env-rooftop-stage`, `style-wet-reflection`
+- `intro-06`: `character/momiji-studio_0014.png`, `env-glass-city`, `style-master`
+- `intro-07`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-08`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `intro-09`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 
 ### Bridge - Final Chorus
 
-- `bridge-01`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `bridge-02`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
-- `bridge-03`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
-- `bridge-04`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
-- `bridge-05`: `momiji-studio_0014.png`, `env-glass-city`, `style-master`
-- `bridge-06`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
-- `bridge-07`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
-- `bridge-08`: `momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
-- `bridge-09`: `momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
+- `bridge-01`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `bridge-02`: `character/momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
+- `bridge-03`: `character/momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
+- `bridge-04`: `character/momiji-studio_0014.png`, `env-glass-city`, `style-master`
+- `bridge-05`: `character/momiji-studio_0014.png`, `env-glass-city`, `style-master`
+- `bridge-06`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-studio-glow`
+- `bridge-07`: `character/momiji-studio_0014.png`, `env-river-bridge-stage`, `style-wet-reflection`
+- `bridge-08`: `character/momiji-studio_0014.png`, `env-river-bridge-stage`, `style-master`
+- `bridge-09`: `character/momiji-studio_0014.png`, `env-vocal-booth-night`, `style-master`
 
 ## Prompt Assembly Template
 
 ```text
 reference_images:
-- 画像1: momiji-studio_0014.png
-- 画像2: midnight-memory-ref-env-vocal-booth-night-v01.png
-- 画像3: midnight-memory-ref-style-studio-glow-v01.png
+- 逕ｻ蜒・: character/momiji-studio_0014.png
+- 逕ｻ蜒・: environment/midnight-memory-ref-env-vocal-booth-night-v01.png
+- 逕ｻ蜒・: style/midnight-memory-ref-style-studio-glow-v01.png
 
 shot_goal:
-- 狐娘キャラは画像1と同一人物に固定
-- 表情はフラット寄り
-- 口元が見える
-- 動画生成のスタートフレームとして使いやすい
-- 環境と色味は画像2と画像3に合わせる
+- 迢仙ｨ倥く繝｣繝ｩ縺ｯ逕ｻ蜒・縺ｨ蜷御ｸ莠ｺ迚ｩ縺ｫ蝗ｺ螳・- 陦ｨ諠・・繝輔Λ繝・ヨ蟇・ｊ
+- 蜿｣蜈・′隕九∴繧・- 蜍慕判逕滓・縺ｮ繧ｹ繧ｿ繝ｼ繝医ヵ繝ｬ繝ｼ繝縺ｨ縺励※菴ｿ縺・ｄ縺吶＞
+- 迺ｰ蠅・→濶ｲ蜻ｳ縺ｯ逕ｻ蜒・縺ｨ逕ｻ蜒・縺ｫ蜷医ｏ縺帙ｋ
 
 prompt:
-<midnight-memory-nanobanana-prompts.ja.md のショット本文を貼る>
+<midnight-memory-nanobanana-prompts.ja.md 縺ｮ繧ｷ繝ｧ繝・ヨ譛ｬ譁・ｒ雋ｼ繧・
 ```
 
 ## Preflight Checklist
 
-- [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) と同一人物に見える
-- 狐耳、髪、尾、瞳色、衣装、ヘッドホンが崩れていない
-- 口元が見える
-- 表情がフラット寄り
-- 動画生成のスタートフレームとして静止感がある
-- 環境と色味がショット意図に合っている
+- [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｨ蜷御ｸ莠ｺ迚ｩ縺ｫ隕九∴繧・- 迢占ｳ縲・ｫｪ縲∝ｰｾ縲∫楜濶ｲ縲∬｡｣陬・√・繝・ラ繝帙Φ縺悟ｴｩ繧後※縺・↑縺・- 蜿｣蜈・′隕九∴繧・- 陦ｨ諠・′繝輔Λ繝・ヨ蟇・ｊ
+- 蜍慕判逕滓・縺ｮ繧ｹ繧ｿ繝ｼ繝医ヵ繝ｬ繝ｼ繝縺ｨ縺励※髱呎ｭ｢諢溘′縺ゅｋ
+- 迺ｰ蠅・→濶ｲ蜻ｳ縺後す繝ｧ繝・ヨ諢丞峙縺ｫ蜷医▲縺ｦ縺・ｋ
+
+

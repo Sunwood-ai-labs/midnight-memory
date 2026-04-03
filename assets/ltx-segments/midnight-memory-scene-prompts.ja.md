@@ -1,50 +1,26 @@
-# Midnight Memory Scene Prompts
+﻿# Midnight Memory Scene Prompts
 
-`assets/ltx-segments` の各セグメントに対して、`nanobanana pro` で使うことを前提にした MV 風の歌唱カット案です。今回の版では、[momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) の狐娘キャラクターを主役に固定し、後段のリップシンクを想定して「顔が大きく写る」「口元が見える」「実際に歌っているように見える」ことを優先しています。
-
+`assets/ltx-segments` 縺ｮ蜷・そ繧ｰ繝｡繝ｳ繝医↓蟇ｾ縺励※縲～nanobanana pro` 縺ｧ菴ｿ縺・％縺ｨ繧貞燕謠舌↓縺励◆ MV 鬚ｨ縺ｮ豁悟罰繧ｫ繝・ヨ譯医〒縺吶ゆｻ雁屓縺ｮ迚医〒縺ｯ縲ーcharacter/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｮ迢仙ｨ倥く繝｣繝ｩ繧ｯ繧ｿ繝ｼ繧剃ｸｻ蠖ｹ縺ｫ蝗ｺ螳壹＠縲∝ｾ梧ｮｵ縺ｮ繝ｪ繝・・繧ｷ繝ｳ繧ｯ繧呈Φ螳壹＠縺ｦ縲碁｡斐′螟ｧ縺阪￥蜀吶ｋ縲阪悟哨蜈・′隕九∴繧九阪悟ｮ滄圀縺ｫ豁後▲縺ｦ縺・ｋ繧医≧縺ｫ隕九∴繧九阪％縺ｨ繧貞━蜈医＠縺ｦ縺・∪縺吶・
 ## Global Visual Bible
 
-- 主役: [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) の狐娘。琥珀寄りの長い髪、狐耳、ふわっとした尾、金色の瞳、和柄寄りの衣装、黒金系ヘッドホン。
-- キャラクター固定要素: 顔立ち、耳の形、髪色、前髪、瞳色、尾の色、衣装の和モダン感、ヘッドホンの質感。
-- MV の方向: 物語説明より「深夜の city-pop バラードを狐娘シンガーが歌う」パフォーマンス MV。
-- 場所の方向: 録音スタジオ、夜景の見えるボーカルブース、ネオンの見える屋上ステージ、川沿いブリッジステージ、ガラス越しの都会空間。
-- 感情の運び方: 歌詞の切なさは、表情、口元、視線、光、夜景、湿度感で表現する。別キャラを無理に出さなくてもよい。
-- 共通パレット: 深紺、コバルトブルー、アンバー、温かいスタジオ光、少量のローズ。彩度は高すぎず、映画粒子あり。
-
+- 荳ｻ蠖ｹ: [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｮ迢仙ｨ倥ら是迴蟇・ｊ縺ｮ髟ｷ縺・ｫｪ縲∫巨閠ｳ縲√・繧上▲縺ｨ縺励◆蟆ｾ縲・≡濶ｲ縺ｮ迸ｳ縲∝柱譟・ｯ・ｊ縺ｮ陦｣陬・・ｻ帝≡邉ｻ繝倥ャ繝峨・繝ｳ縲・- 繧ｭ繝｣繝ｩ繧ｯ繧ｿ繝ｼ蝗ｺ螳夊ｦ∫ｴ: 鬘皮ｫ九■縲∬ｳ縺ｮ蠖｢縲・ｫｪ濶ｲ縲∝燕鬮ｪ縲∫楜濶ｲ縲∝ｰｾ縺ｮ濶ｲ縲∬｡｣陬・・蜥後Δ繝繝ｳ諢溘√・繝・ラ繝帙Φ縺ｮ雉ｪ諢溘・- MV 縺ｮ譁ｹ蜷・ 迚ｩ隱櫁ｪｬ譏弱ｈ繧翫梧ｷｱ螟懊・ city-pop 繝舌Λ繝ｼ繝峨ｒ迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縺梧ｭ後≧縲阪ヱ繝輔か繝ｼ繝槭Φ繧ｹ MV縲・- 蝣ｴ謇縺ｮ譁ｹ蜷・ 骭ｲ髻ｳ繧ｹ繧ｿ繧ｸ繧ｪ縲∝､懈勹縺ｮ隕九∴繧九・繝ｼ繧ｫ繝ｫ繝悶・繧ｹ縲√ロ繧ｪ繝ｳ縺ｮ隕九∴繧句ｱ倶ｸ翫せ繝・・繧ｸ縲∝ｷ晄ｲｿ縺・ヶ繝ｪ繝・ず繧ｹ繝・・繧ｸ縲√ぎ繝ｩ繧ｹ雜翫＠縺ｮ驛ｽ莨夂ｩｺ髢薙・- 諢滓ュ縺ｮ驕九・譁ｹ: 豁瑚ｩ槭・蛻・↑縺輔・縲∬｡ｨ諠・∝哨蜈・∬ｦ也ｷ壹∝・縲∝､懈勹縲∵ｹｿ蠎ｦ諢溘〒陦ｨ迴ｾ縺吶ｋ縲ょ挨繧ｭ繝｣繝ｩ繧堤┌逅・↓蜃ｺ縺輔↑縺上※繧ゅｈ縺・・- 蜈ｱ騾壹ヱ繝ｬ繝・ヨ: 豺ｱ邏ｺ縲√さ繝舌Ν繝医ヶ繝ｫ繝ｼ縲√い繝ｳ繝舌・縲∵ｸｩ縺九＞繧ｹ繧ｿ繧ｸ繧ｪ蜈峨∝ｰ鷹㍼縺ｮ繝ｭ繝ｼ繧ｺ縲ょｽｩ蠎ｦ縺ｯ鬮倥☆縺弱★縲∵丐逕ｻ邊貞ｭ舌≠繧翫・
 ## MV Camera Rules
 
-- 基本は `ミディアムクローズ` から `クローズアップ` を主軸にします。
-- リップシンク想定のため、顔は画面の `35% 以上` を目安に写します。
-- 口元は前髪、マイク、ポップガード、手、袖で隠しすぎないようにします。
-- 角度は正面寄りか 3/4 までに留め、極端な真横顔は避けます。
-- `[melody]` 区間でも、ハミング直前・息継ぎ・余韻として口元が読める絵を優先します。
-
+- 蝓ｺ譛ｬ縺ｯ `繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ` 縺九ｉ `繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・` 繧剃ｸｻ霆ｸ縺ｫ縺励∪縺吶・- 繝ｪ繝・・繧ｷ繝ｳ繧ｯ諠ｳ螳壹・縺溘ａ縲・｡斐・逕ｻ髱｢縺ｮ `35% 莉･荳柿 繧堤岼螳峨↓蜀吶＠縺ｾ縺吶・- 蜿｣蜈・・蜑埼ｫｪ縲√・繧､繧ｯ縲√・繝・・繧ｬ繝ｼ繝峨∵焔縲∬｢悶〒髫縺励☆縺弱↑縺・ｈ縺・↓縺励∪縺吶・- 隗貞ｺｦ縺ｯ豁｣髱｢蟇・ｊ縺・3/4 縺ｾ縺ｧ縺ｫ逡吶ａ縲∵･ｵ遶ｯ縺ｪ逵滓ｨｪ鬘斐・驕ｿ縺代∪縺吶・- `[melody]` 蛹ｺ髢薙〒繧ゅ√ワ繝溘Φ繧ｰ逶ｴ蜑阪・諱ｯ邯吶℃繝ｻ菴咎渊縺ｨ縺励※蜿｣蜈・′隱ｭ繧√ｋ邨ｵ繧貞━蜈医＠縺ｾ縺吶・
 ## Lip Sync Note
 
-- 口の形が追いやすいように、顎先から上唇までのラインを見せる構図を優先します。
-- ポップガードを使う場合でも、唇にかからない位置へずらします。
-- ハンドマイクを持つ場合は、マイクヘッドで口を完全に隠さない角度にします。
-- 長い髪は口元にかけすぎないようにします。
-- 目線は `カメラ寄り` または `少し外す` 程度にして、歌唱中の自然さを保ちます。
-
+- 蜿｣縺ｮ蠖｢縺瑚ｿｽ縺・ｄ縺吶＞繧医≧縺ｫ縲・｡主・縺九ｉ荳雁這縺ｾ縺ｧ縺ｮ繝ｩ繧､繝ｳ繧定ｦ九○繧区ｧ句峙繧貞━蜈医＠縺ｾ縺吶・- 繝昴ャ繝励ぎ繝ｼ繝峨ｒ菴ｿ縺・ｴ蜷医〒繧ゅ∝這縺ｫ縺九°繧峨↑縺・ｽ咲ｽｮ縺ｸ縺壹ｉ縺励∪縺吶・- 繝上Φ繝峨・繧､繧ｯ繧呈戟縺､蝣ｴ蜷医・縲√・繧､繧ｯ繝倥ャ繝峨〒蜿｣繧貞ｮ悟・縺ｫ髫縺輔↑縺・ｧ貞ｺｦ縺ｫ縺励∪縺吶・- 髟ｷ縺・ｫｪ縺ｯ蜿｣蜈・↓縺九￠縺吶℃縺ｪ縺・ｈ縺・↓縺励∪縺吶・- 逶ｮ邱壹・ `繧ｫ繝｡繝ｩ蟇・ｊ` 縺ｾ縺溘・ `蟆代＠螟悶☆` 遞句ｺｦ縺ｫ縺励※縲∵ｭ悟罰荳ｭ縺ｮ閾ｪ辟ｶ縺輔ｒ菫昴■縺ｾ縺吶・
 ## Common Prompt Tail
 
-各プロンプトの末尾には、必要に応じて次を足すと揃いやすいです。
-
+蜷・・繝ｭ繝ｳ繝励ヨ縺ｮ譛ｫ蟆ｾ縺ｫ縺ｯ縲∝ｿ・ｦ√↓蠢懊§縺ｦ谺｡繧定ｶｳ縺吶→謠・＞繧・☆縺・〒縺吶・
 `cinematic music video still, 16:9, close face performance shot, visible mouth for lip sync, singing expression, 1980s Tokyo city-pop mood, subtle film grain, no text, no watermark, no readable signage logos, no smartphone, no modern cars, no LED billboards, do not block the lips with microphone or hair`
 
 ## Timebase Note
 
-- このファイルの `time_range` は、各 `*.ltx_segments.srt` のクリップ内ローカル時刻です。
-- `*.main.srt` は歌詞の意味確認用で、`[melody]` を含まないぶん開始時刻が後ろにずれることがあります。
-- カット設計は `ltx_segments.srt` の時間窓を基準にし、`main.srt` は歌詞ニュアンスの参照として使います。
-
+- 縺薙・繝輔ぃ繧､繝ｫ縺ｮ `time_range` 縺ｯ縲∝推 `*.ltx_segments.srt` 縺ｮ繧ｯ繝ｪ繝・・蜀・Ο繝ｼ繧ｫ繝ｫ譎ょ綾縺ｧ縺吶・- `*.main.srt` 縺ｯ豁瑚ｩ槭・諢丞袖遒ｺ隱咲畑縺ｧ縲～[melody]` 繧貞性縺ｾ縺ｪ縺・・繧馴幕蟋区凾蛻ｻ縺悟ｾ後ｍ縺ｫ縺壹ｌ繧九％縺ｨ縺後≠繧翫∪縺吶・- 繧ｫ繝・ヨ險ｭ險医・ `ltx_segments.srt` 縺ｮ譎る俣遯薙ｒ蝓ｺ貅悶↓縺励～main.srt` 縺ｯ豁瑚ｩ槭ル繝･繧｢繝ｳ繧ｹ縺ｮ蜿ら・縺ｨ縺励※菴ｿ縺・∪縺吶・
 ## Nanobanana Pro Note
 
-- このファイルの `image_prompt_ja` は「カット内容」の指示です。
-- キャラ、スタジオ、街並み、テイストの固定は [midnight-memory-nanobanana-reference-workflow.ja.md](/D:/midnight-memory/assets/ltx-segments/midnight-memory-nanobanana-reference-workflow.ja.md) 側の参照画像セットで行います。
-- 特に [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) は主役固定の最優先参照です。
-
+- 縺薙・繝輔ぃ繧､繝ｫ縺ｮ `image_prompt_ja` 縺ｯ縲後き繝・ヨ蜀・ｮｹ縲阪・謖・､ｺ縺ｧ縺吶・- 繧ｭ繝｣繝ｩ縲√せ繧ｿ繧ｸ繧ｪ縲∬｡嶺ｸｦ縺ｿ縲√ユ繧､繧ｹ繝医・蝗ｺ螳壹・ [midnight-memory-nanobanana-reference-workflow.ja.md](/D:/midnight-memory/assets/ltx-segments/midnight-memory-nanobanana-reference-workflow.ja.md) 蛛ｴ縺ｮ蜿ら・逕ｻ蜒上そ繝・ヨ縺ｧ陦後＞縺ｾ縺吶・- 迚ｹ縺ｫ [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 縺ｯ荳ｻ蠖ｹ蝗ｺ螳壹・譛蜆ｪ蜈亥盾辣ｧ縺ｧ縺吶・
 ## Intro - Chorus 1
 
 ### Segment 1
@@ -52,108 +28,81 @@
 - `segment_id`: `1`
 - `time_range`: `00:00:00,000 --> 00:00:08,300`
 - `lyric_or_vocal_focus`: `[melody]`
-- `filename`: `midnight-memory-intro-01.png`
-- `scene_concept`: 夜景の見えるボーカルブースで、狐娘が歌い出す直前に息を整える導入カット。もう声が始まりそうな口元を見せる。
-- `camera_framing`: 正面寄りのミディアムクローズ。
-- `lighting_palette`: スタジオの温かい光、外の深いネイビー夜景、少量のアンバー。
-- `image_prompt_ja`: `夜景の見える録音スタジオ、狐耳の少女シンガーがコンデンサーマイクの前で歌い出す直前、顔が大きく写るミディアムクローズ、口元がよく見える、黒金のヘッドホン、和モダン衣装、東京の夜景ボケ、静かな導入のMVカット`
-- `avoid_notes`: `ポップガードで唇を隠さない、顔を小さくしない`
+- `filename`: `shots/midnight-memory-intro-01.png`
+- `scene_concept`: 螟懈勹縺ｮ隕九∴繧九・繝ｼ繧ｫ繝ｫ繝悶・繧ｹ縺ｧ縲∫巨螽倥′豁後＞蜃ｺ縺咏峩蜑阪↓諱ｯ繧呈紛縺医ｋ蟆主・繧ｫ繝・ヨ縲ゅｂ縺・｣ｰ縺悟ｧ九∪繧翫◎縺・↑蜿｣蜈・ｒ隕九○繧九・- `camera_framing`: 豁｣髱｢蟇・ｊ縺ｮ繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ貂ｩ縺九＞蜈峨∝､悶・豺ｱ縺・ロ繧､繝薙・螟懈勹縲∝ｰ鷹㍼縺ｮ繧｢繝ｳ繝舌・縲・- `image_prompt_ja`: `螟懈勹縺ｮ隕九∴繧矩鹸髻ｳ繧ｹ繧ｿ繧ｸ繧ｪ縲∫巨閠ｳ縺ｮ蟆大･ｳ繧ｷ繝ｳ繧ｬ繝ｼ縺後さ繝ｳ繝・Φ繧ｵ繝ｼ繝槭う繧ｯ縺ｮ蜑阪〒豁後＞蜃ｺ縺咏峩蜑阪・｡斐′螟ｧ縺阪￥蜀吶ｋ繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲∝哨蜈・′繧医￥隕九∴繧九・ｻ帝≡縺ｮ繝倥ャ繝峨・繝ｳ縲∝柱繝｢繝繝ｳ陦｣陬・∵擲莠ｬ縺ｮ螟懈勹繝懊こ縲・撕縺九↑蟆主・縺ｮMV繧ｫ繝・ヨ`
+- `avoid_notes`: `繝昴ャ繝励ぎ繝ｼ繝峨〒蜚・ｒ髫縺輔↑縺・・｡斐ｒ蟆上＆縺上＠縺ｪ縺Я
 
 ### Segment 2
 
 - `segment_id`: `2`
 - `time_range`: `00:00:08,300 --> 00:00:18,000`
-- `lyric_or_vocal_focus`: `変わらない / Ooh / Ooh`
-- `filename`: `midnight-memory-intro-02.png`
-- `scene_concept`: スタジオで実際に歌い始める最初の歌唱カット。Ooh の母音が読みやすい口元を優先。
-- `camera_framing`: 正面 3/4 のクローズアップ。
-- `lighting_palette`: 温かいキーライト、夜景ブルー、耳と髪にアンバー。
-- `image_prompt_ja`: `狐耳の少女シンガーがスタジオで歌っているクローズアップ、Ooh の口の形が分かる、金色の瞳、琥珀色の長い髪、黒金のヘッドホン、マイクは脇に寄せて唇が見える、夜の東京の窓景色、city-pop MVの冒頭`
-- `avoid_notes`: `真横顔にしない、マイクを顔の中心に置かない`
+- `lyric_or_vocal_focus`: `螟峨ｏ繧峨↑縺・/ Ooh / Ooh`
+- `filename`: `shots/midnight-memory-intro-02.png`
+- `scene_concept`: 繧ｹ繧ｿ繧ｸ繧ｪ縺ｧ螳滄圀縺ｫ豁後＞蟋九ａ繧区怙蛻昴・豁悟罰繧ｫ繝・ヨ縲０oh 縺ｮ豈埼浹縺瑚ｪｭ縺ｿ繧・☆縺・哨蜈・ｒ蜆ｪ蜈医・- `camera_framing`: 豁｣髱｢ 3/4 縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 貂ｩ縺九＞繧ｭ繝ｼ繝ｩ繧､繝医∝､懈勹繝悶Ν繝ｼ縲∬ｳ縺ｨ鬮ｪ縺ｫ繧｢繝ｳ繝舌・縲・- `image_prompt_ja`: `迢占ｳ縺ｮ蟆大･ｳ繧ｷ繝ｳ繧ｬ繝ｼ縺後せ繧ｿ繧ｸ繧ｪ縺ｧ豁後▲縺ｦ縺・ｋ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲＾oh 縺ｮ蜿｣縺ｮ蠖｢縺悟・縺九ｋ縲・≡濶ｲ縺ｮ迸ｳ縲∫是迴濶ｲ縺ｮ髟ｷ縺・ｫｪ縲・ｻ帝≡縺ｮ繝倥ャ繝峨・繝ｳ縲√・繧､繧ｯ縺ｯ閼・↓蟇・○縺ｦ蜚・′隕九∴繧九∝､懊・譚ｱ莠ｬ縺ｮ遯捺勹濶ｲ縲…ity-pop MV縺ｮ蜀帝ｭ`
+- `avoid_notes`: `逵滓ｨｪ鬘斐↓縺励↑縺・√・繧､繧ｯ繧帝｡斐・荳ｭ蠢・↓鄂ｮ縺九↑縺Я
 
 ### Segment 3
 
 - `segment_id`: `3`
 - `time_range`: `00:00:18,000 --> 00:00:28,460`
-- `lyric_or_vocal_focus`: `[melody] / Ooh / Ooh / 変わらない街は今日も`
-- `filename`: `midnight-memory-intro-03.png`
-- `scene_concept`: 窓越しに都会を背負いながら歌う。スタジオと街が1カットで繋がる、MVらしい歌唱絵。
-- `camera_framing`: 上半身までのタイトなミディアム。
-- `lighting_palette`: 深紺、コバルト、やわらかいスタジオ光。
-- `image_prompt_ja`: `夜景が大きく見えるスタジオ窓の前で歌う狐娘シンガー、上半身のミディアムショット、口元が見える、東京の街の光が背後で滲む、歌唱中の自然な表情、MVらしい上質なシネマカット`
-- `avoid_notes`: `景色だけを主役にしない、顔が遠くならない`
+- `lyric_or_vocal_focus`: `[melody] / Ooh / Ooh / 螟峨ｏ繧峨↑縺・｡励・莉頑律繧Ａ
+- `filename`: `shots/midnight-memory-intro-03.png`
+- `scene_concept`: 遯楢ｶ翫＠縺ｫ驛ｽ莨壹ｒ閭瑚ｲ縺・↑縺後ｉ豁後≧縲ゅせ繧ｿ繧ｸ繧ｪ縺ｨ陦励′1繧ｫ繝・ヨ縺ｧ郢九′繧九｀V繧峨＠縺・ｭ悟罰邨ｵ縲・- `camera_framing`: 荳雁濠霄ｫ縺ｾ縺ｧ縺ｮ繧ｿ繧､繝医↑繝溘ョ繧｣繧｢繝縲・- `lighting_palette`: 豺ｱ邏ｺ縲√さ繝舌Ν繝医√ｄ繧上ｉ縺九＞繧ｹ繧ｿ繧ｸ繧ｪ蜈峨・- `image_prompt_ja`: `螟懈勹縺悟､ｧ縺阪￥隕九∴繧九せ繧ｿ繧ｸ繧ｪ遯薙・蜑阪〒豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲∽ｸ雁濠霄ｫ縺ｮ繝溘ョ繧｣繧｢繝繧ｷ繝ｧ繝・ヨ縲∝哨蜈・′隕九∴繧九∵擲莠ｬ縺ｮ陦励・蜈峨′閭悟ｾ後〒貊ｲ繧縲∵ｭ悟罰荳ｭ縺ｮ閾ｪ辟ｶ縺ｪ陦ｨ諠・｀V繧峨＠縺・ｸ願ｳｪ縺ｪ繧ｷ繝阪・繧ｫ繝・ヨ`
+- `avoid_notes`: `譎ｯ濶ｲ縺縺代ｒ荳ｻ蠖ｹ縺ｫ縺励↑縺・・｡斐′驕縺上↑繧峨↑縺Я
 
 ### Segment 4
 
 - `segment_id`: `4`
 - `time_range`: `00:00:28,460 --> 00:00:40,060`
-- `lyric_or_vocal_focus`: `誰かの記憶 / 忘れかけたメロディが / 心を揺らしてる`
-- `filename`: `midnight-memory-intro-04.png`
-- `scene_concept`: レコーディングブースで感情が入ってくる区間。歌詞の余韻が目元と口元に乗る繊細な歌唱カット。
-- `camera_framing`: 顔中心のクローズアップ。
-- `lighting_palette`: 温かいブース光、少量のローズ、夜景ブルー。
-- `image_prompt_ja`: `録音ブースの中で切なく歌う狐娘の顔アップ、唇の動きがはっきり分かる、ヘッドホン、和柄衣装の肩口が少し見える、スタジオ機材のボケ、city-pop バラードMVの感情的な歌唱カット`
-- `avoid_notes`: `涙を誇張しすぎない、口元を髪で隠さない`
+- `lyric_or_vocal_focus`: `隱ｰ縺九・險俶・ / 蠢倥ｌ縺九￠縺溘Γ繝ｭ繝・ぅ縺・/ 蠢・ｒ謠ｺ繧峨＠縺ｦ繧義
+- `filename`: `shots/midnight-memory-intro-04.png`
+- `scene_concept`: 繝ｬ繧ｳ繝ｼ繝・ぅ繝ｳ繧ｰ繝悶・繧ｹ縺ｧ諢滓ュ縺悟・縺｣縺ｦ縺上ｋ蛹ｺ髢薙よｭ瑚ｩ槭・菴咎渊縺檎岼蜈・→蜿｣蜈・↓荵励ｋ郢顔ｴｰ縺ｪ豁悟罰繧ｫ繝・ヨ縲・- `camera_framing`: 鬘比ｸｭ蠢・・繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 貂ｩ縺九＞繝悶・繧ｹ蜈峨∝ｰ鷹㍼縺ｮ繝ｭ繝ｼ繧ｺ縲∝､懈勹繝悶Ν繝ｼ縲・- `image_prompt_ja`: `骭ｲ髻ｳ繝悶・繧ｹ縺ｮ荳ｭ縺ｧ蛻・↑縺乗ｭ後≧迢仙ｨ倥・鬘斐い繝・・縲∝這縺ｮ蜍輔″縺後・縺｣縺阪ｊ蛻・°繧九√・繝・ラ繝帙Φ縲∝柱譟・｡｣陬・・閧ｩ蜿｣縺悟ｰ代＠隕九∴繧九√せ繧ｿ繧ｸ繧ｪ讖滓攝縺ｮ繝懊こ縲…ity-pop 繝舌Λ繝ｼ繝窺V縺ｮ諢滓ュ逧・↑豁悟罰繧ｫ繝・ヨ`
+- `avoid_notes`: `豸吶ｒ隱・ｼｵ縺励☆縺弱↑縺・∝哨蜈・ｒ鬮ｪ縺ｧ髫縺輔↑縺Я
 
 ### Segment 5
 
 - `segment_id`: `5`
 - `time_range`: `00:00:40,060 --> 00:00:52,460`
-- `lyric_or_vocal_focus`: `ふとした瞬間 浮かんで / 今でもまだ消せなくて / 夜風が頬を撫でたとき`
-- `filename`: `midnight-memory-intro-05.png`
-- `scene_concept`: 夜風に当たる屋上ステージへ切り替わる。狐耳と髪が揺れる、外ロケの歌唱カット。
-- `camera_framing`: 3/4 のミディアムクローズ。
-- `lighting_palette`: 夜風の青、街灯アンバー、濡れた床の反射。
-- `image_prompt_ja`: `夜景の見える屋上ステージで歌う狐娘シンガー、風に揺れる髪と狐耳、口元がしっかり見えるミディアムクローズ、手持ちマイクは口を隠さない角度、濡れた床にネオンが反射する、MVらしい外ロケ歌唱カット`
-- `avoid_notes`: `風演出で前髪が口にかからないようにする`
+- `lyric_or_vocal_focus`: `縺ｵ縺ｨ縺励◆迸ｬ髢・豬ｮ縺九ｓ縺ｧ / 莉翫〒繧ゅ∪縺豸医○縺ｪ縺上※ / 螟憺｢ｨ縺碁ｬ繧呈牒縺ｧ縺溘→縺港
+- `filename`: `shots/midnight-memory-intro-05.png`
+- `scene_concept`: 螟憺｢ｨ縺ｫ蠖薙◆繧句ｱ倶ｸ翫せ繝・・繧ｸ縺ｸ蛻・ｊ譖ｿ繧上ｋ縲ら巨閠ｳ縺ｨ鬮ｪ縺梧昭繧後ｋ縲∝､悶Ο繧ｱ縺ｮ豁悟罰繧ｫ繝・ヨ縲・- `camera_framing`: 3/4 縺ｮ繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 螟憺｢ｨ縺ｮ髱偵∬｡礼・繧｢繝ｳ繝舌・縲∵ｿ｡繧後◆蠎翫・蜿榊ｰ・・- `image_prompt_ja`: `螟懈勹縺ｮ隕九∴繧句ｱ倶ｸ翫せ繝・・繧ｸ縺ｧ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲・｢ｨ縺ｫ謠ｺ繧後ｋ鬮ｪ縺ｨ迢占ｳ縲∝哨蜈・′縺励▲縺九ｊ隕九∴繧九Α繝・ぅ繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲∵焔謖√■繝槭う繧ｯ縺ｯ蜿｣繧帝國縺輔↑縺・ｧ貞ｺｦ縲∵ｿ｡繧後◆蠎翫↓繝阪が繝ｳ縺悟渚蟆・☆繧九｀V繧峨＠縺・､悶Ο繧ｱ豁悟罰繧ｫ繝・ヨ`
+- `avoid_notes`: `鬚ｨ貍泌・縺ｧ蜑埼ｫｪ縺悟哨縺ｫ縺九°繧峨↑縺・ｈ縺・↓縺吶ｋ`
 
 ### Segment 6
 
 - `segment_id`: `6`
 - `time_range`: `00:00:52,460 --> 00:01:01,460`
-- `lyric_or_vocal_focus`: `名前を呼びそうになる / Midnight memory あなたの影が`
-- `filename`: `midnight-memory-intro-06.png`
-- `scene_concept`: ガラスの多い都会空間で、カメラへ寄りながら歌う。都会の反射が切なさを乗せる。
-- `camera_framing`: 正面寄りクローズアップ。
-- `lighting_palette`: 白色灯、青いネオン、やわらかい頬のハイライト。
-- `image_prompt_ja`: `ガラスに都会の反射が入る夜の空間で歌う狐娘のクローズアップ、カメラ寄りの目線、唇が見える、ヘッドホンまたはイヤーモニタ風、ネオンの滲み、Midnight memory に合う都会的なMVカット`
-- `avoid_notes`: `ガラス反射で顔が二重化しすぎない、唇をぼかさない`
+- `lyric_or_vocal_focus`: `蜷榊燕繧貞他縺ｳ縺昴≧縺ｫ縺ｪ繧・/ Midnight memory 縺ゅ↑縺溘・蠖ｱ縺形
+- `filename`: `shots/midnight-memory-intro-06.png`
+- `scene_concept`: 繧ｬ繝ｩ繧ｹ縺ｮ螟壹＞驛ｽ莨夂ｩｺ髢薙〒縲√き繝｡繝ｩ縺ｸ蟇・ｊ縺ｪ縺後ｉ豁後≧縲る・莨壹・蜿榊ｰ・′蛻・↑縺輔ｒ荵励○繧九・- `camera_framing`: 豁｣髱｢蟇・ｊ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 逋ｽ濶ｲ轣ｯ縲・搨縺・ロ繧ｪ繝ｳ縲√ｄ繧上ｉ縺九＞鬆ｬ縺ｮ繝上う繝ｩ繧､繝医・- `image_prompt_ja`: `繧ｬ繝ｩ繧ｹ縺ｫ驛ｽ莨壹・蜿榊ｰ・′蜈･繧句､懊・遨ｺ髢薙〒豁後≧迢仙ｨ倥・繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲√き繝｡繝ｩ蟇・ｊ縺ｮ逶ｮ邱壹∝這縺瑚ｦ九∴繧九√・繝・ラ繝帙Φ縺ｾ縺溘・繧､繝､繝ｼ繝｢繝九ち鬚ｨ縲√ロ繧ｪ繝ｳ縺ｮ貊ｲ縺ｿ縲｀idnight memory 縺ｫ蜷医≧驛ｽ莨夂噪縺ｪMV繧ｫ繝・ヨ`
+- `avoid_notes`: `繧ｬ繝ｩ繧ｹ蜿榊ｰ・〒鬘斐′莠碁㍾蛹悶＠縺吶℃縺ｪ縺・∝這繧偵⊂縺九＆縺ｪ縺Я
 
 ### Segment 7
 
 - `segment_id`: `7`
 - `time_range`: `00:01:01,460 --> 00:01:12,060`
-- `lyric_or_vocal_focus`: `胸の奥で揺れてる / Silent feeling 届かない / まだ感じてるの`
-- `filename`: `midnight-memory-intro-07.png`
-- `scene_concept`: ブース内の最も親密な歌唱カット。囁くように歌う口元を正確に見せる。
-- `camera_framing`: 顔と口元重視のタイトクローズ。
-- `lighting_palette`: 暗めの群青、温かい口元ライト。
-- `image_prompt_ja`: `ボーカルブースで囁くように歌う狐娘シンガーの超クローズアップ、唇と顎のラインがきれいに見える、静かな痛みを含んだ表情、映画粒子、スタジオの柔らかい暗さ、リップシンク向けのMVカット`
-- `avoid_notes`: `極端な被写界深度で口元をぼかさない`
+- `lyric_or_vocal_focus`: `閭ｸ縺ｮ螂･縺ｧ謠ｺ繧後※繧・/ Silent feeling 螻翫°縺ｪ縺・/ 縺ｾ縺諢溘§縺ｦ繧九・`
+- `filename`: `shots/midnight-memory-intro-07.png`
+- `scene_concept`: 繝悶・繧ｹ蜀・・譛繧りｦｪ蟇・↑豁悟罰繧ｫ繝・ヨ縲ょ宦縺上ｈ縺・↓豁後≧蜿｣蜈・ｒ豁｣遒ｺ縺ｫ隕九○繧九・- `camera_framing`: 鬘斐→蜿｣蜈・㍾隕悶・繧ｿ繧､繝医け繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 證励ａ縺ｮ鄒､髱偵∵ｸｩ縺九＞蜿｣蜈・Λ繧､繝医・- `image_prompt_ja`: `繝懊・繧ｫ繝ｫ繝悶・繧ｹ縺ｧ蝗√￥繧医≧縺ｫ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縺ｮ雜・け繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝這縺ｨ鬘弱・繝ｩ繧､繝ｳ縺後″繧後＞縺ｫ隕九∴繧九・撕縺九↑逞帙∩繧貞性繧薙□陦ｨ諠・∵丐逕ｻ邊貞ｭ舌√せ繧ｿ繧ｸ繧ｪ縺ｮ譟斐ｉ縺九＞證励＆縲√Μ繝・・繧ｷ繝ｳ繧ｯ蜷代￠縺ｮMV繧ｫ繝・ヨ`
+- `avoid_notes`: `讌ｵ遶ｯ縺ｪ陲ｫ蜀咏阜豺ｱ蠎ｦ縺ｧ蜿｣蜈・ｒ縺ｼ縺九＆縺ｪ縺Я
 
 ### Segment 8
 
 - `segment_id`: `8`
 - `time_range`: `00:01:12,060 --> 00:01:20,060`
 - `lyric_or_vocal_focus`: `Stay with me tonight / Stay forever in my heart`
-- `filename`: `midnight-memory-intro-08.png`
-- `scene_concept`: サビ入りのヒーローショット。夜景を背負って正面気味に歌い上げる。
-- `camera_framing`: 正面寄りのヒロイックなクローズアップ。
-- `lighting_palette`: 深い藍、アンバー、少量のローズ。
-- `image_prompt_ja`: `夜景を背にしてサビを歌う狐娘シンガー、正面寄りのクローズアップ、口元が明確、金色の瞳、狐耳、ヘッドホン、city-pop バラードMVのヒーローカット、切なくも華やか`
-- `avoid_notes`: `過剰なライブ照明にしない、表情を強くしすぎない`
+- `filename`: `shots/midnight-memory-intro-08.png`
+- `scene_concept`: 繧ｵ繝灘・繧翫・繝偵・繝ｭ繝ｼ繧ｷ繝ｧ繝・ヨ縲ょ､懈勹繧定レ雋縺｣縺ｦ豁｣髱｢豌怜袖縺ｫ豁後＞荳翫￡繧九・- `camera_framing`: 豁｣髱｢蟇・ｊ縺ｮ繝偵Ο繧､繝・け縺ｪ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 豺ｱ縺・絡縲√い繝ｳ繝舌・縲∝ｰ鷹㍼縺ｮ繝ｭ繝ｼ繧ｺ縲・- `image_prompt_ja`: `螟懈勹繧定レ縺ｫ縺励※繧ｵ繝薙ｒ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲∵ｭ｣髱｢蟇・ｊ縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝哨蜈・′譏守｢ｺ縲・≡濶ｲ縺ｮ迸ｳ縲∫巨閠ｳ縲√・繝・ラ繝帙Φ縲…ity-pop 繝舌Λ繝ｼ繝窺V縺ｮ繝偵・繝ｭ繝ｼ繧ｫ繝・ヨ縲∝・縺ｪ縺上ｂ闖ｯ繧・°`
+- `avoid_notes`: `驕主臆縺ｪ繝ｩ繧､繝也・譏弱↓縺励↑縺・∬｡ｨ諠・ｒ蠑ｷ縺上＠縺吶℃縺ｪ縺Я
 
 ### Segment 9
 
 - `segment_id`: `9`
 - `time_range`: `00:01:20,060 --> 00:01:30,800`
 - `lyric_or_vocal_focus`: `[melody]`
-- `filename`: `midnight-memory-intro-09.png`
-- `scene_concept`: 歌い終わりの余韻を顔に残したまま視線を落とす。まだ完全には曲が終わっていないブレスカット。
-- `camera_framing`: 顔中心のミディアムクローズ。
-- `lighting_palette`: 深い青、アンバーの残光。
-- `image_prompt_ja`: `歌い終わりの余韻を残して静かに息を吐く狐娘シンガー、顔中心のミディアムクローズ、唇が見える、夜景スタジオの残光、次の展開へつながるMVの余韻カット`
-- `avoid_notes`: `完全な無表情にしない、顔を暗く沈めすぎない`
+- `filename`: `shots/midnight-memory-intro-09.png`
+- `scene_concept`: 豁後＞邨ゅｏ繧翫・菴咎渊繧帝｡斐↓谿九＠縺溘∪縺ｾ隕也ｷ壹ｒ關ｽ縺ｨ縺吶ゅ∪縺螳悟・縺ｫ縺ｯ譖ｲ縺檎ｵゅｏ縺｣縺ｦ縺・↑縺・ヶ繝ｬ繧ｹ繧ｫ繝・ヨ縲・- `camera_framing`: 鬘比ｸｭ蠢・・繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 豺ｱ縺・搨縲√い繝ｳ繝舌・縺ｮ谿句・縲・- `image_prompt_ja`: `豁後＞邨ゅｏ繧翫・菴咎渊繧呈ｮ九＠縺ｦ髱吶°縺ｫ諱ｯ繧貞瑞縺冗巨螽倥す繝ｳ繧ｬ繝ｼ縲・｡比ｸｭ蠢・・繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲∝這縺瑚ｦ九∴繧九∝､懈勹繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ谿句・縲∵ｬ｡縺ｮ螻暮幕縺ｸ縺､縺ｪ縺後ｋMV縺ｮ菴咎渊繧ｫ繝・ヨ`
+- `avoid_notes`: `螳悟・縺ｪ辟｡陦ｨ諠・↓縺励↑縺・・｡斐ｒ證励￥豐医ａ縺吶℃縺ｪ縺Я
 
 ## Bridge - Final Chorus
 
@@ -162,112 +111,83 @@
 - `segment_id`: `1`
 - `time_range`: `00:00:00,000 --> 00:00:08,793`
 - `lyric_or_vocal_focus`: `[melody]`
-- `filename`: `midnight-memory-bridge-01.png`
-- `scene_concept`: 後半導入は夜景スタジオへ戻り、集中した表情で次の歌唱に入る直前を切る。
-- `camera_framing`: ミディアムクローズ。
-- `lighting_palette`: スタジオの暖色、外の夜明け前ブルー。
-- `image_prompt_ja`: `後半の始まり、夜景スタジオで集中した表情の狐娘シンガー、歌い出す直前のミディアムクローズ、口元が見える、黒金ヘッドホン、city-pop MVの後半導入カット`
-- `avoid_notes`: `導入だからといって人物を小さくしすぎない`
+- `filename`: `shots/midnight-memory-bridge-01.png`
+- `scene_concept`: 蠕悟濠蟆主・縺ｯ螟懈勹繧ｹ繧ｿ繧ｸ繧ｪ縺ｸ謌ｻ繧翫・寔荳ｭ縺励◆陦ｨ諠・〒谺｡縺ｮ豁悟罰縺ｫ蜈･繧狗峩蜑阪ｒ蛻・ｋ縲・- `camera_framing`: 繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ證冶牡縲∝､悶・螟懈・縺大燕繝悶Ν繝ｼ縲・- `image_prompt_ja`: `蠕悟濠縺ｮ蟋九∪繧翫∝､懈勹繧ｹ繧ｿ繧ｸ繧ｪ縺ｧ髮・ｸｭ縺励◆陦ｨ諠・・迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲∵ｭ後＞蜃ｺ縺咏峩蜑阪・繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲∝哨蜈・′隕九∴繧九・ｻ帝≡繝倥ャ繝峨・繝ｳ縲…ity-pop MV縺ｮ蠕悟濠蟆主・繧ｫ繝・ヨ`
+- `avoid_notes`: `蟆主・縺縺九ｉ縺ｨ縺・▲縺ｦ莠ｺ迚ｩ繧貞ｰ上＆縺上＠縺吶℃縺ｪ縺Я
 
 ### Segment 2
 
 - `segment_id`: `2`
 - `time_range`: `00:00:08,793 --> 00:00:17,585`
 - `lyric_or_vocal_focus`: `[melody]`
-- `filename`: `midnight-memory-bridge-02.png`
-- `scene_concept`: 川沿いブリッジステージで、ハミングのように息を含んで歌う。夜景と水面がMV感を作る。
-- `camera_framing`: 3/4 のタイトミディアム。
-- `lighting_palette`: 川面の青、ネオンのアンバー、薄い白い湿気。
-- `image_prompt_ja`: `川沿いのブリッジステージでハミング気味に歌う狐娘シンガー、口元が読めるタイトミディアム、濡れた床、水面の反射、夜景のボケ、ロマンティックなMVパフォーマンスカット`
-- `avoid_notes`: `欄干やマイクスタンドで口元を隠さない`
+- `filename`: `shots/midnight-memory-bridge-02.png`
+- `scene_concept`: 蟾晄ｲｿ縺・ヶ繝ｪ繝・ず繧ｹ繝・・繧ｸ縺ｧ縲√ワ繝溘Φ繧ｰ縺ｮ繧医≧縺ｫ諱ｯ繧貞性繧薙〒豁後≧縲ょ､懈勹縺ｨ豌ｴ髱｢縺勲V諢溘ｒ菴懊ｋ縲・- `camera_framing`: 3/4 縺ｮ繧ｿ繧､繝医Α繝・ぅ繧｢繝縲・- `lighting_palette`: 蟾晞擇縺ｮ髱偵√ロ繧ｪ繝ｳ縺ｮ繧｢繝ｳ繝舌・縲∬埋縺・區縺・ｹｿ豌励・- `image_prompt_ja`: `蟾晄ｲｿ縺・・繝悶Μ繝・ず繧ｹ繝・・繧ｸ縺ｧ繝上Α繝ｳ繧ｰ豌怜袖縺ｫ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲∝哨蜈・′隱ｭ繧√ｋ繧ｿ繧､繝医Α繝・ぅ繧｢繝縲∵ｿ｡繧後◆蠎翫∵ｰｴ髱｢縺ｮ蜿榊ｰ・∝､懈勹縺ｮ繝懊こ縲√Ο繝槭Φ繝・ぅ繝・け縺ｪMV繝代ヵ繧ｩ繝ｼ繝槭Φ繧ｹ繧ｫ繝・ヨ`
+- `avoid_notes`: `谺・ｹｲ繧・・繧､繧ｯ繧ｹ繧ｿ繝ｳ繝峨〒蜿｣蜈・ｒ髫縺輔↑縺Я
 
 ### Segment 3
 
 - `segment_id`: `3`
 - `time_range`: `00:00:17,585 --> 00:00:28,555`
-- `lyric_or_vocal_focus`: `Midnight memory 光の波が / 遠く離れていても / Silent yearning 胸の奥で`
-- `filename`: `midnight-memory-bridge-03.png`
-- `scene_concept`: ブリッジステージで感情を乗せて歌う本格サビ前カット。光の波を背景の水面反射で見せる。
-- `camera_framing`: 正面寄りのクローズアップ。
-- `lighting_palette`: コバルト、水面アンバー、少量のローズ。
-- `image_prompt_ja`: `川沿いの夜景ステージで歌い上げる狐娘シンガーのクローズアップ、口元が明確、背景に水面と都市の光の波、金色の瞳に感情が乗る、Midnight memory のサビ前MVカット`
-- `avoid_notes`: `背景エフェクトを強くしすぎて顔を負けさせない`
+- `lyric_or_vocal_focus`: `Midnight memory 蜈峨・豕｢縺・/ 驕縺城屬繧後※縺・※繧・/ Silent yearning 閭ｸ縺ｮ螂･縺ｧ`
+- `filename`: `shots/midnight-memory-bridge-03.png`
+- `scene_concept`: 繝悶Μ繝・ず繧ｹ繝・・繧ｸ縺ｧ諢滓ュ繧剃ｹ励○縺ｦ豁後≧譛ｬ譬ｼ繧ｵ繝灘燕繧ｫ繝・ヨ縲ょ・縺ｮ豕｢繧定レ譎ｯ縺ｮ豌ｴ髱｢蜿榊ｰ・〒隕九○繧九・- `camera_framing`: 豁｣髱｢蟇・ｊ縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 繧ｳ繝舌Ν繝医∵ｰｴ髱｢繧｢繝ｳ繝舌・縲∝ｰ鷹㍼縺ｮ繝ｭ繝ｼ繧ｺ縲・- `image_prompt_ja`: `蟾晄ｲｿ縺・・螟懈勹繧ｹ繝・・繧ｸ縺ｧ豁後＞荳翫￡繧狗巨螽倥す繝ｳ繧ｬ繝ｼ縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝哨蜈・′譏守｢ｺ縲∬レ譎ｯ縺ｫ豌ｴ髱｢縺ｨ驛ｽ蟶ゅ・蜈峨・豕｢縲・≡濶ｲ縺ｮ迸ｳ縺ｫ諢滓ュ縺御ｹ励ｋ縲｀idnight memory 縺ｮ繧ｵ繝灘燕MV繧ｫ繝・ヨ`
+- `avoid_notes`: `閭梧勹繧ｨ繝輔ぉ繧ｯ繝医ｒ蠑ｷ縺上＠縺吶℃縺ｦ鬘斐ｒ雋縺代＆縺帙↑縺Я
 
 ### Segment 4
 
 - `segment_id`: `4`
 - `time_range`: `00:00:28,555 --> 00:00:37,525`
-- `lyric_or_vocal_focus`: `今もあなたを呼んでる / Midnight memory あなたの影が`
-- `filename`: `midnight-memory-bridge-04.png`
-- `scene_concept`: ガラス越しの都会空間で、呼びかけるようにカメラへ向かって歌う。
-- `camera_framing`: 正面クローズアップ。
-- `lighting_palette`: 白色灯、青ネオン、ガラスハレーション。
-- `image_prompt_ja`: `ガラス越しの都会空間でカメラへ向かって歌う狐娘シンガー、正面クローズアップ、唇がよく見える、ガラスにネオンの滲み、切ない呼びかけの感情、上質なMVの歌唱ショット`
-- `avoid_notes`: `反射が強すぎて目と口を見失わないようにする`
+- `lyric_or_vocal_focus`: `莉翫ｂ縺ゅ↑縺溘ｒ蜻ｼ繧薙〒繧・/ Midnight memory 縺ゅ↑縺溘・蠖ｱ縺形
+- `filename`: `shots/midnight-memory-bridge-04.png`
+- `scene_concept`: 繧ｬ繝ｩ繧ｹ雜翫＠縺ｮ驛ｽ莨夂ｩｺ髢薙〒縲∝他縺ｳ縺九￠繧九ｈ縺・↓繧ｫ繝｡繝ｩ縺ｸ蜷代°縺｣縺ｦ豁後≧縲・- `camera_framing`: 豁｣髱｢繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 逋ｽ濶ｲ轣ｯ縲・搨繝阪が繝ｳ縲√ぎ繝ｩ繧ｹ繝上Ξ繝ｼ繧ｷ繝ｧ繝ｳ縲・- `image_prompt_ja`: `繧ｬ繝ｩ繧ｹ雜翫＠縺ｮ驛ｽ莨夂ｩｺ髢薙〒繧ｫ繝｡繝ｩ縺ｸ蜷代°縺｣縺ｦ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲∵ｭ｣髱｢繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝這縺後ｈ縺剰ｦ九∴繧九√ぎ繝ｩ繧ｹ縺ｫ繝阪が繝ｳ縺ｮ貊ｲ縺ｿ縲∝・縺ｪ縺・他縺ｳ縺九￠縺ｮ諢滓ュ縲∽ｸ願ｳｪ縺ｪMV縺ｮ豁悟罰繧ｷ繝ｧ繝・ヨ`
+- `avoid_notes`: `蜿榊ｰ・′蠑ｷ縺吶℃縺ｦ逶ｮ縺ｨ蜿｣繧定ｦ句､ｱ繧上↑縺・ｈ縺・↓縺吶ｋ`
 
 ### Segment 5
 
 - `segment_id`: `5`
 - `time_range`: `00:00:37,525 --> 00:00:48,515`
-- `lyric_or_vocal_focus`: `胸の奥で揺れてる / Silent feeling 届かない / まだ感じてるの`
-- `filename`: `midnight-memory-bridge-05.png`
-- `scene_concept`: 後半でもっとも内省的な歌唱カット。顔を寄せ、静かに強い感情を見せる。
-- `camera_framing`: タイトクローズ。
-- `lighting_palette`: 深紺、アンバー、柔らかな肌ライト。
-- `image_prompt_ja`: `感情を抑えながら歌う狐娘シンガーの顔アップ、唇の形が読みやすい、目元に切なさ、ネオンの反射が少し頬に乗る、静かな痛みのあるcity-pop MVカット`
-- `avoid_notes`: `強い泣き演技にしない、被写界深度で口元を消さない`
+- `lyric_or_vocal_focus`: `閭ｸ縺ｮ螂･縺ｧ謠ｺ繧後※繧・/ Silent feeling 螻翫°縺ｪ縺・/ 縺ｾ縺諢溘§縺ｦ繧九・`
+- `filename`: `shots/midnight-memory-bridge-05.png`
+- `scene_concept`: 蠕悟濠縺ｧ繧ゅ▲縺ｨ繧ょ・逵∫噪縺ｪ豁悟罰繧ｫ繝・ヨ縲る｡斐ｒ蟇・○縲・撕縺九↓蠑ｷ縺・─諠・ｒ隕九○繧九・- `camera_framing`: 繧ｿ繧､繝医け繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 豺ｱ邏ｺ縲√い繝ｳ繝舌・縲∵沐繧峨°縺ｪ閧後Λ繧､繝医・- `image_prompt_ja`: `諢滓ュ繧呈椛縺医↑縺後ｉ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縺ｮ鬘斐い繝・・縲∝這縺ｮ蠖｢縺瑚ｪｭ縺ｿ繧・☆縺・∫岼蜈・↓蛻・↑縺輔√ロ繧ｪ繝ｳ縺ｮ蜿榊ｰ・′蟆代＠鬆ｬ縺ｫ荵励ｋ縲・撕縺九↑逞帙∩縺ｮ縺ゅｋcity-pop MV繧ｫ繝・ヨ`
+- `avoid_notes`: `蠑ｷ縺・ｳ｣縺肴ｼ疲橿縺ｫ縺励↑縺・∬｢ｫ蜀咏阜豺ｱ蠎ｦ縺ｧ蜿｣蜈・ｒ豸医＆縺ｪ縺Я
 
 ### Segment 6
 
 - `segment_id`: `6`
 - `time_range`: `00:00:48,515 --> 00:01:00,225`
 - `lyric_or_vocal_focus`: `[melody] / Stay forever in my heart x3`
-- `filename`: `midnight-memory-bridge-06.png`
-- `scene_concept`: サビ本体はスタジオのヒーロー歌唱。曲の代表カットになるように真正面から歌わせる。
-- `camera_framing`: 正面のクローズアップ。
-- `lighting_palette`: スタジオアンバー、夜景ブルー、ほんの少しのローズ。
-- `image_prompt_ja`: `スタジオでサビを真正面から歌う狐娘シンガー、顔が大きく写るクローズアップ、口元が明確、黒金ヘッドホン、夜の東京の窓景色、Stay forever in my heart に合う王道MVヒーローショット`
-- `avoid_notes`: `ポップガードを中央に置かない、顔を傾けすぎない`
+- `filename`: `shots/midnight-memory-bridge-06.png`
+- `scene_concept`: 繧ｵ繝捺悽菴薙・繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ繝偵・繝ｭ繝ｼ豁悟罰縲よ峇縺ｮ莉｣陦ｨ繧ｫ繝・ヨ縺ｫ縺ｪ繧九ｈ縺・↓逵滓ｭ｣髱｢縺九ｉ豁後ｏ縺帙ｋ縲・- `camera_framing`: 豁｣髱｢縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 繧ｹ繧ｿ繧ｸ繧ｪ繧｢繝ｳ繝舌・縲∝､懈勹繝悶Ν繝ｼ縲√⊇繧薙・蟆代＠縺ｮ繝ｭ繝ｼ繧ｺ縲・- `image_prompt_ja`: `繧ｹ繧ｿ繧ｸ繧ｪ縺ｧ繧ｵ繝薙ｒ逵滓ｭ｣髱｢縺九ｉ豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲・｡斐′螟ｧ縺阪￥蜀吶ｋ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝哨蜈・′譏守｢ｺ縲・ｻ帝≡繝倥ャ繝峨・繝ｳ縲∝､懊・譚ｱ莠ｬ縺ｮ遯捺勹濶ｲ縲ヾtay forever in my heart 縺ｫ蜷医≧邇矩％MV繝偵・繝ｭ繝ｼ繧ｷ繝ｧ繝・ヨ`
+- `avoid_notes`: `繝昴ャ繝励ぎ繝ｼ繝峨ｒ荳ｭ螟ｮ縺ｫ鄂ｮ縺九↑縺・・｡斐ｒ蛯ｾ縺代☆縺弱↑縺Я
 
 ### Segment 7
 
 - `segment_id`: `7`
 - `time_range`: `00:01:00,225 --> 00:01:10,500`
 - `lyric_or_vocal_focus`: `[melody] / Stay forever in my heart / Ah / Ah / Ah`
-- `filename`: `midnight-memory-bridge-07.png`
-- `scene_concept`: Ah に向けて余韻を伸ばす。少し横に振りつつも、唇はしっかり見える歌唱カット。
-- `camera_framing`: 3/4 クローズアップ。
-- `lighting_palette`: 深い青、温かい縁ライト、夜景ボケ。
-- `image_prompt_ja`: `サビの余韻を伸ばして歌う狐娘シンガー、3/4のクローズアップ、口元は隠さない、耳と髪に縁ライト、夜景が柔らかく滲む、洗練されたMVの歌唱カット`
-- `avoid_notes`: `真横顔に寄せすぎない、髪で唇を隠さない`
+- `filename`: `shots/midnight-memory-bridge-07.png`
+- `scene_concept`: Ah 縺ｫ蜷代￠縺ｦ菴咎渊繧剃ｼｸ縺ｰ縺吶ょｰ代＠讓ｪ縺ｫ謖ｯ繧翫▽縺､繧ゅ∝這縺ｯ縺励▲縺九ｊ隕九∴繧区ｭ悟罰繧ｫ繝・ヨ縲・- `camera_framing`: 3/4 繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲・- `lighting_palette`: 豺ｱ縺・搨縲∵ｸｩ縺九＞邵√Λ繧､繝医∝､懈勹繝懊こ縲・- `image_prompt_ja`: `繧ｵ繝薙・菴咎渊繧剃ｼｸ縺ｰ縺励※豁後≧迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲・/4縺ｮ繧ｯ繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝哨蜈・・髫縺輔↑縺・∬ｳ縺ｨ鬮ｪ縺ｫ邵√Λ繧､繝医∝､懈勹縺梧沐繧峨°縺乗ｻｲ繧縲∵ｴ礼ｷｴ縺輔ｌ縺櫪V縺ｮ豁悟罰繧ｫ繝・ヨ`
+- `avoid_notes`: `逵滓ｨｪ鬘斐↓蟇・○縺吶℃縺ｪ縺・・ｫｪ縺ｧ蜚・ｒ髫縺輔↑縺Я
 
 ### Segment 8
 
 - `segment_id`: `8`
 - `time_range`: `00:01:10,500 --> 00:01:21,000`
 - `lyric_or_vocal_focus`: `Ah x7`
-- `filename`: `midnight-memory-bridge-08.png`
-- `scene_concept`: Ah の持続をそのままリップシンクに使えるよう、口の開きが読みやすい超主役カットにする。
-- `camera_framing`: 正面寄りのタイトクローズ。
-- `lighting_palette`: コバルト、白い湿気、薄いアンバー。
-- `image_prompt_ja`: `長い Ah を歌い続ける狐娘シンガーのタイトクローズアップ、唇の形と顎の動きが分かる、金色の瞳、狐耳、背景は夜景の柔らかいボケだけ、リップシンク向けの理想的なMV歌唱カット`
-- `avoid_notes`: `マイク、手、髪、尾などで顔周りをにぎやかにしすぎない`
+- `filename`: `shots/midnight-memory-bridge-08.png`
+- `scene_concept`: Ah 縺ｮ謖∫ｶ壹ｒ縺昴・縺ｾ縺ｾ繝ｪ繝・・繧ｷ繝ｳ繧ｯ縺ｫ菴ｿ縺医ｋ繧医≧縲∝哨縺ｮ髢九″縺瑚ｪｭ縺ｿ繧・☆縺・ｶ・ｸｻ蠖ｹ繧ｫ繝・ヨ縺ｫ縺吶ｋ縲・- `camera_framing`: 豁｣髱｢蟇・ｊ縺ｮ繧ｿ繧､繝医け繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 繧ｳ繝舌Ν繝医∫區縺・ｹｿ豌励∬埋縺・い繝ｳ繝舌・縲・- `image_prompt_ja`: `髟ｷ縺・Ah 繧呈ｭ後＞邯壹￠繧狗巨螽倥す繝ｳ繧ｬ繝ｼ縺ｮ繧ｿ繧､繝医け繝ｭ繝ｼ繧ｺ繧｢繝・・縲∝這縺ｮ蠖｢縺ｨ鬘弱・蜍輔″縺悟・縺九ｋ縲・≡濶ｲ縺ｮ迸ｳ縲∫巨閠ｳ縲∬レ譎ｯ縺ｯ螟懈勹縺ｮ譟斐ｉ縺九＞繝懊こ縺縺代√Μ繝・・繧ｷ繝ｳ繧ｯ蜷代￠縺ｮ逅・Φ逧・↑MV豁悟罰繧ｫ繝・ヨ`
+- `avoid_notes`: `繝槭う繧ｯ縲∵焔縲・ｫｪ縲∝ｰｾ縺ｪ縺ｩ縺ｧ鬘泌捉繧翫ｒ縺ｫ縺弱ｄ縺九↓縺励☆縺弱↑縺Я
 
 ### Segment 9
 
 - `segment_id`: `9`
 - `time_range`: `00:01:21,000 --> 00:01:33,720`
 - `lyric_or_vocal_focus`: `[melody]`
-- `filename`: `midnight-memory-bridge-09.png`
-- `scene_concept`: 曲の最後はスタジオの窓辺で歌い終えた余韻を残す。まだMVの世界の中にいる終幕ショット。
-- `camera_framing`: 顔中心のミディアムクローズ。
-- `lighting_palette`: 夜明け前ブルー、温かいスタジオ残光。
-- `image_prompt_ja`: `歌い終わった余韻を残して夜景スタジオに立つ狐娘シンガー、顔中心のミディアムクローズ、唇がまだ少し開いている、朝前の青い街、静かなエンディングを感じるMVラストカット`
-- `avoid_notes`: `人物を引きすぎない、無表情で終わらせない`
+- `filename`: `shots/midnight-memory-bridge-09.png`
+- `scene_concept`: 譖ｲ縺ｮ譛蠕後・繧ｹ繧ｿ繧ｸ繧ｪ縺ｮ遯楢ｾｺ縺ｧ豁後＞邨ゅ∴縺滉ｽ咎渊繧呈ｮ九☆縲ゅ∪縺MV縺ｮ荳也阜縺ｮ荳ｭ縺ｫ縺・ｋ邨ょｹ輔す繝ｧ繝・ヨ縲・- `camera_framing`: 鬘比ｸｭ蠢・・繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲・- `lighting_palette`: 螟懈・縺大燕繝悶Ν繝ｼ縲∵ｸｩ縺九＞繧ｹ繧ｿ繧ｸ繧ｪ谿句・縲・- `image_prompt_ja`: `豁後＞邨ゅｏ縺｣縺滉ｽ咎渊繧呈ｮ九＠縺ｦ螟懈勹繧ｹ繧ｿ繧ｸ繧ｪ縺ｫ遶九▽迢仙ｨ倥す繝ｳ繧ｬ繝ｼ縲・｡比ｸｭ蠢・・繝溘ョ繧｣繧｢繝繧ｯ繝ｭ繝ｼ繧ｺ縲∝這縺後∪縺蟆代＠髢九＞縺ｦ縺・ｋ縲∵悃蜑阪・髱偵＞陦励・撕縺九↑繧ｨ繝ｳ繝・ぅ繝ｳ繧ｰ繧呈─縺倥ｋMV繝ｩ繧ｹ繝医き繝・ヨ`
+- `avoid_notes`: `莠ｺ迚ｩ繧貞ｼ輔″縺吶℃縺ｪ縺・∫┌陦ｨ諠・〒邨ゅｏ繧峨○縺ｪ縺Я
 
 ## Usage Notes
 
-- まずは [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) を主役固定の最優先参照として使ってください。
-- 口パク重視なら、最初に `intro-02`, `intro-07`, `bridge-06`, `bridge-08` を作ると、使える顔アップの基準が掴みやすいです。
-- 外ロケ感を出しても、歌唱主体であることは崩さず「マイクがある」「歌っている」「口元が見える」を優先してください。
-- 曲に合う場所は、スタジオ、夜景窓、屋上、川沿いブリッジ、ガラス越し都会空間の5種類に絞ると MV 全体が散りにくいです。
+- 縺ｾ縺壹・ [character/momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/character/momiji-studio_0014.png) 繧剃ｸｻ蠖ｹ蝗ｺ螳壹・譛蜆ｪ蜈亥盾辣ｧ縺ｨ縺励※菴ｿ縺｣縺ｦ縺上□縺輔＞縲・- 蜿｣繝代け驥崎ｦ悶↑繧峨∵怙蛻昴↓ `intro-02`, `intro-07`, `bridge-06`, `bridge-08` 繧剃ｽ懊ｋ縺ｨ縲∽ｽｿ縺医ｋ鬘斐い繝・・縺ｮ蝓ｺ貅悶′謗ｴ縺ｿ繧・☆縺・〒縺吶・- 螟悶Ο繧ｱ諢溘ｒ蜃ｺ縺励※繧ゅ∵ｭ悟罰荳ｻ菴薙〒縺ゅｋ縺薙→縺ｯ蟠ｩ縺輔★縲後・繧､繧ｯ縺後≠繧九阪梧ｭ後▲縺ｦ縺・ｋ縲阪悟哨蜈・′隕九∴繧九阪ｒ蜆ｪ蜈医＠縺ｦ縺上□縺輔＞縲・- 譖ｲ縺ｫ蜷医≧蝣ｴ謇縺ｯ縲√せ繧ｿ繧ｸ繧ｪ縲∝､懈勹遯薙∝ｱ倶ｸ翫∝ｷ晄ｲｿ縺・ヶ繝ｪ繝・ず縲√ぎ繝ｩ繧ｹ雜翫＠驛ｽ莨夂ｩｺ髢薙・5遞ｮ鬘槭↓邨槭ｋ縺ｨ MV 蜈ｨ菴薙′謨｣繧翫↓縺上＞縺ｧ縺吶・
+
