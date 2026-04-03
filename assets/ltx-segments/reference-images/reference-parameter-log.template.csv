@@ -1,0 +1,13 @@
+asset_id,filename,role,model,preset,seed,steps,cfg,denoise,aspect_ratio,created_at,status,notes,sha256
+protagonist_full,midnight-memory-ref-protagonist-full-v01.png,character,,,,,,,,pending,,,
+protagonist_close,midnight-memory-ref-protagonist-close-v01.png,character,,,,,,,,pending,,,
+counterpart_shadow,midnight-memory-ref-counterpart-shadow-v01.png,character,,,,,,,,pending,,,
+env_apartment_window,midnight-memory-ref-env-apartment-window-v01.png,environment,,,,,,,,pending,,,
+env_rain_lane,midnight-memory-ref-env-rain-lane-v01.png,environment,,,,,,,,pending,,,
+env_station_glass,midnight-memory-ref-env-station-glass-v01.png,environment,,,,,,,,pending,,,
+env_record_shop,midnight-memory-ref-env-record-shop-v01.png,environment,,,,,,,,pending,,,
+env_room_lamp,midnight-memory-ref-env-room-lamp-v01.png,environment,,,,,,,,pending,,,
+env_bridge_river,midnight-memory-ref-env-bridge-river-v01.png,environment,,,,,,,,pending,,,
+style_master,midnight-memory-ref-style-master-v01.png,style,,,,,,,,pending,,,
+style_wet_reflection,midnight-memory-ref-style-wet-reflection-v01.png,style,,,,,,,,pending,,,
+style_glass_neon,midnight-memory-ref-style-glass-neon-v01.png,style,,,,,,,,pending,,,
