@@ -241,12 +241,32 @@ select {
 }
 
 .track-list,
+.segment-list,
 .cue-list {
   display: grid;
   gap: 8px;
 }
 
+.timeline-lanes {
+  display: grid;
+  gap: 16px;
+}
+
+.lane-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.lane-heading h3 {
+  margin: 0;
+  font-size: 0.96rem;
+  font-weight: 600;
+}
+
 .track-button,
+.segment-button,
 .cue-button {
   width: 100%;
   text-align: left;
@@ -262,6 +282,12 @@ select {
 
 .cue-button {
   padding: 12px;
+}
+
+.segment-button {
+  padding: 12px;
+  border-color: #b7d7c3;
+  background: #f5fbf6;
 }
 
 .cue-button--intro {
@@ -294,6 +320,11 @@ select {
 .cue-button--outro.active {
   border-color: #b78458;
   background: #fff2e6;
+}
+
+.segment-button.active {
+  border-color: #387b55;
+  background: #e9f8ee;
 }
 
 .track-section,
@@ -335,6 +366,23 @@ select {
 .cue-part-badge--ltx {
   color: #2f6b49;
   background: #edf9f0;
+}
+
+.timeline-lane {
+  display: grid;
+  gap: 10px;
+}
+
+.segment-time {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--muted-foreground);
+}
+
+.segment-text {
+  display: block;
+  margin-top: 4px;
+  line-height: 1.5;
 }
 
 .track-title,

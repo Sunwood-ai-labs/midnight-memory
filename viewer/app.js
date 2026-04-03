@@ -4,8 +4,10 @@ const state = {
   tracks: [],
   selectedIndex: -1,
   cues: [],
+  segmentCues: [],
   subtitleSources: [],
   currentCueIndex: -1,
+  currentSegmentIndex: -1,
   manifestRequestId: 0,
   trackRequestId: 0,
   subtitleAbortController: null,
@@ -35,6 +37,8 @@ const elements = {
   currentTiming: document.getElementById("currentTiming"),
   currentLine: document.getElementById("currentLine"),
   nextLine: document.getElementById("nextLine"),
+  segmentList: document.getElementById("segmentList"),
+  segmentCounter: document.getElementById("segmentCounter"),
   cueList: document.getElementById("cueList"),
   rawSrt: document.getElementById("rawSrt"),
   statusMessage: document.getElementById("statusMessage"),
@@ -172,34 +176,36 @@ function normalizeSubtitleSources(track) {
     ]
       : [];
 
-  const timelineSources = Array.isArray(track.timelineSubtitles) && track.timelineSubtitles.length
-    ? track.timelineSubtitles
+  return primarySources;
+}
+
+function normalizeSegmentSources(track) {
+  if (Array.isArray(track.timelineSubtitles) && track.timelineSubtitles.length) {
+    return track.timelineSubtitles
       .map((source, index) => {
         if (!source || typeof source.path !== "string" || !source.path.trim()) {
           return null;
         }
         return {
-          id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `timeline-${index + 1}`,
-          label: typeof source.label === "string" && source.label.trim() ? source.label.trim() : `Timeline ${index + 1}`,
+          id: typeof source.id === "string" && source.id.trim() ? source.id.trim() : `segment-${index + 1}`,
+          label: typeof source.label === "string" && source.label.trim() ? source.label.trim() : `Segment ${index + 1}`,
           path: source.path,
-          subtitleKind: "timeline",
-          subtitlePriority: 100,
         };
       })
-      .filter(Boolean)
-    : typeof track.segmentSubtitle === "string" && track.segmentSubtitle.trim()
-      ? [
-        {
-          id: "ltx-segments",
-          label: "LTX",
-          path: track.segmentSubtitle,
-          subtitleKind: "timeline",
-          subtitlePriority: 100,
-        },
-      ]
-      : [];
+      .filter(Boolean);
+  }
 
-  return [...primarySources, ...timelineSources];
+  if (typeof track.segmentSubtitle === "string" && track.segmentSubtitle.trim()) {
+    return [
+      {
+        id: "ltx-segments",
+        label: "LTX",
+        path: track.segmentSubtitle,
+      },
+    ];
+  }
+
+  return [];
 }
 
 function mergeSubtitlePayloads(payloads) {
@@ -384,6 +390,41 @@ function renderCueList() {
   setRovingTabStops(elements.cueList, ".cue-button", state.currentCueIndex >= 0 ? state.currentCueIndex : 0);
 }
 
+function renderSegmentList() {
+  if (!elements.segmentList || !elements.segmentCounter) {
+    return;
+  }
+  if (!state.segmentCues.length) {
+    elements.segmentList.innerHTML = "<div class=\"empty-state\">LTX segment timeline will appear here.</div>";
+    elements.segmentCounter.textContent = "0 segments";
+    return;
+  }
+
+  elements.segmentList.innerHTML = "";
+  state.segmentCues.forEach((cue, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = `segment-button${index === state.currentSegmentIndex ? " active" : ""}`;
+
+    const time = document.createElement("span");
+    time.className = "segment-time";
+    time.textContent = `${formatCueStamp(cue.start)} -> ${formatCueStamp(cue.end)}`;
+
+    const text = document.createElement("span");
+    text.className = "segment-text";
+    text.textContent = cue.text || "(empty line)";
+
+    button.appendChild(time);
+    button.appendChild(text);
+    button.addEventListener("click", () => {
+      elements.audio.currentTime = cue.start;
+      syncCue(true);
+    });
+    elements.segmentList.appendChild(button);
+  });
+  elements.segmentCounter.textContent = `${state.segmentCues.length} segments`;
+}
+
 function renderCurrentCue() {
   const currentCue = state.cues[state.currentCueIndex] || null;
   const nextCue = state.cues[state.currentCueIndex + 1] || null;
@@ -459,6 +500,7 @@ async function maybeRunAutomationProbe() {
 function syncCue(forceScroll = false) {
   const time = elements.audio.currentTime || 0;
   const nextIndex = findCurrentCueIndex(time);
+  syncSegment(forceScroll);
   if (nextIndex === state.currentCueIndex) {
     elements.currentTiming.textContent = formatCueStamp(time);
     return;
@@ -480,6 +522,34 @@ function syncCue(forceScroll = false) {
     const activeItem = items[state.currentCueIndex];
     if (activeItem && (forceScroll || !isCueVisible(activeItem, elements.cueList))) {
       activeItem.scrollIntoView({ block: "nearest", behavior: prefersReducedMotion.matches ? "auto" : "smooth" });
+    }
+  }
+}
+
+function syncSegment(forceScroll = false) {
+  if (!elements.segmentList) {
+    return;
+  }
+  const time = elements.audio.currentTime || 0;
+  const nextIndex = state.segmentCues.findIndex((cue) => time >= cue.start && time <= cue.end);
+  if (nextIndex === state.currentSegmentIndex) {
+    return;
+  }
+
+  state.currentSegmentIndex = nextIndex;
+  const items = [...elements.segmentList.querySelectorAll(".segment-button")];
+  items.forEach((item, index) => {
+    item.classList.toggle("active", index === state.currentSegmentIndex);
+  });
+
+  if (state.currentSegmentIndex >= 0) {
+    const activeItem = items[state.currentSegmentIndex];
+    if (activeItem && (forceScroll || !isCueVisible(activeItem, elements.segmentList))) {
+      activeItem.scrollIntoView({
+        block: "nearest",
+        inline: "nearest",
+        behavior: prefersReducedMotion.matches ? "auto" : "smooth",
+      });
     }
   }
 }
@@ -509,15 +579,19 @@ async function selectTrack(index) {
 
   state.selectedIndex = index;
   state.currentCueIndex = -1;
+  state.currentSegmentIndex = -1;
   state.cues = [];
+  state.segmentCues = [];
   state.subtitleSources = [];
   state.trackRequestId += 1;
   const requestId = state.trackRequestId;
   state.subtitleAbortController?.abort();
   state.subtitleAbortController = new AbortController();
   const subtitleSources = normalizeSubtitleSources(track);
+  const segmentSources = normalizeSegmentSources(track);
 
   renderTrackList();
+  renderSegmentList();
   renderCueList();
   renderCurrentCue();
 
@@ -542,20 +616,31 @@ async function selectTrack(index) {
   state.subtitleSources = subtitleSources;
 
   try {
-    const subtitlePayloads = await Promise.all(
-      subtitleSources.map(async (source) => ({
-        source,
-        rawSrt: await fetchUtf8Text(source.path, state.subtitleAbortController.signal),
-      })),
-    );
+    const [subtitlePayloads, segmentPayloads] = await Promise.all([
+      Promise.all(
+        subtitleSources.map(async (source) => ({
+          source,
+          rawSrt: await fetchUtf8Text(source.path, state.subtitleAbortController.signal),
+        })),
+      ),
+      Promise.all(
+        segmentSources.map(async (source) => ({
+          source,
+          rawSrt: await fetchUtf8Text(source.path, state.subtitleAbortController.signal),
+        })),
+      ),
+    ]);
     if (requestId !== state.trackRequestId || state.selectedIndex !== index) {
       return;
     }
     state.cues = mergeSubtitlePayloads(subtitlePayloads);
-    elements.rawSrt.textContent = formatRawSrtDebug(subtitlePayloads) || "字幕ファイルは空でした。";
+    state.segmentCues = mergeSubtitlePayloads(segmentPayloads);
+    const debugPayloads = [...subtitlePayloads, ...segmentPayloads];
+    elements.rawSrt.textContent = formatRawSrtDebug(debugPayloads) || "字幕ファイルは空でした。";
     elements.subtitleStateChip.textContent = state.cues.length
-      ? `${state.cues.length} cues / ${subtitleSources.length} files`
+      ? `${state.cues.length} cues / ${subtitleSources.length} files${state.segmentCues.length ? ` + ${state.segmentCues.length} segments` : ""}`
       : `0 cues / ${subtitleSources.length} files`;
+    renderSegmentList();
     renderCueList();
     renderCurrentCue();
     setStatus(`${track.section} を読み込みました。`, "Ready");

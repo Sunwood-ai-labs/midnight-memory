@@ -111,8 +111,24 @@
           <h2>Timeline</h2>
           <span class="material-symbols-outlined subtle-icon" aria-hidden="true">subtitles</span>
         </div>
-        <div class="cue-list" id="cueList" role="list" aria-label="字幕タイムライン">
-          <div class="empty-state">字幕を読み込むとここに表示されます。</div>
+        <div class="timeline-lanes">
+          <section class="timeline-lane">
+            <div class="lane-heading">
+              <h3>LTX Segments</h3>
+              <span class="meta-inline" id="segmentCounter">0 segments</span>
+            </div>
+            <div class="segment-list" id="segmentList" role="list" aria-label="LTX segment timeline">
+              <div class="empty-state">LTX segment timeline will appear here.</div>
+            </div>
+          </section>
+          <section class="timeline-lane">
+            <div class="lane-heading">
+              <h3>Lyrics</h3>
+            </div>
+            <div class="cue-list" id="cueList" role="list" aria-label="字幕タイムライン">
+              <div class="empty-state">字幕を読み込むとここに表示されます。</div>
+            </div>
+          </section>
         </div>
       </section>
 

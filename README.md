@@ -138,7 +138,7 @@ Use `subtitles` when one track should combine multiple SRT files such as an intr
 }
 ```
 
-Use `timelineSubtitles` when one track should also overlay coarse review timelines such as LTX segments on top of the existing lyric cue list:
+Use `timelineSubtitles` when one track should also show coarse review timelines such as LTX segments in a separate timeline lane:
 
 ```json
 {
