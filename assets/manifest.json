@@ -29,7 +29,19 @@
       "section": "Bridge - Final Chorus",
       "audio": "private-assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.wav",
       "subtitle": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.srt",
-      "note": "ブリッジからラストコーラスまでの確認用ペア"
+      "subtitles": [
+        {
+          "id": "main",
+          "label": "本編",
+          "path": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.main.srt"
+        },
+        {
+          "id": "outro",
+          "label": "後奏",
+          "path": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.outro.srt"
+        }
+      ],
+      "note": "ブリッジからラストコーラスまでの確認用ペア。字幕は本編と後奏に分割"
     }
   ]
 }
