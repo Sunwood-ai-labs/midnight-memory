@@ -1,4 +1,6 @@
 <div align="center">
+  <img src="./assets/midnight-memory-header.svg" alt="midnight-memory header" width="100%">
+  <br>
   <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
   <h1>midnight-memory</h1>
   <p>WAV と歌詞候補から SRT を生成し、intro / main / outro の分割字幕と LTX セグメントをローカル viewer で確認するためのワークフローです。</p>
@@ -6,6 +8,10 @@
 
 <p align="center">
   <a href="./README.md">English README</a>
+</p>
+
+<p align="center">
+  ビジュアル参考元: <a href="https://tokyomidnight.tokiwavalley.com/">Tokyo Midnight</a>
 </p>
 
 <p align="center">

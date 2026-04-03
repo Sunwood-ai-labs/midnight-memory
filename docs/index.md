@@ -14,6 +14,7 @@ This folder is the long-form documentation surface for `midnight-memory`.
 - Link new pages from both `README.md` and `README.ja.md` when they are part of the main workflow.
 - Keep command examples aligned with the actual repo paths and `uv run ...` conventions.
 - Treat `assets/manifest.json` as the source of truth for viewer-facing examples.
+- For icons and header images, reference the palette and mood of [Tokyo Midnight](https://tokyomidnight.tokiwavalley.com/).
 
 ## Recommended Growth Path
 

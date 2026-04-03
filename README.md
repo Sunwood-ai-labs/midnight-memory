@@ -1,4 +1,6 @@
 <div align="center">
+  <img src="./assets/midnight-memory-header.svg" alt="midnight-memory header" width="100%">
+  <br>
   <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
   <h1>midnight-memory</h1>
   <p>Generate lyric-aligned SRT subtitles, split intro/outro subtitle parts, build LTX segment SRTs, and review everything in a local audio viewer.</p>
@@ -6,6 +8,10 @@
 
 <p align="center">
   <a href="./README.ja.md">日本語 README</a>
+</p>
+
+<p align="center">
+  Visual reference: <a href="https://tokyomidnight.tokiwavalley.com/">Tokyo Midnight</a>
 </p>
 
 <p align="center">

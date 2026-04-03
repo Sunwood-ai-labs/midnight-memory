@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640" role="img" aria-label="Midnight Memory header image">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06060e"/>
+      <stop offset="55%" stop-color="#0a0a18"/>
+      <stop offset="100%" stop-color="#12122a"/>
+    </linearGradient>
+    <radialGradient id="cyanGlow" cx="32%" cy="28%" r="55%">
+      <stop offset="0%" stop-color="#00e5c8" stop-opacity="0.26"/>
+      <stop offset="45%" stop-color="#00e5c8" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#00e5c8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="goldGlow" cx="74%" cy="34%" r="44%">
+      <stop offset="0%" stop-color="#e8c96e" stop-opacity="0.22"/>
+      <stop offset="45%" stop-color="#e8c96e" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#e8c96e" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="titleFill" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#eeeeff"/>
+      <stop offset="52%" stop-color="#d6dcf5"/>
+      <stop offset="100%" stop-color="#e8c96e"/>
+    </linearGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="640" rx="36" fill="url(#bg)"/>
+  <rect width="1600" height="640" rx="36" fill="url(#cyanGlow)"/>
+  <rect width="1600" height="640" rx="36" fill="url(#goldGlow)"/>
+
+  <g opacity="0.12">
+    <path d="M0 118H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M0 202H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M0 286H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M0 370H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M0 454H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M0 538H1600" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M188 0V640" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M424 0V640" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M660 0V640" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M896 0V640" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M1132 0V640" stroke="#b0b4d0" stroke-width="1"/>
+    <path d="M1368 0V640" stroke="#b0b4d0" stroke-width="1"/>
+  </g>
+
+  <g opacity="0.85">
+    <path d="M126 136h236" stroke="#00e5c8" stroke-width="3" stroke-linecap="round"/>
+    <path d="M126 506h182" stroke="#e8c96e" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <g>
+    <rect x="118" y="118" width="1364" height="404" rx="28" fill="#06060e" fill-opacity="0.30" stroke="#ffffff" stroke-opacity="0.08"/>
+    <circle cx="1310" cy="154" r="5" fill="#e8302a"/>
+    <circle cx="1340" cy="154" r="5" fill="#e8c96e"/>
+    <circle cx="1370" cy="154" r="5" fill="#00e5c8"/>
+  </g>
+
+  <g transform="translate(146 152)">
+    <text x="0" y="0" fill="#b0b4d0" font-size="24" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif" letter-spacing="10">LOCAL-FIRST SUBTITLE WORKFLOW</text>
+    <text x="0" y="138" fill="url(#titleFill)" font-size="118" font-weight="700" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif" letter-spacing="3">MIDNIGHT MEMORY</text>
+    <text x="0" y="204" fill="#eeeeff" fill-opacity="0.92" font-size="36" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif">Lyric-aligned SRTs, split intro/outro tracks, and gapless LTX segment timelines.</text>
+    <text x="0" y="276" fill="#00e5c8" font-size="24" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif" letter-spacing="8">LYRICS / SPLIT SUBTITLES / LTX SEGMENTS / VIEWER QA</text>
+  </g>
+
+  <g transform="translate(1078 214)">
+    <rect x="0" y="0" width="304" height="188" rx="20" fill="#0e0e1c" stroke="#00e5c8" stroke-opacity="0.32"/>
+    <path d="M24 48h256" stroke="#00e5c8" stroke-opacity="0.28"/>
+    <path d="M24 84h256" stroke="#b0b4d0" stroke-opacity="0.18"/>
+    <path d="M24 120h256" stroke="#b0b4d0" stroke-opacity="0.18"/>
+    <rect x="24" y="24" width="118" height="34" rx="12" fill="#00e5c8" fill-opacity="0.10" stroke="#00e5c8" stroke-opacity="0.55"/>
+    <rect x="162" y="24" width="118" height="34" rx="12" fill="#e8c96e" fill-opacity="0.10" stroke="#e8c96e" stroke-opacity="0.55"/>
+    <text x="48" y="46" fill="#00e5c8" font-size="18" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif">Lyrics</text>
+    <text x="182" y="46" fill="#e8c96e" font-size="18" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif">LTX</text>
+    <text x="24" y="104" fill="#eeeeff" font-size="22" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif">[melody] 変わらない</text>
+    <text x="24" y="140" fill="#eeeeff" font-size="22" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif">Ooh Ooh 今夜も</text>
+  </g>
+
+  <g opacity="0.42" filter="url(#softGlow)">
+    <circle cx="1210" cy="458" r="78" fill="#00e5c8"/>
+    <circle cx="1426" cy="126" r="64" fill="#e8c96e"/>
+  </g>
+</svg>

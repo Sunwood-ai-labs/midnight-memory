@@ -1,7 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Midnight Memory favicon">
-  <rect width="64" height="64" rx="18" fill="#111111"/>
-  <rect x="9" y="9" width="46" height="46" rx="14" fill="#fafaf9" opacity="0.08"/>
-  <path d="M24 22.5v19.5a7 7 0 1 0 4 6.3V29.2l11-2.2v12.8a7 7 0 1 0 4 6.3V19.8L24 22.5Z" fill="#fafaf9"/>
-  <path d="M17 18.5h18" stroke="#fafaf9" stroke-width="2.8" stroke-linecap="round" opacity="0.45"/>
-  <path d="M17 46h12" stroke="#fafaf9" stroke-width="2.8" stroke-linecap="round" opacity="0.45"/>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#06060e"/>
+      <stop offset="100%" stop-color="#0a0a18"/>
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00e5c8"/>
+      <stop offset="100%" stop-color="#e8c96e"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="url(#bg)"/>
+  <rect x="8" y="8" width="48" height="48" rx="14" fill="none" stroke="#00e5c8" stroke-opacity="0.22"/>
+  <path d="M14 20h36" stroke="#00e5c8" stroke-width="1.4" stroke-opacity="0.42"/>
+  <path d="M14 44h22" stroke="#e8c96e" stroke-width="1.4" stroke-opacity="0.38"/>
+  <path d="M21 18v29a7 7 0 1 0 4 6.2V26.8l13-2.8v18.1a7 7 0 1 0 4 6.2V17.5L21 18Z" fill="#eeeeff"/>
+  <path d="M17 49c4.5-4.7 10.3-7.2 17.4-7.2 6.5 0 11.7 1.6 15.6 4.9" fill="none" stroke="url(#glow)" stroke-width="2.2" stroke-linecap="round"/>
+  <circle cx="48" cy="17" r="2.1" fill="#e8302a"/>
 </svg>
