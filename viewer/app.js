@@ -67,6 +67,41 @@ function formatCueStamp(seconds) {
   return `${minutes}:${remainder}.${millis}`;
 }
 
+function getCuePartVariant(cue) {
+  if (!cue || (cue.subtitleId !== "intro" && cue.subtitleId !== "outro")) {
+    return "";
+  }
+  return cue.subtitleId;
+}
+
+function getCuePartLabel(cue) {
+  if (!getCuePartVariant(cue)) {
+    return "";
+  }
+  return cue.subtitleLabel || "";
+}
+
+function formatCuePreview(cue, prefix = "") {
+  if (!cue) {
+    return prefix ? `${prefix}: (empty line)` : "(empty line)";
+  }
+  const partLabel = getCuePartLabel(cue);
+  const body = cue.text || "(empty line)";
+  if (!partLabel) {
+    return prefix ? `${prefix}: ${body}` : body;
+  }
+  return prefix ? `${prefix} [${partLabel}]: ${body}` : `[${partLabel}] ${body}`;
+}
+
+function formatCurrentCueTiming(cue) {
+  if (!cue) {
+    return formatCueStamp(elements.audio.currentTime || 0);
+  }
+  const timeRange = `${formatCueStamp(cue.start)} -> ${formatCueStamp(cue.end)}`;
+  const partLabel = getCuePartLabel(cue);
+  return partLabel ? `${partLabel} · ${timeRange}` : timeRange;
+}
+
 function parseSrtTimestamp(value) {
   const match = value.trim().match(/(\d+):(\d+):(\d+),(\d+)/);
   if (!match) {
@@ -233,14 +268,34 @@ function renderCueList() {
   elements.cueList.innerHTML = "";
   state.cues.forEach((cue, index) => {
     const button = document.createElement("button");
+    const partVariant = getCuePartVariant(cue);
+    const partLabel = getCuePartLabel(cue);
     button.id = `cue-item-${index}`;
     button.type = "button";
-    button.className = `cue-button${index === state.currentCueIndex ? " active" : ""}`;
+    button.className = `cue-button${partVariant ? ` cue-button--${partVariant}` : ""}${index === state.currentCueIndex ? " active" : ""}`;
     button.setAttribute("aria-current", index === state.currentCueIndex ? "true" : "false");
-    button.innerHTML = `
-      <span class="cue-time">${formatCueStamp(cue.start)} -> ${formatCueStamp(cue.end)}</span>
-      <span class="cue-text">${cue.text || "(empty line)"}</span>
-    `;
+
+    const meta = document.createElement("span");
+    meta.className = "cue-meta";
+
+    const time = document.createElement("span");
+    time.className = "cue-time";
+    time.textContent = `${formatCueStamp(cue.start)} -> ${formatCueStamp(cue.end)}`;
+    meta.appendChild(time);
+
+    if (partLabel) {
+      const badge = document.createElement("span");
+      badge.className = `cue-part-badge cue-part-badge--${partVariant}`;
+      badge.textContent = partLabel;
+      meta.appendChild(badge);
+    }
+
+    const text = document.createElement("span");
+    text.className = "cue-text";
+    text.textContent = cue.text || "(empty line)";
+
+    button.appendChild(meta);
+    button.appendChild(text);
     button.addEventListener("click", () => {
       elements.audio.currentTime = cue.start;
       syncCue(true);
@@ -266,9 +321,9 @@ function renderCurrentCue() {
     return;
   }
 
-  elements.currentLine.textContent = currentCue.text || "(empty line)";
-  elements.nextLine.textContent = nextCue ? `Next: ${nextCue.text}` : "このトラックの最後の行です。";
-  elements.currentTiming.textContent = `${formatCueStamp(currentCue.start)} -> ${formatCueStamp(currentCue.end)}`;
+  elements.currentLine.textContent = formatCuePreview(currentCue);
+  elements.nextLine.textContent = nextCue ? formatCuePreview(nextCue, "Next") : "このトラックの最後の行です。";
+  elements.currentTiming.textContent = formatCurrentCueTiming(currentCue);
   elements.cueCounter.textContent = `${state.currentCueIndex + 1} / ${state.cues.length}`;
 }
 

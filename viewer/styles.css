@@ -264,10 +264,31 @@ select {
   padding: 12px;
 }
 
+.cue-button--intro {
+  border-color: #cddff4;
+  background: #fbfdff;
+}
+
+.cue-button--outro {
+  border-color: #efd8c3;
+  border-style: dashed;
+  background: #fffaf4;
+}
+
 .track-button[aria-selected="true"],
 .cue-button.active {
   border-color: var(--ring);
   background: var(--muted);
+}
+
+.cue-button--intro.active {
+  border-color: #5a84b8;
+  background: #eef5ff;
+}
+
+.cue-button--outro.active {
+  border-color: #b78458;
+  background: #fff2e6;
 }
 
 .track-section,
@@ -275,6 +296,35 @@ select {
   display: block;
   font-size: 0.8rem;
   color: var(--muted-foreground);
+}
+
+.cue-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.cue-part-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.cue-part-badge--intro {
+  color: #456c98;
+  background: #edf5ff;
+}
+
+.cue-part-badge--outro {
+  color: #9b6332;
+  background: #fff1e3;
+  border-style: dashed;
 }
 
 .track-title,
