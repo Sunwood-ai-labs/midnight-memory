@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
   <h1>midnight-memory</h1>
-  <p>Generate lyric-aligned SRT subtitles with Gemini and review them in a local audio + subtitle viewer.</p>
+  <p>Generate lyric-aligned SRT subtitles, split intro/outro subtitle parts, build LTX segment SRTs, and review everything in a local audio viewer.</p>
 </div>
 
 <p align="center">
@@ -15,29 +15,22 @@
   <img src="https://img.shields.io/badge/local--first-viewer-111111" alt="local-first viewer">
 </p>
 
-## 🌙 Overview
+## 🧭 Overview
 
-`midnight-memory` is a small local-first workflow for lyric timing work.
+`midnight-memory` is a local-first workflow for song subtitle timing work.
 
-- `scripts/gemini_srt.py` turns a WAV file plus lyric candidates into an `.srt` subtitle file with Gemini.
-- `viewer/` and `assets/manifest.json` provide a browser-based review surface for subtitle timing, cue order, and playback state.
-- `assets/manifest.json` can point to either one subtitle file or multiple subtitle files that are merged into one timeline in the viewer, and can optionally add timeline-only overlays such as LTX segment SRTs.
+- `scripts/gemini_srt.py` generates lyric-aligned SRT files from WAV audio plus lyric candidates.
+- Split subtitle parts such as `intro`, `main`, and `outro` can be registered under `assets/manifest.json`.
+- `scripts/segment_ltx_audio.py` generates per-track, gapless `*.ltx_segments.srt` files with melody coverage for LTX lip-sync preparation.
+- The viewer renders `Lyrics` and `LTX Segments` in separate synchronized lanes so coarse segment timing does not clutter the lyric cue list.
 
-## ✨ Features
-
-- Accepts local `*.wav` audio and lyric candidate text files.
-- Keeps subtitle generation aligned to the lyric lines that are actually audible.
-- Supports `--allow-extra-text` for short spoken or sung fragments that are not in the lyric source.
-- Reviews generated output in a responsive static viewer with transport controls, current/next cue state, and raw SRT inspection.
-- Preserves private audio inputs under `private-assets/`, which stays ignored by Git.
-
-## 🚀 Quick Start
+## ⚡ Quick Start
 
 ### Requirements
 
 - Python 3.11+
 - [uv](https://github.com/astral-sh/uv)
-- `.env` containing `GEMINI_API_KEY`
+- `.env` with `GEMINI_API_KEY`
 
 ### Setup
 
@@ -52,54 +45,26 @@ Copy `.env.example` to `.env`, then set your API key:
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-### Generate SRT
+### Generate A Lyric SRT
 
 ```bash
 uv run python scripts/gemini_srt.py `
   --audio "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav" `
   --lyrics "private-assets/09 (1).txt" `
-  --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt"
+  --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt"
 ```
 
-Use `--allow-extra-text` when you want short audible fragments preserved even if they are not present in the lyric candidates:
+Use `--allow-extra-text` when short audible fragments should stay in the output even if they are missing from the lyric source.
+
+### Generate LTX Segment SRTs
 
 ```bash
-uv run python scripts/gemini_srt.py `
-  --audio "path/to/audio.wav" `
-  --lyrics "path/to/lyrics.txt" `
-  --output "assets/track.srt" `
-  --allow-extra-text
+uv run python scripts/segment_ltx_audio.py assets --output-dir assets/ltx-segments
 ```
 
-### Intro / Outro Extraction Flow
+This command reads the track definitions in `assets/manifest.json`, uses the WAV duration, fills uncovered gaps with `[melody]`, and writes per-track `*.ltx_segments.srt` files.
 
-When a track has uncovered vocals before the first main lyric cue or after the last main lyric cue, the repo now treats them as split subtitle parts instead of embedding that distinction only in cue text.
-
-- Create `.intro.srt`, `.main.srt`, and/or `.outro.srt` files as needed.
-- Register split parts in `assets/manifest.json` under `subtitles`.
-- Omit `subtitle` when the split files fully replace the old combined track-level SRT.
-- Use `id` values such as `intro`, `main`, and `outro` so the viewer can render timeline differences from metadata.
-
-Detailed guide:
-
-- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
-- [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
-
-Repeatable extraction helper:
-
-```bash
-uv run python scripts/extract_subtitle_gap.py `
-  --audio "private-assets/<track>.wav" `
-  --lyrics "private-assets/09 (1).txt" `
-  --reference-srt "assets/<track>.main.srt" `
-  --part intro `
-  --report-output "assets/<track>.intro.report.json" `
-  --srt-output "assets/<track>.intro.srt"
-```
-
-## 🎛️ Viewer
-
-The repo root `index.html` redirects to the local viewer in `viewer/`.
+### Run The Viewer
 
 ```bash
 cd D:\midnight-memory
@@ -107,60 +72,60 @@ uv run python -m http.server 8000
 ```
 
 Open `http://localhost:8000/` or `http://localhost:8000/viewer/`.
-The viewer expects audio files to exist locally under `private-assets/`.
+
 When `timelineSubtitles` is present, the viewer renders lyric cues and LTX segment cues in separate lanes.
 On desktop the two lanes are shown side by side; on narrower screens they stack vertically.
 
 ![Viewer screenshot with separate lyric and LTX lanes](./assets/viewer-lyric-ltx-lanes.png)
 
-### Manifest Format
+## 🗂 Documentation Map
 
-Use `subtitle` for a single SRT file:
+- [docs/index.md](./docs/index.md): English documentation hub and maintenance notes.
+- [docs/ja/index.md](./docs/ja/index.md): Japanese documentation hub.
+- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md): English intro/outro split subtitle workflow.
+- [docs/ja/intro-outro-subtitle-workflow.md](./docs/ja/intro-outro-subtitle-workflow.md): Japanese intro/outro split subtitle workflow.
+- [docs/ltx-segment-workflow.md](./docs/ltx-segment-workflow.md): English LTX segment workflow.
+- [docs/ja/ltx-segment-workflow.md](./docs/ja/ltx-segment-workflow.md): Japanese LTX segment workflow.
+
+## 🎛 Viewer Manifest
+
+Use `subtitle` for a single subtitle file:
 
 ```json
 {
-  "id": "intro-chorus-1",
-  "title": "Midnight Memory 夢のつづき",
-  "section": "Intro - Chorus 1",
-  "audio": "private-assets/....wav",
-  "subtitle": "assets/....srt"
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
+  "subtitle": "assets/Track Name.srt"
 }
 ```
 
-Use `subtitles` when one track should combine multiple SRT files such as an intro fragment plus the main lyric body:
+Use `subtitles` for split lyric parts:
 
 ```json
 {
-  "id": "split-track",
-  "title": "Midnight Memory 夢のつづき",
-  "section": "Intro - Chorus 1",
-  "audio": "private-assets/....wav",
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
   "subtitles": [
-    { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
-    { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+    { "id": "intro", "label": "Intro", "path": "assets/Track Name.intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
   ]
 }
 ```
 
-Use `timelineSubtitles` when one track should also show coarse review timelines such as LTX segments in a separate timeline lane:
+Use `timelineSubtitles` for companion lanes such as LTX segment review:
 
 ```json
 {
-  "id": "split-track",
-  "title": "Midnight Memory ...",
-  "section": "Intro - Chorus 1",
-  "audio": "private-assets/....wav",
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
   "subtitles": [
-    { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
-    { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
   ],
   "timelineSubtitles": [
-    { "id": "ltx", "label": "LTX", "path": "assets/ltx-segments/....ltx_segments.srt" }
+    { "id": "ltx", "label": "LTX", "path": "assets/ltx-segments/Track Name.ltx_segments.srt" }
   ]
 }
 ```
-
-The viewer keeps lyric cues in the main subtitle lane and shows `timelineSubtitles` in a dedicated companion lane, so LTX review does not clutter the lyric timeline.
 
 ## ✅ Validation
 
@@ -172,7 +137,7 @@ uv run pytest
 uv run python scripts/validate_manifest.py
 ```
 
-Run the viewer probe tests:
+Run the viewer probes:
 
 ```bash
 npm install
@@ -181,29 +146,37 @@ uv run python scripts/create_stub_audio.py
 npm run test:viewer
 ```
 
-`scripts/create_stub_audio.py` only creates missing WAV files under `private-assets/`, so it is safe to use for local or CI-only smoke checks when the real audio is unavailable.
-
-## 📁 Project Layout
+## 📦 Project Layout
 
 - `scripts/gemini_srt.py`: Gemini-backed subtitle generation CLI.
-- `scripts/extract_subtitle_gap.py`: reproducible intro/outro gap extraction helper that trims the uncovered region and queries Gemini models.
-- `scripts/validate_manifest.py`: manifest structure validation for local QA and CI.
-- `scripts/create_stub_audio.py`: creates silent test fixtures for viewer smoke tests.
-- `skills/midnight-memory-subtitle-sections/`: repo-local skill for intro/outro subtitle extraction and split-file maintenance.
+- `scripts/extract_subtitle_gap.py`: reproducible intro/outro gap extraction helper.
+- `scripts/segment_ltx_audio.py`: LTX segment SRT generator with melody coverage.
+- `scripts/validate_manifest.py`: manifest validation for local QA and CI.
 - `viewer/`: static review UI.
-- `docs/intro-outro-subtitle-workflow.md`: detailed intro/outro extraction workflow for this repo.
-- `assets/*.srt`: generated subtitles and sample subtitle outputs.
+- `docs/`: Markdown documentation for workflows and viewer behavior.
+- `assets/*.srt`: lyric subtitle inputs and sample outputs.
+- `assets/ltx-segments/*.ltx_segments.srt`: per-track LTX segment outputs.
 - `assets/manifest.json`: track registry for the viewer.
-- `private-assets/`: local-only audio and lyric sources that stay out of Git.
+- `private-assets/`: local-only audio and lyric sources.
+
+## 📚 Documentation Growth Rules
+
+When adding new docs in the future:
+
+- add the English page under `docs/`
+- add the Japanese counterpart under `docs/` or `docs/ja/`
+- link the new page from both `docs/index.md` and `docs/ja/index.md`
+- update README links when the page becomes part of the main workflow
+- keep commands and filenames synchronized across languages
 
 ## ⚖️ Content Rights
 
-This repository intentionally stays local-first.
-Tracked subtitle samples may contain lyric excerpts that are subject to separate rights from the source code and automation scripts, so the repo does not declare a blanket open-source `LICENSE` file yet.
+This repository stays local-first.
+Tracked subtitle samples may contain lyric excerpts that are subject to separate rights from the source code and automation scripts, so the repo does not declare a blanket open-source `LICENSE` file.
 Treat audio, lyric, and subtitle content as your own responsibility unless you have redistribution rights.
 
 ## 📝 Notes
 
 - Never commit `.env` with API keys.
-- Keep lyric text and subtitle files in UTF-8 to avoid mojibake.
+- Keep lyric and subtitle files in UTF-8.
 - `private-assets/` is ignored by Git and expected to contain your local audio sources.

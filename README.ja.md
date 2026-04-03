@@ -1,7 +1,7 @@
 <div align="center">
   <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
   <h1>midnight-memory</h1>
-  <p>Gemini で歌詞同期 SRT を生成し、ローカルの音声 + 字幕ビューアで確認するための小さなワークフローです。</p>
+  <p>WAV と歌詞候補から SRT を生成し、intro / main / outro の分割字幕と LTX セグメントをローカル viewer で確認するためのワークフローです。</p>
 </div>
 
 <p align="center">
@@ -15,29 +15,22 @@
   <img src="https://img.shields.io/badge/local--first-viewer-111111" alt="local-first viewer">
 </p>
 
-## 🌙 概要
+## 🧭 概要
 
-`midnight-memory` は、歌詞タイミング作業をローカル中心で進めるための小さなリポジトリです。
+`midnight-memory` は、楽曲の字幕タイミングをローカルで整えるためのリポジトリです。
 
-- `scripts/gemini_srt.py` が WAV 音声と歌詞候補から `.srt` を生成します。
-- `viewer/` と `assets/manifest.json` が、字幕タイミング・並び順・再生状態をブラウザで確認するためのビューアを提供します。
-- `assets/manifest.json` は単一の `subtitle` だけでなく、複数ファイルをまとめる `subtitles` 配列にも対応しています。
+- `scripts/gemini_srt.py` で WAV と歌詞候補から歌詞寄りの SRT を生成します。
+- `assets/manifest.json` の `subtitles` で `intro` / `main` / `outro` を分割管理できます。
+- `scripts/segment_ltx_audio.py` で melody 区間も含む `*.ltx_segments.srt` を生成できます。
+- viewer では `Lyrics` と `LTX Segments` を別レーンで同期表示するため、歌詞タイムラインを汚さずに LTX 用セグメントも確認できます。
 
-## ✨ できること
+## ⚡ クイックスタート
 
-- ローカルの `*.wav` 音声と歌詞候補テキストを入力に使える
-- 実際に聞こえる歌詞だけを Gemini に拾わせて字幕化できる
-- 歌詞候補にない短い導入フレーズなどを `--allow-extra-text` で残せる
-- 現在行・次行・タイムライン・Raw SRT を静的ビューアで確認できる
-- 音声入力は `private-assets/` に閉じたまま扱える
-
-## 🚀 クイックスタート
-
-### 前提
+### 必要なもの
 
 - Python 3.11 以上
 - [uv](https://github.com/astral-sh/uv)
-- `GEMINI_API_KEY` を入れた `.env`
+- `GEMINI_API_KEY` を書いた `.env`
 
 ### セットアップ
 
@@ -46,102 +39,97 @@ cd D:\midnight-memory
 uv sync
 ```
 
-`.env.example` を `.env` にコピーして、API キーを設定します。
+`.env.example` を `.env` にコピーし、API キーを設定します。
 
 ```env
 GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 ```
 
-### SRT を生成する
+### 歌詞 SRT を生成する
 
 ```bash
 uv run python scripts/gemini_srt.py `
   --audio "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav" `
   --lyrics "private-assets/09 (1).txt" `
-  --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt"
+  --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt"
 ```
 
-歌詞候補にない短い可聴フレーズも残したい場合は `--allow-extra-text` を付けます。
+歌詞候補にない短い発話やアドリブも残したい場合は `--allow-extra-text` を付けます。
+
+### LTX セグメント SRT を生成する
 
 ```bash
-uv run python scripts/gemini_srt.py `
-  --audio "path/to/audio.wav" `
-  --lyrics "path/to/lyrics.txt" `
-  --output "assets/track.srt" `
-  --allow-extra-text
+uv run python scripts/segment_ltx_audio.py assets --output-dir assets/ltx-segments
 ```
 
-### 前奏・後奏の抽出フロー
+このコマンドは `assets/manifest.json` を読み、音声長を参照しながら `[melody]` 区間も含めた track 単位の `*.ltx_segments.srt` を作ります。
 
-最初の main lyric cue より前、または最後の main lyric cue より後に vocal がある場合は、字幕本文だけで区別するのではなく、split subtitle として扱います。
-
-- 必要に応じて `.intro.srt` / `.main.srt` / `.outro.srt` を作る
-- 後方互換のため combined `.srt` も残す
-- `assets/manifest.json` の `subtitles` 配列に split file を登録する
-- `subtitle` には combined file を残す
-- viewer 側は `intro` / `main` / `outro` の metadata を使って表示差分を出す
-
-詳しい手順:
-
-- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md)
-- [skills/midnight-memory-subtitle-sections/SKILL.md](./skills/midnight-memory-subtitle-sections/SKILL.md)
-
-再現用ヘルパー:
-
-```bash
-uv run python scripts/extract_subtitle_gap.py `
-  --audio "private-assets/<track>.wav" `
-  --lyrics "private-assets/09 (1).txt" `
-  --reference-srt "assets/<track>.main.srt" `
-  --part outro `
-  --report-output "assets/<track>.outro.report.json" `
-  --srt-output "assets/<track>.outro.srt"
-```
-
-## 🎛️ ビューア
-
-ルートの `index.html` は `viewer/` へ自動リダイレクトします。
+### Viewer を起動する
 
 ```bash
 cd D:\midnight-memory
 uv run python -m http.server 8000
 ```
 
-`http://localhost:8000/` または `http://localhost:8000/viewer/` を開くと確認できます。
-音声本体はローカルの `private-assets/` にある前提です。
+`http://localhost:8000/` または `http://localhost:8000/viewer/` を開きます。
 
-### Manifest 形式
+`timelineSubtitles` があるトラックでは、viewer は `Lyrics` と `LTX Segments` を別レーンで表示します。
+デスクトップでは横並び、狭い画面では縦積みに切り替わります。
 
-字幕 1 本なら `subtitle` を使います。
+![Viewer screenshot with separate lyric and LTX lanes](./assets/viewer-lyric-ltx-lanes.png)
+
+## 🗂 ドキュメント案内
+
+- [docs/index.md](./docs/index.md): 英語の docs ハブ
+- [docs/ja/index.md](./docs/ja/index.md): 日本語の docs ハブ
+- [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md): 英語の split subtitle フロー
+- [docs/ja/intro-outro-subtitle-workflow.md](./docs/ja/intro-outro-subtitle-workflow.md): 日本語の split subtitle フロー
+- [docs/ltx-segment-workflow.md](./docs/ltx-segment-workflow.md): 英語の LTX セグメント運用
+- [docs/ja/ltx-segment-workflow.md](./docs/ja/ltx-segment-workflow.md): 日本語の LTX セグメント運用
+
+## 🎛 Viewer の manifest 形式
+
+単一 SRT なら `subtitle` を使います。
 
 ```json
 {
-  "id": "intro-chorus-1",
-  "title": "Midnight Memory 夢のつづき",
-  "section": "Intro - Chorus 1",
-  "audio": "private-assets/....wav",
-  "subtitle": "assets/....srt"
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
+  "subtitle": "assets/Track Name.srt"
 }
 ```
 
-前奏と本編のように複数字幕をまとめるなら `subtitles` を使います。
+分割字幕なら `subtitles` を使います。
 
 ```json
 {
-  "id": "split-track",
-  "title": "Midnight Memory 夢のつづき",
-  "section": "Intro - Chorus 1",
-  "audio": "private-assets/....wav",
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
   "subtitles": [
-    { "id": "intro", "label": "Intro", "path": "assets/....intro.srt" },
-    { "id": "main", "label": "Main", "path": "assets/....main.srt" }
+    { "id": "intro", "label": "Intro", "path": "assets/Track Name.intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
+  ]
+}
+```
+
+LTX セグメントを別レーンに出したい場合は `timelineSubtitles` を使います。
+
+```json
+{
+  "id": "track-id",
+  "audio": "private-assets/Track Name.wav",
+  "subtitles": [
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
+  ],
+  "timelineSubtitles": [
+    { "id": "ltx", "label": "LTX", "path": "assets/ltx-segments/Track Name.ltx_segments.srt" }
   ]
 }
 ```
 
 ## ✅ 検証
 
-Python 側のチェックは次で実行できます。
+Python 側:
 
 ```bash
 uv sync --group dev
@@ -149,7 +137,7 @@ uv run pytest
 uv run python scripts/validate_manifest.py
 ```
 
-ビューアのプローブテストは次です。
+viewer 側:
 
 ```bash
 npm install
@@ -158,29 +146,37 @@ uv run python scripts/create_stub_audio.py
 npm run test:viewer
 ```
 
-`scripts/create_stub_audio.py` は `private-assets/` に足りない WAV だけを無音で補うので、実音声がないローカルや CI でも安全にスモークチェックできます。
+## 📦 構成
 
-## 📁 構成
+- `scripts/gemini_srt.py`: Gemini ベースの SRT 生成 CLI
+- `scripts/extract_subtitle_gap.py`: intro / outro gap 抽出ヘルパー
+- `scripts/segment_ltx_audio.py`: LTX 用セグメント SRT 生成
+- `scripts/validate_manifest.py`: manifest 検証
+- `viewer/`: ローカル viewer
+- `docs/`: ワークフローと viewer 仕様の文書
+- `assets/*.srt`: 歌詞字幕の入力 / サンプル
+- `assets/ltx-segments/*.ltx_segments.srt`: LTX 用セグメント出力
+- `assets/manifest.json`: viewer 用トラック定義
+- `private-assets/`: Git 管理外の音声と歌詞候補
 
-- `scripts/gemini_srt.py`: Gemini を使う字幕生成 CLI
-- `scripts/extract_subtitle_gap.py`: 前奏・後奏の未カバー区間を切り出して Gemini に問い合わせる再現用ヘルパー
-- `scripts/validate_manifest.py`: manifest 構造の検証
-- `scripts/create_stub_audio.py`: ビューア検証用の無音 WAV 生成
-- `skills/midnight-memory-subtitle-sections/`: 前奏・後奏の split subtitle 運用をまとめた repo 内 skill
-- `viewer/`: 静的レビュー UI
-- `docs/intro-outro-subtitle-workflow.md`: 前奏・後奏の抽出フロー詳細
-- `assets/*.srt`: 生成済み字幕やサンプル字幕
-- `assets/manifest.json`: ビューア用トラック一覧
-- `private-assets/`: Git 管理外のローカル音声と歌詞候補
+## 📚 今後の追記ルール
+
+今後 docs を増やすときは次を揃えてください。
+
+- 英語ページを `docs/` に追加する
+- 日本語ページを `docs/` または `docs/ja/` に追加する
+- `docs/index.md` と `docs/ja/index.md` の両方にリンクを追加する
+- README の主要導線に関わるページなら README 側にもリンクを追加する
+- コマンド例とファイル名は英日でずれないように保つ
 
 ## ⚖️ 権利について
 
-このリポジトリはローカル中心の運用を前提にしています。
-追跡済みの字幕サンプルには、ソースコードや自動化スクリプトとは別の権利が関わる歌詞断片が含まれる可能性があるため、現時点ではリポジトリ全体に一括で適用する `LICENSE` は置いていません。
-音声・歌詞・字幕コンテンツの再配布可否は、利用者自身の権利確認を前提に扱ってください。
+このリポジトリはローカル利用を前提にしています。
+音声・歌詞・字幕サンプルにはソースコードとは別の権利が関わる可能性があるため、リポジトリ全体へ一律に適用する `LICENSE` は置いていません。
+音声・歌詞・字幕の再配布可否は利用者側で確認してください。
 
-## 📝 注意
+## 📝 メモ
 
 - API キー入りの `.env` はコミットしない
-- 文字化け防止のため歌詞と字幕は UTF-8 で扱う
-- `private-assets/` は Git から除外され、ローカル音声の配置先として使う
+- 歌詞 / 字幕ファイルは UTF-8 を使う
+- `private-assets/` は Git 管理外で、ローカルの音源置き場として使う
