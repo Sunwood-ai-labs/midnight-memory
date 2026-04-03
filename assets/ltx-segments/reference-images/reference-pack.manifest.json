@@ -1,6 +1,6 @@
 {
   "title": "Midnight Memory Nanobanana Reference Pack",
-  "version": 2,
+  "version": 3,
   "owner": "nanobanana-pro-operator",
   "baseDir": "assets/ltx-segments/reference-images",
   "status": "pending_generation",
@@ -11,20 +11,6 @@
       "role": "character",
       "required": true,
       "status": "ready_existing"
-    },
-    {
-      "id": "protagonist_mouth_close",
-      "filename": "midnight-memory-ref-protagonist-mouth-close-v01.png",
-      "role": "character",
-      "required": true,
-      "status": "pending"
-    },
-    {
-      "id": "protagonist_upperbody",
-      "filename": "midnight-memory-ref-protagonist-upperbody-v01.png",
-      "role": "character",
-      "required": true,
-      "status": "pending"
     },
     {
       "id": "env_vocal_booth_night",

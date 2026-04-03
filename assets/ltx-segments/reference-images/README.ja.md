@@ -8,4 +8,5 @@
 - 参照画像ログ: [reference-parameter-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/reference-parameter-log.template.csv)
 - セグメント出力ログ: [segment-render-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/segment-render-log.template.csv)
 
-この版では `character`、`mouth`、`environment`、`style` の4層で参照を管理します。
+この版では `character`、`environment`、`style` の 3 層で参照を管理します。  
+通常運用では `画像1 = character`、`画像2 = environment`、`画像3 = style` の 3 枚で使います。

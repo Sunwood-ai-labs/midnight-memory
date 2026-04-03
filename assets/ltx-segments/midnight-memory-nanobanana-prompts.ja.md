@@ -5,15 +5,15 @@
 
 ## Quick Start
 
-1. まず [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) を読み込んで、参照画像 9 枚を先に作ります。
+1. まず [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) を読み込んで、環境参照とスタイル参照 7 枚を先に作ります。
 2. 次に各ショットで、指定順の参照画像を読み込み、ショット用 prompt を貼ります。
 3. 同じ `model` / `preset` / `quality mode` / `seed 方針` を保ち、生成結果は [reference-parameter-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/reference-parameter-log.template.csv) と [segment-render-log.template.csv](/D:/midnight-memory/assets/ltx-segments/reference-images/segment-render-log.template.csv) へ記録します。
 
 ## 参照順ルール
 
-- 基本順序: `momiji base -> mouth close or upper body -> environment -> style`
-- 顔寄りショット: `momiji base -> mouth close -> environment -> style`
-- 上半身ショット: `momiji base -> upper body -> environment -> style`
+- 基本順序: `画像1 = 主役固定 -> 画像2 = 環境 -> 画像3 = スタイル`
+- 顔アップや上半身の調整は、画像2を別のキャラ参照にせず、本文プロンプトで行います。
+- 通常運用では `画像1〜画像3` の 3 枚だけで十分です。
 
 ## 共通ネガティブ
 
@@ -31,104 +31,71 @@
 
 ## 参照画像用プロンプト
 
-### 1. protagonist-mouth-close
-
-参照入力:
-1. `画像1（momiji-studio_0014.png）`
-
-Prompt:
-```text
-画像1の狐娘と完全に同一人物の、スタートフレーム用の顔アップ参照画像を作る。  
-狐耳、琥珀色の長い髪、金色の瞳、黒金ヘッドホン、和モダン衣装の肩口を維持する。  
-画角はタイトなクローズアップ。顔を大きく写し、唇と顎のラインがはっきり見える。正面寄りか柔らかい 3/4 角度。  
-舞台は高級感のある夜のボーカルブース、背景は柔らかいスタジオボケ。  
-暖かいスタジオキーライトに、東京の夜景の青い縁光を少し入れる。  
-切ない city-pop バラードの雰囲気。  
-絶対条件: 同じ狐娘の顔、耳、髪、瞳、衣装感を保つ。口元を明確に見せる。表情はフラット寄り。文字なし、ウォーターマークなし。  
-避ける: 極端な真横顔、前髪が唇にかかる構図、マイクが口元の前に来る構図。
-```
-
-### 2. protagonist-upperbody
-
-参照入力:
-1. `画像1（momiji-studio_0014.png）`
-
-Prompt:
-```text
-画像1の狐娘と完全に同一人物の、上半身スタートフレーム参照画像を作る。  
-狐耳、長い琥珀色の髪、金色の瞳、ふわっとした尾、和モダン衣装、黒金ヘッドホンを維持する。  
-上半身が見える自然な静止ポーズ。肩から胸元まで見え、口元も確認できる。  
-背景は上質な録音空間のボケ。  
-暖かいスタジオ光と青い夜景の気配を混ぜ、ロマンティックな深夜ムードにする。  
-絶対条件: 入力画像と同じ狐娘に見えること。衣装シルエットを崩さないこと。表情はフラット寄り。文字なし、ウォーターマークなし。  
-避ける: 口元が隠れるポーズ、衣装シルエットの変化、アイドルライブの誇張ポーズ。
-```
-
-### 3. env-vocal-booth-night
+### 1. env-vocal-booth-night
 
 Prompt:
 ```text
 深夜の city-pop バラード MV に合う、夜景の見えるボーカルブース環境参照画像を作る。  
 大きな窓の向こうに東京の夜景。コンデンサーマイク、少し横へ逃がしたポップガード、吸音材、ミキサーの柔らかいボケ。人物は入れない。  
-狐娘の顔アップ歌唱カットを前景に置けるよう、中央を塞がず、口元の位置に機材が来ない構図にする。  
+狐娘の顔アップスタートフレームを前景に置けるよう、中央を塞がず、口元の位置に機材が来ない構図にする。  
 暖かいスタジオ光と深い夜景ブルーを共存させる。  
 文字なし、ウォーターマークなし。  
 避ける: 口元位置にポップガードが重なる構図、機材が密集しすぎた壁、安っぽい配信部屋感。
 ```
 
-### 4. env-rooftop-stage
+### 2. env-rooftop-stage
 
 Prompt:
 ```text
-深夜の city-pop MV に合う、屋上歌唱ステージの環境参照画像を作る。  
+深夜の city-pop MV に合う、屋上ステージの環境参照画像を作る。  
 東京の夜景、濡れた床、控えめなパフォーマンス空間、上品な都市のシルエット。人物は入れない。  
-狐娘の上半身歌唱カットを大きく置ける余白を前景に残す。  
+狐娘の上半身スタートフレームを大きく置ける余白を前景に残す。  
 青い夜風、アンバーの街明かり、抑えたロマンス。  
 文字なし、ウォーターマークなし。  
 避ける: 巨大な舞台装置、フェス照明、ロゴだらけの看板。
 ```
 
-### 5. env-river-bridge-stage
+### 3. env-river-bridge-stage
 
 Prompt:
 ```text
-切ない city-pop MV の後半サビに合う、川沿いブリッジ歌唱ステージの環境参照画像を作る。  
+切ない city-pop MV の後半サビに合う、川沿いブリッジステージの環境参照画像を作る。  
 東京の川沿い、濡れた床、欄干、遠くの光跡、水面反射。人物は入れない。  
-顔アップと上半身歌唱の両方が自然に乗る構図にする。  
+顔アップでも上半身でも自然に乗る構図にする。  
 深い青、コバルト、アンバー、少し霞んだ夜気。  
 文字なし、ウォーターマークなし。  
 避ける: ただの高速道路っぽい空間、サイバーパンク過多、人物が小さくしか置けない遠すぎる構図。
 ```
 
-### 6. env-glass-city
+### 4. env-glass-city
 
 Prompt:
 ```text
 深夜の city-pop MV に合う、ガラス越し都会空間の環境参照画像を作る。  
 ガラス面、控えめなネオンの滲み、整った都会の反射、上質な都市空間。人物は入れない。  
-顔アップ歌唱カットで唇と目が埋もれない程度に、反射は上品に整理する。  
+顔アップスタートフレームで唇と目が埋もれない程度に、反射は上品に整理する。  
 青い都会光と柔らかい白色灯を混ぜる。  
 文字なし、ウォーターマークなし。  
 避ける: 反射が強すぎて顔が消える構図、昼のオフィスのような雰囲気。
 ```
 
-### 7. style-master
+### 5. style-master
 
 Prompt:
 ```text
 Midnight Memory の狐娘 MV 全体に共通する、マスタールック参照画像を作る。  
 1980年代東京 city-pop MV の空気。深紺、コバルトブルー、温かいアンバー、少量のくすんだローズ。  
 繊細な映画粒子、湿度を帯びた夜気、磨かれたハレーション。人物は入れない。  
-スタジオ歌唱にも屋外歌唱にも共通で使える、統一感のある色温度にする。  
+スタジオカットにも屋外カットにも共通で使える、統一感のある色温度にする。  
 文字なし、ウォーターマークなし。  
 避ける: サイバーパンク過多、平板な照明、明るすぎるアイドル色。
 ```
 
-### 8. style-wet-reflection
+### 6. style-wet-reflection
 
 Prompt:
 ```text
-屋外歌唱カット用に、濡れた床とネオン反射の質感を固定するスタイル参照画像を作る。  
+屋外カット用に、濡れた床とネオン反射の質感を固定するスタイル参照画像を作る。  
 雨上がりの舗道やステージ床に、細長いネオン反射が上品に伸びる。人物は入れない。  
 湿度感はあるが汚れすぎず、ロマンティックで洗練された質感にする。  
 コバルト、深紺、アンバーを主に使う。  
@@ -136,13 +103,13 @@ Prompt:
 避ける: 水たまりの混沌、泥感、虹色に散る反射。
 ```
 
-### 9. style-studio-glow
+### 7. style-studio-glow
 
 Prompt:
 ```text
-スタジオ歌唱カット用に、暖色の室内光と青い夜景が共存するスタイル参照画像を作る。  
+スタジオカット用に、暖色の室内光と青い夜景が共存するスタイル参照画像を作る。  
 録音スタジオの暖かな光、窓外の深い青い夜、ガラスの柔らかいグロウ。人物は入れない。  
-顔アップの歌唱カットに向く、上質で静かな MV 照明にする。  
+顔アップのスタートフレームに向く、上質で静かな MV 照明にする。  
 文字なし、ウォーターマークなし。  
 避ける: 強すぎるスポットライト、事務所の蛍光灯のような光。
 ```
@@ -153,309 +120,272 @@ Prompt:
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップの顔バランス、画像3の夜景ボーカルブース、画像4のスタジオ光の雰囲気も参照する。  
-動画生成のスタートフレーム用として、表情はフラット寄り、口は軽く閉じるか少しだけ開く程度にする。  
+画像1の狐娘を主役として固定し、画像2の夜景ボーカルブースと画像3のスタジオ光の雰囲気を参照して生成する。  
 夜景の見えるボーカルブースで歌い出す直前、もう声が始まりそうな口元を見せる MV カット。  
 顔が大きく写るミディアムクローズ。口元がよく見える。黒金のヘッドホン、和モダン衣装、東京の夜景ボケ。  
-静かな導入の雰囲気。リップシンクしやすいように唇と顎のラインを明確に見せる。
+動画生成のスタートフレーム用として、表情はフラット寄り、口は軽く閉じるか少しだけ開く程度にする。
 ```
 
 ### intro-02
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3の夜景ボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2の夜景ボーカルブースと画像3のスタジオ光を参照して生成する。  
 スタジオで歌い出す直前のクローズアップ。Ooh に入る前の静かな口元。  
 金色の瞳、琥珀色の長い髪、黒金ヘッドホン。マイクは脇へ寄せて唇を見せる。  
-夜の東京の窓景色。city-pop MV の冒頭らしい、上質で切ない歌唱カット。
+上質で切ない冒頭カットにする。
 ```
 
 ### intro-03
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-upperbody-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の上半身歌唱ポーズ、画像3の夜景ボーカルブース、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2の夜景ボーカルブースと画像3のマスタールックを参照して生成する。  
 夜景が大きく見えるスタジオ窓の前に立つ。上半身のミディアムショット。口元が見える。  
-東京の街の光が背後で滲み、歌唱中の自然な表情が出ている。  
-物語説明より、実際に歌っている MV パフォーマンスとして見せる。
+東京の街の光が背後で滲む。  
+歌唱中ではなく、パフォーマンスへ入る直前の静かな MV カットにする。
 ```
 
 ### intro-04
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のスタジオ光を参照して生成する。  
 録音ブースの中で切なさをたたえる顔アップ。唇の輪郭がはっきり分かる。  
 ヘッドホン、和柄衣装の肩口、柔らかいスタジオ機材のボケ。  
-city-pop バラード MV の感情的な歌唱カットとして、目元と口元に余韻を乗せる。
+目元と口元に余韻を乗せたスタートフレームにする。
 ```
 
 ### intro-05
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-upperbody-v01.png`
-3. `midnight-memory-ref-env-rooftop-stage-v01.png`
-4. `midnight-memory-ref-style-wet-reflection-v01.png`
+2. `画像2（midnight-memory-ref-env-rooftop-stage-v01.png）`
+3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の上半身歌唱ポーズ、画像3の屋上ステージ、画像4の濡れた反射の質感を参照する。  
+画像1の狐娘を主役として固定し、画像2の屋上ステージと画像3の濡れた反射の質感を参照して生成する。  
 夜景の見える屋上ステージで歌唱直前に構える。風に揺れる髪と狐耳。口元がしっかり見えるミディアムクローズ。  
 手持ちマイクは口を隠さない角度。濡れた床にネオンが反射する。  
-MVらしい外ロケ歌唱カットとして、実際に歌っている自然さを優先する。
+フラット寄りの表情で、実際に歌い出す前の静かな瞬間にする。
 ```
 
 ### intro-06
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-glass-city-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-glass-city-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のガラス越し都会空間、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2のガラス越し都会空間と画像3のマスタールックを参照して生成する。  
 ガラスに都会の反射が入る夜の空間で静かに佇むクローズアップ。カメラ寄りの目線。唇が見える。  
 ネオンの滲みを入れつつ、顔と口元は埋もれさせない。  
-都会的で切ない MV 歌唱ショットにする。
+都会的で切ないスタートフレームにする。
 ```
 
 ### intro-07
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のスタジオ光を参照して生成する。  
 ボーカルブースで囁く直前の超クローズアップ。唇と顎のラインがきれいに見える。  
-静かな痛みを含んだ表情。柔らかいスタジオの暗さ。  
-後段のリップシンクに使いやすい、口元重視の MV カットにする。
+静かな痛みを含んだ、しかしフラット寄りの表情。  
+口元重視のスタートフレームにする。
 ```
 
 ### intro-08
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のスタジオ光を参照して生成する。  
 夜景を背にしてサビへ入る直前の、正面寄りクローズアップ。口元が明確。  
-金色の瞳、狐耳、ヘッドホン。切なくも少し華やかな city-pop バラード MV のヒーローカット。  
-顔を大きく、唇を隠さず見せる。
+金色の瞳、狐耳、ヘッドホン。  
+切なくも少し華やかなヒーローカットだが、表情はフラット寄りにする。
 ```
 
 ### intro-09
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のマスタールックを参照して生成する。  
 エンディングへ入る直前の余韻を残して静かに息を整える、顔中心のミディアムクローズ。唇が見える。  
-夜景スタジオの残光を背に、次の展開へつながる余韻を持たせる。  
-MV の流れを切らない、呼吸の見えるカットにする。
+夜景スタジオの残光を背に、呼吸の見える静止フレームにする。
 ```
 
 ### bridge-01
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のスタジオ光を参照して生成する。  
 後半の始まり、夜景スタジオで集中した表情のミディアムクローズ。歌い出す直前で口元が見える。  
-黒金ヘッドホン、深夜の city-pop MV の後半導入として、静かな緊張感を出す。
+深夜の city-pop MV の後半導入として、静かな緊張感を出す。
 ```
 
 ### bridge-02
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-upperbody-v01.png`
-3. `midnight-memory-ref-env-river-bridge-stage-v01.png`
-4. `midnight-memory-ref-style-wet-reflection-v01.png`
+2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
+3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の上半身歌唱ポーズ、画像3の川沿いブリッジステージ、画像4の濡れた反射の質感を参照する。  
+画像1の狐娘を主役として固定し、画像2の川沿いブリッジステージと画像3の濡れた反射の質感を参照して生成する。  
 川沿いのブリッジステージでハミングへ入る直前。口元が読めるタイトミディアム。  
 濡れた床、水面の反射、夜景のボケ。  
-ロマンティックで切ない MV パフォーマンスカットにする。
+ロマンティックで切ない静止フレームにする。
 ```
 
 ### bridge-03
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-river-bridge-stage-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3の川沿いブリッジステージ、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2の川沿いブリッジステージと画像3のマスタールックを参照して生成する。  
 川沿いの夜景ステージで感情が高まる直前のクローズアップ。口元が明確。  
-背景に水面と都市の光の波。金色の瞳に感情が乗っている。  
-Midnight Memory のサビ前に合う、顔主体の MV カットにする。
+背景に水面と都市の光の波。金色の瞳に感情が乗る寸前。  
+顔主体のスタートフレームにする。
 ```
 
 ### bridge-04
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-glass-city-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-glass-city-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のガラス越し都会空間、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2のガラス越し都会空間と画像3のマスタールックを参照して生成する。  
 ガラス越しの都会空間でカメラへ向かって静かに構える正面クローズアップ。唇がよく見える。  
 ガラスにネオンの滲みを入れつつ、顔ははっきり見せる。  
-切ない呼びかけの感情を乗せた上質な MV 歌唱ショットにする。
+切ない呼びかけの前の静止フレームにする。
 ```
 
 ### bridge-05
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-glass-city-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-glass-city-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のガラス越し都会空間、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2のガラス越し都会空間と画像3のマスタールックを参照して生成する。  
 感情を抑えたフラット表情の顔アップ。唇の形が読みやすい。目元に切なさ。  
-ネオンの反射が少し頬に乗る。静かな痛みのある city-pop MV カット。  
-口元可視を最優先にする。
+ネオンの反射が少し頬に乗る。  
+口元可視を最優先にした静止フレームにする。
 ```
 
 ### bridge-06
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-studio-glow-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-studio-glow-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のスタジオ光を参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のスタジオ光を参照して生成する。  
 スタジオでサビへ入る直前に真正面で構える、顔が大きく写るクローズアップ。口元が明確。  
 黒金ヘッドホン、夜の東京の窓景色。  
-Stay forever in my heart に合う王道の MV ヒーローショットにする。
+王道のヒーローカットだが、表情は静かに保つ。
 ```
 
 ### bridge-07
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-river-bridge-stage-v01.png`
-4. `midnight-memory-ref-style-wet-reflection-v01.png`
+2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
+3. `画像3（midnight-memory-ref-style-wet-reflection-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3の川沿いブリッジステージ、画像4の濡れた反射の質感を参照する。  
+画像1の狐娘を主役として固定し、画像2の川沿いブリッジステージと画像3の濡れた反射の質感を参照して生成する。  
 サビの余韻へ入る直前に静かに息を溜める 3/4 クローズアップ。口元は隠さない。  
 耳と髪に縁ライト、夜景が柔らかく滲む。  
-洗練された MV の歌唱カットにする。
+洗練された静止フレームにする。
 ```
 
 ### bridge-08
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-river-bridge-stage-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-river-bridge-stage-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3の川沿いブリッジステージ、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2の川沿いブリッジステージと画像3のマスタールックを参照して生成する。  
 長い Ah に入る直前のタイトクローズアップ。唇の形と顎の動きが分かる。  
 金色の瞳、狐耳、背景は夜景の柔らかいボケだけ。  
-リップシンク向けの理想的な MV 歌唱カットにする。
+リップシンクへ繋ぎやすい静止フレームにする。
 ```
 
 ### bridge-09
 
 参照順:
 1. `画像1（momiji-studio_0014.png）`
-2. `midnight-memory-ref-protagonist-mouth-close-v01.png`
-3. `midnight-memory-ref-env-vocal-booth-night-v01.png`
-4. `midnight-memory-ref-style-master-v01.png`
+2. `画像2（midnight-memory-ref-env-vocal-booth-night-v01.png）`
+3. `画像3（midnight-memory-ref-style-master-v01.png）`
 
 Prompt:
 ```text
-画像1と同じ狐娘シンガー。  
-画像2の口元アップ参照、画像3のボーカルブース、画像4のマスタールックを参照する。  
+画像1の狐娘を主役として固定し、画像2のボーカルブースと画像3のマスタールックを参照して生成する。  
 エンディング直前の余韻を残して夜景スタジオに立つ、顔中心のミディアムクローズ。唇がまだ少し開いている。  
-朝前の青い街を背景に、静かなエンディングを感じる MV ラストカットにする。
+朝前の青い街を背景に、静かなラストフレームにする。
 ```
 
 ## 最後のメモ
 
 - すべてのショットで [momiji-studio_0014.png](/D:/midnight-memory/assets/ltx-segments/reference-images/momiji-studio_0014.png) を最優先に入れてください。
+- 環境とスタイルはショットごとの `画像2` `画像3` に従ってください。
 - 顔アップと口元可視が崩れたら、そのショットは採用しないほうが安全です。
 - Negative には必ず `共通ネガティブ` を足してください。
