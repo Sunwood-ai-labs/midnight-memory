@@ -111,6 +111,8 @@ The viewer expects audio files to exist locally under `private-assets/`.
 When `timelineSubtitles` is present, the viewer renders lyric cues and LTX segment cues in separate lanes.
 On desktop the two lanes are shown side by side; on narrower screens they stack vertically.
 
+![Viewer screenshot with separate lyric and LTX lanes](./assets/viewer-lyric-ltx-lanes.png)
+
 ### Manifest Format
 
 Use `subtitle` for a single SRT file:

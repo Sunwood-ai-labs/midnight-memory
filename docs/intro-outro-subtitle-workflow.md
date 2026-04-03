@@ -50,6 +50,8 @@ If you also want to review LTX segment timing, register the generated segment SR
 - On narrower screens the lanes stack vertically.
 - The current/next line panel is driven by the lyric lane, not by the LTX lane.
 
+![Viewer screenshot with separate lyric and LTX lanes](../assets/viewer-lyric-ltx-lanes.png)
+
 ## Extraction Helper
 
 Use the intro/outro extraction helper to generate split subtitle files:
