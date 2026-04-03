@@ -3,7 +3,7 @@
 `midnight-memory` は、音声ファイルと歌詞候補を使って Gemini 2.5 Pro で字幕タイムラインを自動生成し、`.srt` を出力する小さなユーティリティです。
 
 - `scripts/gemini_srt.py`: WAV 音声と歌詞テキストから SRT を生成する CLI
-- `index.html` + `assets/manifest.json`: 生成済みの音声/SRT をブラウザで確認する静的ビューア
+- `viewer/` + `assets/manifest.json`: 生成済みの音声/SRT をブラウザで確認する静的ビューア
 
 ## 何ができるか
 
@@ -40,8 +40,8 @@ GEMINI_API_KEY=YOUR_GEMINI_API_KEY
 
 ```bash
 uv run python scripts/gemini_srt.py `
-  --audio "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav" `
-  --lyrics "assets/09 (1).txt" `
+  --audio "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav" `
+  --lyrics "private-assets/09 (1).txt" `
   --output "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt"
 ```
 
@@ -49,24 +49,25 @@ uv run python scripts/gemini_srt.py `
 
 ## 静的ビューア
 
-`index.html` はローカルの静的ファイルとして開ける字幕確認ビューアです。簡易サーバーを立てる場合は次のように実行できます。
+`viewer/` はローカルの静的ファイルとして開ける字幕確認ビューアです。ルートの `index.html` は `viewer/` へのランチャーです。簡易サーバーを立てる場合は次のように実行できます。
 
 ```bash
 cd D:\midnight-memory
 uv run python -m http.server 8000
 ```
 
-その後、ブラウザで `http://localhost:8000/` を開くと、`assets/manifest.json` に登録された音声と SRT を確認できます。
+その後、ブラウザで `http://localhost:8000/` または `http://localhost:8000/viewer/` を開くと、`assets/manifest.json` に登録された音声と SRT を確認できます。音声本体は `private-assets/` に置く前提です。
 
 ## `assets` の構成
 
-- `assets/*.wav`: 字幕生成元の音声ファイル（例: 歌詞同期の入力）
+- `private-assets/*.wav`: ローカル専用の音声ファイル（Git 追跡対象外）
 - `assets/*.srt`: 生成済み字幕（またはサンプルの字幕）
-- `assets/09 (1).txt`: 歌詞候補（`gemini_srt.py` が候補行として読み込む）
+- `private-assets/09 (1).txt`: ローカル専用の歌詞候補（Git 追跡対象外）
 - `assets/manifest.json`: 静的ビューアが参照するトラック一覧
 
 ## 注意
 
 - `GEMINI_API_KEY` が入った `.env` は公開リポジトリに含めないでください
 - `.env` は `.gitignore` で除外されています
+- `private-assets/` も `.gitignore` で除外されており、公開リポジトリには含めません
 - 文字化けを避けるため、歌詞テキストは UTF-8 保存を推奨します

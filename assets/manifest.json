@@ -7,7 +7,7 @@
       "id": "intro-chorus-1",
       "title": "Midnight Memory 夢のつづき",
       "section": "Intro - Chorus 1",
-      "audio": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav",
+      "audio": "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav",
       "subtitle": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt",
       "note": "導入から 1 番コーラスまでの確認用ペア"
     },
@@ -15,7 +15,7 @@
       "id": "bridge-final-chorus",
       "title": "Midnight Memory 夢のつづき",
       "section": "Bridge - Final Chorus",
-      "audio": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.wav",
+      "audio": "private-assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.wav",
       "subtitle": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.srt",
       "note": "ブリッジからラストコーラスまでの確認用ペア"
     }
