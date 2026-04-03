@@ -1,6 +1,4 @@
 <div align="center">
-  <img src="./assets/midnight-memory-header.svg" alt="midnight-memory header" width="100%">
-  <br>
   <img src="./favicon.svg" alt="midnight-memory icon" width="88" height="88">
   <h1>midnight-memory</h1>
   <p>Generate lyric-aligned SRT subtitles, split intro/outro subtitle parts, build LTX segment SRTs, and review everything in a local audio viewer.</p>
