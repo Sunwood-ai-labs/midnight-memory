@@ -2,18 +2,29 @@
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#06060e"/>
-      <stop offset="100%" stop-color="#0a0a18"/>
+      <stop offset="100%" stop-color="#12122a"/>
     </linearGradient>
-    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+    <radialGradient id="cyanGlow" cx="32%" cy="26%" r="78%">
+      <stop offset="0%" stop-color="#00e5c8" stop-opacity="0.28"/>
+      <stop offset="55%" stop-color="#00e5c8" stop-opacity="0.06"/>
+      <stop offset="100%" stop-color="#00e5c8" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="trail" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0%" stop-color="#00e5c8"/>
       <stop offset="100%" stop-color="#e8c96e"/>
     </linearGradient>
+    <linearGradient id="noteFill" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0%" stop-color="#f4f7ff"/>
+      <stop offset="65%" stop-color="#d5def6"/>
+      <stop offset="100%" stop-color="#b8c7eb"/>
+    </linearGradient>
   </defs>
   <rect width="64" height="64" rx="18" fill="url(#bg)"/>
-  <rect x="8" y="8" width="48" height="48" rx="14" fill="none" stroke="#00e5c8" stroke-opacity="0.22"/>
-  <path d="M14 20h36" stroke="#00e5c8" stroke-width="1.4" stroke-opacity="0.42"/>
-  <path d="M14 44h22" stroke="#e8c96e" stroke-width="1.4" stroke-opacity="0.38"/>
-  <path d="M21 18v29a7 7 0 1 0 4 6.2V26.8l13-2.8v18.1a7 7 0 1 0 4 6.2V17.5L21 18Z" fill="#eeeeff"/>
-  <path d="M17 49c4.5-4.7 10.3-7.2 17.4-7.2 6.5 0 11.7 1.6 15.6 4.9" fill="none" stroke="url(#glow)" stroke-width="2.2" stroke-linecap="round"/>
-  <circle cx="48" cy="17" r="2.1" fill="#e8302a"/>
+  <rect width="64" height="64" rx="18" fill="url(#cyanGlow)"/>
+  <rect x="8" y="8" width="48" height="48" rx="14" fill="none" stroke="#00e5c8" stroke-opacity="0.28"/>
+  <path d="M14 20h36" stroke="#00e5c8" stroke-width="1.4" stroke-opacity="0.55"/>
+  <path d="M14 44h22" stroke="#e8c96e" stroke-width="1.4" stroke-opacity="0.42"/>
+  <path d="M21 18v29a7 7 0 1 0 4 6.2V26.8l13-2.8v18.1a7 7 0 1 0 4 6.2V17.5L21 18Z" fill="url(#noteFill)"/>
+  <path d="M17 49c4.5-4.7 10.3-7.2 17.4-7.2 6.5 0 11.7 1.6 15.6 4.9" fill="none" stroke="url(#trail)" stroke-width="2.4" stroke-linecap="round"/>
+  <circle cx="48" cy="17" r="2.1" fill="#e8c96e"/>
 </svg>
