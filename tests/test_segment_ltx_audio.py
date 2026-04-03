@@ -110,7 +110,7 @@ def test_build_gapless_track_segments_covers_from_zero_and_to_track_end() -> Non
         (8.0, 20.0),
     ]
     assert segments[0].lines == ["[melody]"]
-    assert segments[1].lines == ["[melody]", "alpha", "beta", "[melody]"]
+    assert segments[1].lines == ["alpha", "beta", "[melody]"]
 
 
 def test_run_for_track_uses_audio_duration_and_melody_segments(tmp_path: Path) -> None:
@@ -153,7 +153,7 @@ def test_run_for_track_uses_audio_duration_and_melody_segments(tmp_path: Path) -
     assert result.segments[0].lines == ["[melody]"]
     assert result.segments[-1].end_seconds == 20.0
     assert "00:00:00,000 --> 00:00:08,000" in result.srt_text
-    assert "[melody]\nalpha\nbeta\n[melody]" in result.srt_text
+    assert "alpha\nbeta\n[melody]" in result.srt_text
 
 
 def test_run_for_track_merges_split_files_and_stays_gapless(tmp_path: Path) -> None:
