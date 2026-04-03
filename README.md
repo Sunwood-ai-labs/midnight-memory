@@ -76,9 +76,8 @@ uv run python scripts/gemini_srt.py `
 When a track has uncovered vocals before the first main lyric cue or after the last main lyric cue, the repo now treats them as split subtitle parts instead of embedding that distinction only in cue text.
 
 - Create `.intro.srt`, `.main.srt`, and/or `.outro.srt` files as needed.
-- Keep the combined `.srt` file for backward compatibility.
 - Register split parts in `assets/manifest.json` under `subtitles`.
-- Preserve `subtitle` as the combined fallback path.
+- Omit `subtitle` when the split files fully replace the old combined track-level SRT.
 - Use `id` values such as `intro`, `main`, and `outro` so the viewer can render timeline differences from metadata.
 
 Detailed guide:

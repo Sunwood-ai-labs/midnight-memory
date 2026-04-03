@@ -5,43 +5,41 @@
   "tracks": [
     {
       "id": "intro-chorus-1",
-      "title": "Midnight Memory 夢のつづき",
+      "title": "Midnight Memory",
       "section": "Intro - Chorus 1",
       "audio": "private-assets/Midnight Memory 夢のつづき  Intro - Chorus 1.wav",
-      "subtitle": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.srt",
       "subtitles": [
         {
           "id": "intro",
-          "label": "前奏",
+          "label": "Intro",
           "path": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.intro.srt"
         },
         {
           "id": "main",
-          "label": "本編",
+          "label": "Main",
           "path": "assets/Midnight Memory 夢のつづき  Intro - Chorus 1.main.srt"
         }
       ],
-      "note": "導入から 1 番コーラスまでの確認用ペア。字幕は前奏と本編に分割"
+      "note": "Split subtitles for intro and main lyric sections."
     },
     {
       "id": "bridge-final-chorus",
-      "title": "Midnight Memory 夢のつづき",
+      "title": "Midnight Memory",
       "section": "Bridge - Final Chorus",
       "audio": "private-assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.wav",
-      "subtitle": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.srt",
       "subtitles": [
         {
           "id": "main",
-          "label": "本編",
+          "label": "Main",
           "path": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.main.srt"
         },
         {
           "id": "outro",
-          "label": "後奏",
+          "label": "Outro",
           "path": "assets/Midnight Memory 夢のつづき   Bridge - Final Chorus.outro.srt"
         }
       ],
-      "note": "ブリッジからラストコーラスまでの確認用ペア。字幕は本編と後奏に分割"
+      "note": "Split subtitles for main and outro sections."
     }
   ]
 }
