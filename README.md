@@ -185,3 +185,7 @@ Treat audio, lyric, and subtitle content as your own responsibility unless you h
 - Never commit `.env` with API keys.
 - Keep lyric and subtitle files in UTF-8.
 - `private-assets/` is ignored by Git and expected to contain your local audio sources.
+
+<p align="center">
+  <img src="./assets/midnight-memory-header.svg" alt="midnight-memory footer artwork" width="100%">
+</p>

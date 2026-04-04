@@ -85,6 +85,7 @@ uv run python -m http.server 8000
 ## 🗂️ ドキュメント導線
 
 - Agent entrypoint: [SKILL.md](./SKILL.md)
+
 - [docs/index.md](./docs/index.md): 英語 docs ハブ
 - [docs/ja/index.md](./docs/ja/index.md): 日本語 docs ハブ
 - [docs/intro-outro-subtitle-workflow.md](./docs/intro-outro-subtitle-workflow.md): 英語 split subtitle フロー
@@ -183,3 +184,7 @@ npm run test:viewer
 - API キー入りの `.env` はコミットしないでください
 - 歌詞ファイルと字幕ファイルは UTF-8 を使ってください
 - `private-assets/` は Git から除外されるローカル音源置き場です
+
+<p align="center">
+  <img src="./assets/midnight-memory-header.svg" alt="midnight-memory footer artwork" width="100%">
+</p>

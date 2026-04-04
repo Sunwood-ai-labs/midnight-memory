@@ -50,7 +50,7 @@
   </g>
 
   <g>
-    <rect x="118" y="118" width="1364" height="404" rx="28" fill="#06060e" fill-opacity="0.30" stroke="#ffffff" stroke-opacity="0.08"/>
+    <rect x="118" y="118" width="1364" height="440" rx="28" fill="#06060e" fill-opacity="0.30" stroke="#ffffff" stroke-opacity="0.08"/>
     <circle cx="1310" cy="154" r="5" fill="#e8302a"/>
     <circle cx="1340" cy="154" r="5" fill="#e8c96e"/>
     <circle cx="1370" cy="154" r="5" fill="#00e5c8"/>
@@ -63,7 +63,7 @@
     <text x="0" y="276" fill="#00e5c8" font-size="24" font-family="'IBM Plex Sans JP', 'Segoe UI', sans-serif" letter-spacing="8">LYRICS / SPLIT SUBTITLES / LTX SEGMENTS / VIEWER QA</text>
   </g>
 
-  <g transform="translate(1078 214)">
+  <g transform="translate(1178 366)">
     <rect x="0" y="0" width="304" height="188" rx="20" fill="#0e0e1c" stroke="#00e5c8" stroke-opacity="0.32"/>
     <path d="M24 48h256" stroke="#00e5c8" stroke-opacity="0.28"/>
     <path d="M24 84h256" stroke="#b0b4d0" stroke-opacity="0.18"/>
