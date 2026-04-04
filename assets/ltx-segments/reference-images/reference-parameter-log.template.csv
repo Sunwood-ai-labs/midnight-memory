@@ -1,9 +1,11 @@
-﻿asset_id,filename,role,model,preset,seed,steps,cfg,denoise,aspect_ratio,created_at,status,notes,sha256
+asset_id,filename,role,model,preset,seed,steps,cfg,denoise,aspect_ratio,created_at,status,notes,sha256
 protagonist_base_existing,character/momiji-studio_0014.png,character,existing_asset,reference_only,,,,,16:9,,ready_existing,"primary fox-girl identity reference",,
-env_vocal_booth_night,environment/midnight-memory-ref-env-vocal-booth-night-v01.png,environment,,,,,,,,pending,"night studio booth with visible mouth-safe mic layout",,
-env_rooftop_stage,environment/midnight-memory-ref-env-rooftop-stage-v01.png,environment,,,,,,,,pending,"rooftop start-frame location",,
-env_river_bridge_stage,environment/midnight-memory-ref-env-river-bridge-stage-v01.png,environment,,,,,,,,pending,"bridge stage for final chorus",,
-env_glass_city,environment/midnight-memory-ref-env-glass-city-v01.png,environment,,,,,,,,pending,"urban glass reflection space",,
-style_master,style/midnight-memory-ref-style-master-v01.png,style,,,,,,,,pending,"global city-pop MV grade",,
-
-
+env_vocal_booth_night,environment/midnight-memory-ref-env-vocal-booth-night-v01.png,environment,,,,,,,,ready,"night studio booth",,
+env_rooftop_stage,environment/midnight-memory-ref-env-rooftop-stage-v01.png,environment,,,,,,,,ready,"rooftop stage",,
+env_river_bridge_stage,environment/midnight-memory-ref-env-river-bridge-stage-v01.png,environment,,,,,,,,ready,"river bridge stage",,
+env_glass_city,environment/midnight-memory-ref-env-glass-city-v01.png,environment,,,,,,,,ready,"glass city space",,
+style_master,style/midnight-memory-ref-style-master-v01.png,style,,,,,,,,ready,"global style master",,
+master_vocal_booth,location-masters/midnight-memory-master-vocal-booth-v01.png,location_master,,,,,,,,pending,"generated from character + booth + style master",,
+master_rooftop,location-masters/midnight-memory-master-rooftop-v01.png,location_master,,,,,,,,pending,"generated from character + rooftop + style master",,
+master_river_bridge,location-masters/midnight-memory-master-river-bridge-v01.png,location_master,,,,,,,,pending,"generated from character + river bridge + style master",,
+master_glass_city,location-masters/midnight-memory-master-glass-city-v01.png,location_master,,,,,,,,pending,"generated from character + glass city + style master",,

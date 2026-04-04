@@ -1,6 +1,6 @@
-﻿{
+{
   "title": "Midnight Memory Nanobanana Reference Pack",
-  "version": 3,
+  "version": 4,
   "owner": "nanobanana-pro-operator",
   "baseDir": "assets/ltx-segments/reference-images",
   "status": "pending_generation",
@@ -17,38 +17,63 @@
       "filename": "environment/midnight-memory-ref-env-vocal-booth-night-v01.png",
       "role": "environment",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "env_rooftop_stage",
       "filename": "environment/midnight-memory-ref-env-rooftop-stage-v01.png",
       "role": "environment",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "env_river_bridge_stage",
       "filename": "environment/midnight-memory-ref-env-river-bridge-stage-v01.png",
       "role": "environment",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "env_glass_city",
       "filename": "environment/midnight-memory-ref-env-glass-city-v01.png",
       "role": "environment",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "style_master",
       "filename": "style/midnight-memory-ref-style-master-v01.png",
       "role": "style",
       "required": true,
+      "status": "ready"
+    },
+    {
+      "id": "master_vocal_booth",
+      "filename": "location-masters/midnight-memory-master-vocal-booth-v01.png",
+      "role": "location_master",
+      "required": true,
       "status": "pending"
     },
+    {
+      "id": "master_rooftop",
+      "filename": "location-masters/midnight-memory-master-rooftop-v01.png",
+      "role": "location_master",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "id": "master_river_bridge",
+      "filename": "location-masters/midnight-memory-master-river-bridge-v01.png",
+      "role": "location_master",
+      "required": true,
+      "status": "pending"
+    },
+    {
+      "id": "master_glass_city",
+      "filename": "location-masters/midnight-memory-master-glass-city-v01.png",
+      "role": "location_master",
+      "required": true,
+      "status": "pending"
     }
   ]
 }
-
-
