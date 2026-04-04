@@ -52,28 +52,28 @@
       "filename": "location-masters/midnight-memory-master-vocal-booth-v01.png",
       "role": "location_master",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "master_rooftop",
       "filename": "location-masters/midnight-memory-master-rooftop-v01.png",
       "role": "location_master",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "master_river_bridge",
       "filename": "location-masters/midnight-memory-master-river-bridge-v01.png",
       "role": "location_master",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     },
     {
       "id": "master_glass_city",
       "filename": "location-masters/midnight-memory-master-glass-city-v01.png",
       "role": "location_master",
       "required": true,
-      "status": "pending"
+      "status": "ready"
     }
   ]
 }
