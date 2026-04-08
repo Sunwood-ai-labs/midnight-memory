@@ -1,0 +1,5 @@
+node_modules/
+out/
+public/Midnight Memory_TopV.mp4
+src/generated/captions.jsx
+src/generated/video-metadata.jsx

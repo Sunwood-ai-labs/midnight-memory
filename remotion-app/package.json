@@ -1,0 +1,19 @@
+{
+  "name": "midnight-memory-topview-remotion",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "prepare:assets": "node ./scripts/prepare-assets.mjs",
+    "preview": "npm run prepare:assets && node ./node_modules/@remotion/cli/remotion-cli.js studio ./src/index.jsx",
+    "render": "npm run prepare:assets && node ./node_modules/@remotion/cli/remotion-cli.js render ./src/index.jsx MidnightMemoryTopView ./out/midnight-memory-topview-lyric-motion.mp4 --overwrite --timeout=240000 --concurrency=3"
+  },
+  "dependencies": {
+    "@remotion/captions": "4.0.441",
+    "@remotion/cli": "4.0.441",
+    "@remotion/media": "4.0.441",
+    "mediabunny": "^1.40.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "remotion": "4.0.441"
+  }
+}
