@@ -27,6 +27,7 @@
 - `assets/manifest.json` の `subtitles` で `intro` / `main` / `outro` の split subtitle を管理できます。
 - `scripts/segment_ltx_audio.py` が、曲全体をカバーする gapless な `*.ltx_segments.srt` を生成します。
 - viewer では `Lyrics` と `LTX Segments` を別レーンで同期表示できます。
+- `remotion-app/` では TopView の元動画と同期字幕を使って、クレジット付きの lyric motion 動画をレンダリングできます。
 
 ## 🚀 クイックスタート
 
@@ -82,6 +83,22 @@ uv run python -m http.server 8000
 
 ![Viewer screenshot with separate lyric and LTX lanes](./assets/viewer-lyric-ltx-lanes.png)
 
+### Lyric Motion 動画をレンダリングする
+
+```bash
+cd D:\midnight-memory\remotion-app
+npm install
+npm run preview
+npm run render
+```
+
+`npm run preview` と `npm run render` の前に `npm run prepare:assets` が自動で走ります。
+この処理で `assets/Midnight Memory_TopV.mp4` と `Intro - Chorus 1` の `intro` / `main` SRT を Remotion 側へ同期し、次の出力を生成します。
+
+- `remotion-app/out/midnight-memory-topview-lyric-motion.mp4`
+
+アウトロのクレジットには、この repo と `TopView / SeeDance 2.0` を明記します。
+
 ## 🗂️ ドキュメント導線
 
 - Agent entrypoint: [SKILL.md](./SKILL.md)
@@ -92,6 +109,8 @@ uv run python -m http.server 8000
 - [docs/ja/intro-outro-subtitle-workflow.md](./docs/ja/intro-outro-subtitle-workflow.md): 日本語 split subtitle フロー
 - [docs/ltx-segment-workflow.md](./docs/ltx-segment-workflow.md): 英語 LTX セグメント運用
 - [docs/ja/ltx-segment-workflow.md](./docs/ja/ltx-segment-workflow.md): 日本語 LTX セグメント運用
+- [docs/remotion-lyric-motion-workflow.md](./docs/remotion-lyric-motion-workflow.md): 英語 Remotion lyric motion フロー
+- [docs/ja/remotion-lyric-motion-workflow.md](./docs/ja/remotion-lyric-motion-workflow.md): 日本語 Remotion lyric motion フロー
 
 ## 🖥️ Viewer 用 manifest
 
@@ -152,12 +171,20 @@ uv run python scripts/create_stub_audio.py
 npm run test:viewer
 ```
 
+lyric motion 側の確認:
+
+```bash
+cd D:\midnight-memory\remotion-app
+npm run prepare:assets
+```
+
 ## 📁 構成
 
 - `scripts/gemini_srt.py`: Gemini ベースの歌詞SRT生成 CLI
 - `scripts/extract_subtitle_gap.py`: intro / outro gap 抽出ヘルパー
 - `scripts/segment_ltx_audio.py`: LTX セグメントSRT生成
 - `scripts/validate_manifest.py`: manifest 検証
+- `remotion-app/`: TopView lyric motion とクレジットアウトロを出力する Remotion プロジェクト
 - `viewer/`: ローカル viewer
 - `docs/`: 英日ドキュメント
 - `assets/*.srt`: 歌詞用字幕

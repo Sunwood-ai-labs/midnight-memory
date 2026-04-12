@@ -3,7 +3,7 @@ layout: home
 hero:
   name: midnight-memory
   text: Subtitle Workflow Docs
-  tagline: Split lyric subtitles, generate gapless LTX segments, and review them in synchronized viewer lanes.
+  tagline: Split lyric subtitles, generate gapless LTX segments, render lyric motion videos, and review everything in synchronized viewer lanes.
   image:
     src: /favicon.svg
     alt: midnight-memory icon
@@ -15,6 +15,9 @@ hero:
       text: LTX Segment Workflow
       link: /ltx-segment-workflow
     - theme: alt
+      text: Remotion Lyric Motion
+      link: /remotion-lyric-motion-workflow
+    - theme: alt
       text: 日本語 Docs
       link: /ja/
 features:
@@ -24,6 +27,8 @@ features:
     details: Generate full-track, gapless `*.ltx_segments.srt` files with `[melody]` coverage for downstream LTX preparation.
   - title: Separate Viewer Lanes
     details: Review lyric cues and LTX segment cues in separate synchronized lanes without cluttering the lyric timeline.
+  - title: Remotion Lyric Motion
+    details: Render the TopView lyric motion cut from synchronized subtitle parts and keep source credits in the outro.
 ---
 
 ## Documentation Growth Rules
@@ -38,4 +43,5 @@ features:
 
 - [Intro / Outro Subtitle Workflow](./intro-outro-subtitle-workflow.md)
 - [LTX Segment Workflow](./ltx-segment-workflow.md)
+- [Remotion Lyric Motion Workflow](./remotion-lyric-motion-workflow.md)
 - [Japanese Documentation Hub](./ja/index.md)

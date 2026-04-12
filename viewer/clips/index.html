@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Midnight Memory WAV Clip Audit</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+JP:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined&icon_names=forward_10,pause,play_arrow,refresh,replay,replay_10,skip_next,skip_previous&display=block" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body class="clip-page">
+  <div class="viewer-shell clip-viewer-shell">
+    <header class="top-bar panel top-bar--stacked">
+      <div class="top-bar-copy">
+        <p class="eyebrow">Midnight Memory</p>
+        <h1>WAV Clip Review</h1>
+        <p class="support-text">Split clip WAV files and `segments.json` on a separate review surface.</p>
+        <nav class="surface-nav" aria-label="Viewer pages">
+          <a class="surface-link" id="subtitleViewLink" href="../">Subtitle Viewer</a>
+          <a class="surface-link surface-link--active" href="./">WAV Clip Review</a>
+        </nav>
+      </div>
+      <div class="meta-group">
+        <div class="meta-chip">
+          <span class="meta-label">Manifest</span>
+          <strong id="manifestStatus">Loading</strong>
+        </div>
+        <div class="meta-chip">
+          <span class="meta-label">Tracks</span>
+          <strong id="trackCount">0</strong>
+        </div>
+        <div class="meta-chip">
+          <span class="meta-label">Clips</span>
+          <strong id="clipCount">0</strong>
+        </div>
+      </div>
+    </header>
+
+    <section class="player-strip panel clip-hero">
+      <div class="player-header">
+        <div>
+          <p class="section-kicker">Selected Deck</p>
+          <h2 id="deckTitle">Preparing clip audit deck</h2>
+          <p id="deckSubtitle">Loading segment metadata and split WAV paths.</p>
+        </div>
+        <button class="ghost-button" type="button" id="reloadButton">
+          <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
+          Reload
+        </button>
+      </div>
+      <div class="status-row clip-status-row" role="status" aria-live="polite">
+        <span class="status-chip" id="metadataStateChip">Metadata idle</span>
+        <span class="status-chip" id="audioStateChip">Audio idle</span>
+        <span class="status-chip" id="statusChip">Ready</span>
+      </div>
+    </section>
+
+    <main class="clip-grid">
+      <aside class="panel stack">
+        <section>
+          <div class="panel-title-row">
+            <h2>Track Decks</h2>
+            <span class="meta-inline" id="trackHint">segments.json source</span>
+          </div>
+          <div class="track-list" id="trackList" role="listbox" aria-label="Track clip decks">
+            <div class="empty-state">Clip decks will appear here.</div>
+          </div>
+        </section>
+
+        <section class="now-card clip-status-card">
+          <div class="panel-title-row">
+            <h2>Status</h2>
+            <span class="meta-inline" id="readyBadge">Idle</span>
+          </div>
+          <p class="current-line clip-card-line" id="statusHeadline">Split WAV metadata is loading.</p>
+          <p class="next-line" id="statusDetail">Manifest and local clip export readiness will appear here.</p>
+        </section>
+      </aside>
+
+      <section class="panel stack clip-hero-panel">
+        <div class="clip-stat-row">
+          <div class="clip-stat-card">
+            <span class="meta-label">Selected</span>
+            <strong id="selectedClipLabel">0 / 0</strong>
+          </div>
+          <div class="clip-stat-card">
+            <span class="meta-label">Range</span>
+            <strong id="selectedClipRange">00:00.000 -> 00:00.000</strong>
+          </div>
+          <div class="clip-stat-card">
+            <span class="meta-label">Duration</span>
+            <strong id="selectedClipDuration">0.000s</strong>
+          </div>
+        </div>
+
+        <section class="clip-focus-card">
+          <div class="clip-focus-head">
+            <div class="clip-focus-meta">
+              <span class="clip-kind-badge" id="selectedClipKind" data-kind="">Clip</span>
+              <span class="meta-inline" id="selectedClipFile">No file loaded</span>
+            </div>
+            <div class="clip-focus-actions">
+              <button class="ghost-button" type="button" id="previousClipButton">
+                <span class="material-symbols-outlined" aria-hidden="true">skip_previous</span>
+                Prev Clip
+              </button>
+              <button class="ghost-button" type="button" id="nextClipButton">
+                Next Clip
+                <span class="material-symbols-outlined" aria-hidden="true">skip_next</span>
+              </button>
+            </div>
+          </div>
+          <h3 id="currentClipTitle">Select a clip deck</h3>
+          <p class="clip-focus-text" id="currentClipText">The selected clip text will appear here.</p>
+          <p class="meta-inline" id="currentClipRange">00:00.000 -> 00:00.000</p>
+          <div class="clip-range-meter" aria-hidden="true">
+            <div class="clip-range-track"></div>
+            <div class="clip-range-active" id="selectedClipMeter"></div>
+          </div>
+
+          <div class="transport-row clip-transport-row">
+            <div class="transport-buttons" aria-label="Clip transport controls">
+              <button class="icon-button primary" type="button" id="playPauseButton" aria-label="Play or pause" aria-pressed="false">
+                <span class="material-symbols-outlined" id="playPauseIcon" aria-hidden="true">play_arrow</span>
+              </button>
+              <button class="icon-button" type="button" id="restartClipButton" aria-label="Restart clip">
+                <span class="material-symbols-outlined" aria-hidden="true">replay</span>
+              </button>
+              <button class="icon-button" type="button" id="backButton" aria-label="Back 10 seconds">
+                <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
+              </button>
+              <button class="icon-button" type="button" id="forwardButton" aria-label="Forward 10 seconds">
+                <span class="material-symbols-outlined" aria-hidden="true">forward_10</span>
+              </button>
+            </div>
+            <label class="visually-hidden" for="timeSlider">Clip playback position</label>
+            <input type="range" id="timeSlider" min="0" max="0" step="0.01" value="0" aria-label="Clip playback position">
+            <div class="time-readout" id="timeReadout">00:00 / 00:00</div>
+          </div>
+
+          <audio id="clipAudio" controls preload="metadata"></audio>
+        </section>
+      </section>
+
+      <section class="panel stack">
+        <div class="panel-title-row">
+          <h2>Clip Queue</h2>
+          <span class="meta-inline" id="metadataSourceLabel">segments.json pending</span>
+        </div>
+        <div class="filter-pill-row" id="filterPills" role="group" aria-label="Clip filters">
+          <button class="filter-pill active" type="button" data-filter="all" aria-pressed="true">All</button>
+          <button class="filter-pill" type="button" data-filter="lyric" aria-pressed="false">Lyric</button>
+          <button class="filter-pill" type="button" data-filter="melody" aria-pressed="false">Melody</button>
+        </div>
+        <div class="clip-list" id="clipList" role="list" aria-label="WAV clip queue">
+          <div class="empty-state">Split WAV clip queue will appear here.</div>
+        </div>
+      </section>
+
+      <section class="panel stack">
+        <div class="panel-title-row">
+          <h2>Metadata</h2>
+          <span class="meta-inline">Raw JSON</span>
+        </div>
+        <dl class="clip-source-grid">
+          <div>
+            <dt>segments.json</dt>
+            <dd id="clipSourceManifest">pending</dd>
+          </div>
+          <div>
+            <dt>LTX SRT</dt>
+            <dd id="timelineSourceLabel">pending</dd>
+          </div>
+          <div>
+            <dt>Audio Source</dt>
+            <dd id="audioSourceLabel">pending</dd>
+          </div>
+        </dl>
+        <pre id="rawMetadata">segments.json metadata will appear here.</pre>
+        <p class="support-text" id="commandHint">Run `uv run python scripts/split_audio_by_srt.py --overwrite ...` to refresh clip exports.</p>
+        <p class="support-text" id="statusMessage">Viewer status messages will appear here.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

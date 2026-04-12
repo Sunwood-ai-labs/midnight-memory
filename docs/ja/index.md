@@ -3,7 +3,7 @@ layout: home
 hero:
   name: "midnight-memory"
   text: "ドキュメント"
-  tagline: "split subtitle、LTX セグメント、viewer の確認フローをまとめた docs ハブです。"
+  tagline: "split subtitle、LTX セグメント、lyric motion、viewer の確認フローをまとめた docs ハブです。"
   image:
     src: /favicon.svg
     alt: midnight-memory icon
@@ -15,6 +15,9 @@ hero:
       text: "LTX セグメント運用"
       link: "/ja/ltx-segment-workflow"
     - theme: alt
+      text: "Remotion lyric motion"
+      link: "/ja/remotion-lyric-motion-workflow"
+    - theme: alt
       text: "English Docs"
       link: "/"
 features:
@@ -24,6 +27,8 @@ features:
     details: "曲全体をカバーする gapless な *.ltx_segments.srt を生成し、[melody] 区間も明示できます。"
   - title: "viewer 別レーン表示"
     details: "Lyrics と LTX Segments を別レーンで同期表示し、粗い確認用タイムラインが歌詞表示を邪魔しません。"
+  - title: "Remotion lyric motion"
+    details: "TopView の元動画と同期字幕から lyric motion 動画を出し、アウトロでソースクレジットも表示します。"
 ---
 
 ## 運用ルール
@@ -40,3 +45,5 @@ features:
 - [前奏 / 後奏 split subtitle フロー（日本語）](./intro-outro-subtitle-workflow.md)
 - [LTX Segment Workflow（英語）](../ltx-segment-workflow.md)
 - [LTX セグメント運用（日本語）](./ltx-segment-workflow.md)
+- [Remotion Lyric Motion Workflow（英語）](../remotion-lyric-motion-workflow.md)
+- [Remotion lyric motion フロー（日本語）](./remotion-lyric-motion-workflow.md)

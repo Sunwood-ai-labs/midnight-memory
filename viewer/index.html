@@ -14,10 +14,15 @@
 <body>
   <div class="viewer-shell">
     <header class="top-bar panel">
-      <div>
+      <div class="header-copy">
         <p class="eyebrow">Midnight Memory</p>
         <h1>Audio + SRT Viewer</h1>
+        <p class="support-text">Lyric timing and LTX segment review.</p>
       </div>
+      <nav class="mode-nav" aria-label="Viewer pages">
+        <a class="mode-link is-current" href="./">Subtitle Review</a>
+        <a class="mode-link" id="clipAuditLink" href="./clips/">WAV Clip Review</a>
+      </nav>
       <div class="meta-group">
         <div class="meta-chip">
           <span class="meta-label">Manifest</span>
@@ -39,7 +44,7 @@
         <div>
           <p class="section-kicker">Now Playing</p>
           <h2 id="deckTitle">Preparing viewer</h2>
-          <p id="deckSubtitle">manifest を読み込み中です。</p>
+          <p id="deckSubtitle">Track metadata is loading.</p>
         </div>
         <button class="ghost-button" type="button" id="reloadButton">
           <span class="material-symbols-outlined" aria-hidden="true">refresh</span>
@@ -48,29 +53,29 @@
       </div>
 
       <div class="transport-row">
-        <div class="transport-buttons" aria-label="再生コントロール">
-          <button class="icon-button primary" type="button" id="playPauseButton" aria-label="再生" aria-pressed="false">
+        <div class="transport-buttons" aria-label="Transport controls">
+          <button class="icon-button primary" type="button" id="playPauseButton" aria-label="Play" aria-pressed="false">
             <span class="material-symbols-outlined" aria-hidden="true">play_arrow</span>
           </button>
-          <button class="icon-button" type="button" id="restartButton" aria-label="最初に戻る">
+          <button class="icon-button" type="button" id="restartButton" aria-label="Restart">
             <span class="material-symbols-outlined" aria-hidden="true">replay</span>
           </button>
-          <button class="icon-button" type="button" id="backButton" aria-label="10秒戻る">
+          <button class="icon-button" type="button" id="backButton" aria-label="Back 10 seconds">
             <span class="material-symbols-outlined" aria-hidden="true">replay_10</span>
           </button>
-          <button class="icon-button" type="button" id="forwardButton" aria-label="10秒進む">
+          <button class="icon-button" type="button" id="forwardButton" aria-label="Forward 10 seconds">
             <span class="material-symbols-outlined" aria-hidden="true">forward_10</span>
           </button>
         </div>
 
-        <label class="visually-hidden" for="timeSlider">再生位置</label>
-        <input type="range" id="timeSlider" min="0" max="0" step="0.01" value="0" aria-label="再生位置">
+        <label class="visually-hidden" for="timeSlider">Playback position</label>
+        <input type="range" id="timeSlider" min="0" max="0" step="0.01" value="0" aria-label="Playback position">
         <div class="time-readout" id="timeReadout">00:00 / 00:00</div>
       </div>
 
       <div class="toolbar-row">
         <label class="speed-label" for="speedSelect">Speed</label>
-        <select id="speedSelect" aria-label="再生速度">
+        <select id="speedSelect" aria-label="Playback speed">
           <option value="0.75">0.75x</option>
           <option value="1" selected>1.0x</option>
           <option value="1.25">1.25x</option>
@@ -93,7 +98,7 @@
             <h2>Tracks</h2>
             <span class="material-symbols-outlined subtle-icon" aria-hidden="true">music_note</span>
           </div>
-          <div class="track-list" id="trackList" role="listbox" aria-label="トラック一覧"></div>
+          <div class="track-list" id="trackList" role="listbox" aria-label="Track selector"></div>
         </section>
 
         <section class="now-card">
@@ -101,8 +106,8 @@
             <h2>Current</h2>
             <span class="meta-inline" id="currentTiming">00:00.000</span>
           </div>
-          <p class="current-line" id="currentLine" aria-live="polite">字幕を読み込んでいません。</p>
-          <p class="next-line" id="nextLine">次の行がここに表示されます。</p>
+          <p class="current-line" id="currentLine" aria-live="polite">Current lyric line will appear here.</p>
+          <p class="next-line" id="nextLine">The next line will appear here.</p>
         </section>
       </aside>
 
@@ -125,8 +130,8 @@
             <div class="lane-heading">
               <h3>Lyrics</h3>
             </div>
-            <div class="cue-list" id="cueList" role="list" aria-label="字幕タイムライン">
-              <div class="empty-state">字幕を読み込むとここに表示されます。</div>
+            <div class="cue-list" id="cueList" role="list" aria-label="Lyric timeline">
+              <div class="empty-state">Lyric cues will appear here.</div>
             </div>
           </section>
         </div>
@@ -137,8 +142,8 @@
           <h2>Raw SRT</h2>
           <span class="material-symbols-outlined subtle-icon" aria-hidden="true">schedule</span>
         </div>
-        <pre id="rawSrt">字幕テキストを表示します。</pre>
-        <p class="support-text" id="statusMessage">manifest を読み込んでいます。</p>
+        <pre id="rawSrt">Raw subtitle text will appear here.</pre>
+        <p class="support-text" id="statusMessage">Manifest metadata is loading.</p>
       </section>
     </main>
   </div>

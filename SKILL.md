@@ -1,6 +1,6 @@
 ---
 name: midnight-memory
-description: Manage intro/main/outro subtitle sectioning, gap extraction, and manifest sync for `midnight-memory`, and keep viewer timeline metadata aligned.
+description: Manage intro/main/outro subtitle sectioning, gap extraction, manifest sync, and Remotion lyric motion outputs for `midnight-memory`, while keeping viewer timeline metadata aligned.
 ---
 
 # Midnight Memory Repository Instructions
@@ -17,6 +17,7 @@ Use `uv` for all Python commands in this repository.
 - Extract gap regions before first cue or after last cue using `scripts/extract_subtitle_gap.py`.
 - Generate gapless LTX timelines with `scripts/segment_ltx_audio.py` when downstream segment review is needed.
 - Keep `assets/manifest.json` `subtitles` / `timelineSubtitles` in sync with generated subtitle files.
+- Render lyric motion videos from `assets/Midnight Memory_TopV.mp4` and synchronized split subtitle parts using `remotion-app/`.
 - Validate and fix subtitle workflow consistency via repo checks.
 
 ## Core Files
@@ -26,9 +27,13 @@ Use `uv` for all Python commands in this repository.
 - `scripts/validate_manifest.py`
 - `assets/manifest.json`
 - `assets/*.srt`
+- `remotion-app/`
+- `remotion-app/scripts/prepare-assets.mjs`
+- `remotion-app/src/compositions/MidnightMemoryTopView.jsx`
 - `viewer/`
 - `docs/intro-outro-subtitle-workflow.md`
 - `docs/ltx-segment-workflow.md`
+- `docs/remotion-lyric-motion-workflow.md`
 
 ## Quick Workflow
 
@@ -43,6 +48,7 @@ Use `uv` for all Python commands in this repository.
    - add `subtitles` entries with `id`/`label` (`intro`, `main`, `outro`)
    - maintain existing timeline entries when `timelineSubtitles` are used
 5. Run validation and manifest checks before handoff.
+6. For lyric motion tasks, run `cd remotion-app`, prepare assets, then preview or render the Remotion composition.
 
 ## Intro/Outro Split Workflow
 
@@ -72,7 +78,7 @@ Keep the combined file as the ordered concatenation of the split files.
 
 ### Extraction Flow
 
-Probe the region with the dedicated helper so the trim, prompt, and report format stay reproducible:
+Probe the region with the dedicated helper so trim, prompt, and report format stay reproducible:
 
 ```powershell
 uv run python scripts/extract_subtitle_gap.py `
@@ -103,14 +109,14 @@ Write split files as follows:
 
 ### Manifest Rules
 
-Keep backward compatibility:
+Keep backward compatibility with the combined fallback:
 
 ```json
 {
   "subtitle": "assets/Track Name.srt",
   "subtitles": [
-    { "id": "intro", "label": "前奏", "path": "assets/Track Name.intro.srt" },
-    { "id": "main", "label": "本編", "path": "assets/Track Name.main.srt" }
+    { "id": "intro", "label": "Intro", "path": "assets/Track Name.intro.srt" },
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" }
   ]
 }
 ```
@@ -121,8 +127,8 @@ or:
 {
   "subtitle": "assets/Track Name.srt",
   "subtitles": [
-    { "id": "main", "label": "本編", "path": "assets/Track Name.main.srt" },
-    { "id": "outro", "label": "後奏", "path": "assets/Track Name.outro.srt" }
+    { "id": "main", "label": "Main", "path": "assets/Track Name.main.srt" },
+    { "id": "outro", "label": "Outro", "path": "assets/Track Name.outro.srt" }
   ]
 }
 ```
@@ -140,9 +146,22 @@ npm run test:viewer
 
 Only report completion when commands and manifest/metadata consistency are passing.
 
+## Additional Checks For Lyric Motion Work
+
+When you modify `remotion-app/`, also run:
+
+```powershell
+cd remotion-app
+npm run prepare:assets
+```
+
+Run `npm run render` as well when composition logic, subtitle wiring, or credit content changes.
+
 ## Guardrails
 
 - Do not change existing file formats unless needed for workflow correctness.
 - Keep `subtitle` fallback compatibility alive when split files are introduced.
 - Prefer conservative transcription choices for unstable model output.
+- Keep the TopView lyric motion credits aligned with the source repo credit and `TopView / SeeDance 2.0`.
+- Treat `remotion-app/out/` as generated output and do not commit renders unless explicitly requested.
 - Avoid committing local secrets from `.env`.

@@ -1,4 +1,5 @@
 const manifestUrl = "../assets/manifest.json";
+const requestedTrackId = new URLSearchParams(window.location.search).get("track");
 
 const state = {
   tracks: [],
@@ -33,6 +34,7 @@ const elements = {
   subtitleStateChip: document.getElementById("subtitleStateChip"),
   statusChip: document.getElementById("statusChip"),
   audio: document.getElementById("audioElement"),
+  clipAuditLink: document.getElementById("clipAuditLink"),
   trackList: document.getElementById("trackList"),
   currentTiming: document.getElementById("currentTiming"),
   currentLine: document.getElementById("currentLine"),
@@ -597,6 +599,10 @@ async function selectTrack(index) {
 
   elements.deckTitle.textContent = track.title;
   elements.deckSubtitle.textContent = `${track.section} | ${track.audio.split("/").pop()}`;
+  if (elements.clipAuditLink) {
+    const query = track.id ? `?track=${encodeURIComponent(track.id)}` : "";
+    elements.clipAuditLink.href = `./clips/${query}`;
+  }
   elements.subtitleStateChip.textContent = "Subtitle loading";
   elements.audioStateChip.textContent = "Audio readying";
   elements.rawSrt.textContent = "字幕テキストを読み込んでいます。";
@@ -614,6 +620,11 @@ async function selectTrack(index) {
   }
 
   state.subtitleSources = subtitleSources;
+  if (track.id) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("track", track.id);
+    window.history.replaceState({}, "", url);
+  }
 
   try {
     const [subtitlePayloads, segmentPayloads] = await Promise.all([
@@ -655,7 +666,7 @@ async function selectTrack(index) {
 }
 
 async function loadManifest(cacheBust = false) {
-  const preferredTrackId = state.selectedIndex >= 0 ? state.tracks[state.selectedIndex]?.id : null;
+  const preferredTrackId = requestedTrackId || (state.selectedIndex >= 0 ? state.tracks[state.selectedIndex]?.id : null);
   state.manifestRequestId += 1;
   const requestId = state.manifestRequestId;
   const url = cacheBust ? `${manifestUrl}?t=${Date.now()}` : manifestUrl;
@@ -678,9 +689,11 @@ async function loadManifest(cacheBust = false) {
     elements.trackCount.textContent = String(state.tracks.length);
     renderTrackList();
     if (state.tracks.length) {
-      const nextIndex = preferredTrackId
-        ? state.tracks.findIndex((track) => track.id === preferredTrackId)
-        : 0;
+      const nextIndex = requestedTrackId
+        ? state.tracks.findIndex((track) => track.id === requestedTrackId)
+        : preferredTrackId
+          ? state.tracks.findIndex((track) => track.id === preferredTrackId)
+          : 0;
       await selectTrack(nextIndex >= 0 ? nextIndex : 0);
       await maybeRunAutomationProbe();
     } else {

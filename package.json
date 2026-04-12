@@ -7,7 +7,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "test:viewer": "playwright test"
+    "test:viewer": "uv run python scripts/prepare_viewer_test_assets.py && playwright test"
   },
   "devDependencies": {
     "@playwright/test": "^1.59.1",

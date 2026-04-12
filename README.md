@@ -27,6 +27,7 @@
 - Split subtitle parts such as `intro`, `main`, and `outro` can be registered under `assets/manifest.json`.
 - `scripts/segment_ltx_audio.py` generates per-track, gapless `*.ltx_segments.srt` files with melody coverage for LTX lip-sync preparation.
 - The viewer renders `Lyrics` and `LTX Segments` in separate synchronized lanes so coarse segment timing does not clutter the lyric cue list.
+- `remotion-app/` renders a lyric motion video from the TopView source clip and synchronized subtitle parts, with source credits in the outro.
 
 ## ⚡ Quick Start
 
@@ -82,6 +83,22 @@ On desktop the two lanes are shown side by side; on narrower screens they stack 
 
 ![Viewer screenshot with separate lyric and LTX lanes](./assets/viewer-lyric-ltx-lanes.png)
 
+### Render A Lyric Motion Video
+
+```bash
+cd D:\midnight-memory\remotion-app
+npm install
+npm run preview
+npm run render
+```
+
+`npm run prepare:assets` runs automatically before preview or render.
+It syncs `assets/Midnight Memory_TopV.mp4` together with the `Intro - Chorus 1` `intro` and `main` SRT files into the Remotion workspace, then renders:
+
+- `remotion-app/out/midnight-memory-topview-lyric-motion.mp4`
+
+The outro credit block explicitly mentions this repository and the source visual credit `TopView / SeeDance 2.0`.
+
 ## 🗂 Documentation Map
 
 - Agent entrypoint: [SKILL.md](./SKILL.md)
@@ -91,6 +108,8 @@ On desktop the two lanes are shown side by side; on narrower screens they stack 
 - [docs/ja/intro-outro-subtitle-workflow.md](./docs/ja/intro-outro-subtitle-workflow.md): Japanese intro/outro split subtitle workflow.
 - [docs/ltx-segment-workflow.md](./docs/ltx-segment-workflow.md): English LTX segment workflow.
 - [docs/ja/ltx-segment-workflow.md](./docs/ja/ltx-segment-workflow.md): Japanese LTX segment workflow.
+- [docs/remotion-lyric-motion-workflow.md](./docs/remotion-lyric-motion-workflow.md): English Remotion lyric motion workflow.
+- [docs/ja/remotion-lyric-motion-workflow.md](./docs/ja/remotion-lyric-motion-workflow.md): Japanese Remotion lyric motion workflow.
 
 ## 🎛 Viewer Manifest
 
@@ -151,12 +170,20 @@ uv run python scripts/create_stub_audio.py
 npm run test:viewer
 ```
 
+Run the lyric motion asset sync:
+
+```bash
+cd D:\midnight-memory\remotion-app
+npm run prepare:assets
+```
+
 ## 📦 Project Layout
 
 - `scripts/gemini_srt.py`: Gemini-backed subtitle generation CLI.
 - `scripts/extract_subtitle_gap.py`: reproducible intro/outro gap extraction helper.
 - `scripts/segment_ltx_audio.py`: LTX segment SRT generator with melody coverage.
 - `scripts/validate_manifest.py`: manifest validation for local QA and CI.
+- `remotion-app/`: Remotion project for the TopView lyric motion render and credit outro.
 - `viewer/`: static review UI.
 - `docs/`: Markdown documentation for workflows and viewer behavior.
 - `assets/*.srt`: lyric subtitle inputs and sample outputs.
